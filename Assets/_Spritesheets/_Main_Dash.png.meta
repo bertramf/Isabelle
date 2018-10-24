@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 91f20ad40edcc374da828aaf5a92fef1
+guid: ea93430ce6ddbb74e9e0c06f84dc1bd1
 TextureImporter:
   fileIDToRecycleName:
-    21300000: _Main_Idle_0
-    21300002: _Main_Idle_1
-    21300004: _Main_Idle_2
-    21300006: _Main_Idle_3
+    21300000: _Main_Dash_0
+    21300002: _Main_Dash_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -85,7 +83,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -96,7 +94,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +108,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Main_Idle_0
+      name: _Main_Dash_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,13 +122,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54c46392b3d11304890985b648974adf
+      spriteID: 843b13d0b7a23b841acc1399dd08100f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Main_Idle_1
+      name: _Main_Dash_1
       rect:
         serializedVersion: 2
         x: 48
@@ -144,47 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d78584d7661d9d44ca53010c163aeb26
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Main_Idle_2
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8be716d467a613d46aec0763331df1eb
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Main_Idle_3
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52df632a833f48c4d8b73adc9ca02ab6
+      spriteID: a9c76036343452448bd9f9b57fcaaa37
       vertices: []
       indices: 
       edges: []
@@ -192,7 +150,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 72c8dd557a1eecb49a143bd2ebeaddbb
+    spriteID: 2fea9522cf588c949b6c18e5df81295f
     vertices: []
     indices: 
     edges: []

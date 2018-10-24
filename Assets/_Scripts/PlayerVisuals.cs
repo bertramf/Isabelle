@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class PlayerVisuals : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private Animator anim;
+    private PlayerBase playerBase;
+    
+    private void Start () {
+        anim = transform.Find("PlayerVisuals").GetComponent<Animator>();
+        playerBase = GetComponent<PlayerBase>();
+    }
+
+    private void Update() {
+        AssignAnimations();
+    }
+
+    private void AssignAnimations() {
+        bool isWalking;
+        if(playerBase.movementSpeed > 0) {
+            isWalking = true;
+        }
+        else {
+            isWalking = false;
+        }
+
+        anim.SetBool("isWalking", isWalking);
+        anim.SetBool("isDashing", playerBase.isDashing);
+        anim.SetInteger("jumpState", playerBase.jumpState);
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
