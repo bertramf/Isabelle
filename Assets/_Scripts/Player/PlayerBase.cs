@@ -8,9 +8,10 @@ public class PlayerBase : MonoBehaviour {
     private Rigidbody2D rb;
     private PlayerValues playerValues;
     private PlayerRaycasts playerRaycasts;
+    private CameraController cameraController;
 
     [Header("Horizontal Movement Values")]
-    public int lookDirection = 1;
+    public int lookDirection = 1; //deze moet public zijn voor de camera en voor raycasts
     public float inputHorizontal;
     public float movementSpeed;
 
@@ -23,14 +24,17 @@ public class PlayerBase : MonoBehaviour {
 
     [Header("Dash Values")]
     public bool canDash = true;
+    public bool dashCooldownOver = true;
     public bool canTurn = true;
     public bool isDashing;
     public float dashSpeed;
 
-    private void Start () {
+    private void Start() {
         rb = GetComponent<Rigidbody2D>();
         playerValues = GetComponent<PlayerValues>();
         playerRaycasts = GetComponent<PlayerRaycasts>();
+        cameraController = GameObject.Find("CameraParent").GetComponent<CameraController>();
+        cameraController.SetStartPosition(transform.position.x, transform.position.y);
     }
 	
 	private void Update () {
@@ -104,6 +108,12 @@ public class PlayerBase : MonoBehaviour {
     }
 
     private void DashInput() {
+
+        if(playerRaycasts.coyoteGrounded && dashCooldownOver) {
+            canDash = true;
+            dashCooldownOver = false;
+        }
+
         float inputRt = Input.GetAxisRaw("RT");
         if(inputRt > playerValues.RtTreshold) {
             if (canDash) {
@@ -115,20 +125,12 @@ public class PlayerBase : MonoBehaviour {
     private IEnumerator DashLoop() {
 
         canDash = false;
+        dashCooldownOver = false;
         canTurn = false;
         isDashing = true;
         dashSpeed = playerValues.dashSpeed;
 
-        //yield return new WaitForSeconds(playerValues.dashTime);
-
-        float t = 0f;
-        while(t < 1) {
-            t += Time.deltaTime / playerValues.dashTime;
-            if (playerRaycasts.beforeWall) {
-                dashSpeed = 0f;
-            }
-            yield return null;
-        }
+        yield return new WaitForSeconds(playerValues.dashTime);
 
         canTurn = true;
         isDashing = false;
@@ -136,7 +138,7 @@ public class PlayerBase : MonoBehaviour {
 
         yield return new WaitForSeconds(playerValues.dashGroundCooldown);
 
-        canDash = true;
+        dashCooldownOver = true; 
 
     }
 
@@ -159,6 +161,11 @@ public class PlayerBase : MonoBehaviour {
     }
 
     private void JumpBehaviour() {
+        //EarlyRelease check
+        if (Input.GetButtonUp("A") && jumpTime < playerValues.minJumpInputTime) {
+            earlyRelease = true;
+        }
+
         //Ga omhoog als je input A geeft
         if (Input.GetButtonDown("A") && playerRaycasts.coyoteGrounded) {
             jumpState = 1;
@@ -166,20 +173,10 @@ public class PlayerBase : MonoBehaviour {
             upVelocity = playerValues.yVelClamp_max;
             //Jump Audio moet hier aangeroepen worden
         }
-        else if (Input.GetButtonUp("A") && jumpTime < playerValues.minJumpInputTime) {
-            earlyRelease = true;
-        }
         //Dit gebeurd er nadat je na een earlyRelease bij de minimumJumpInputTime komt
-        else if (earlyRelease && jumpTime >= playerValues.minJumpInputTime) {
+        else if ((earlyRelease || Input.GetButtonUp("A")) && jumpTime >= playerValues.minJumpInputTime) {
             if (rb.velocity.y > 0) {
                 earlyRelease = false;
-                gravityMultiplier = playerValues.gravityMultiplierMax;
-                upVelocity *= playerValues.minimumJumpFactor;
-            }
-        }
-        //Dit gebeurd er als je gewoon loslaat nadat de tijd verstreken is
-        else if (Input.GetButtonUp("A") && jumpTime >= playerValues.minJumpInputTime) {
-            if (rb.velocity.y > 0) {
                 gravityMultiplier = playerValues.gravityMultiplierMax;
                 upVelocity *= playerValues.minimumJumpFactor;
             }
@@ -201,7 +198,7 @@ public class PlayerBase : MonoBehaviour {
         }
 
         //Wanneer grounded
-        if (jumpState == 2 && playerRaycasts.grounded) {
+        if (jumpState == 2 && playerRaycasts.coyoteGrounded) {
             upVelocity = 0f;
             jumpState = 0;
             //JumpParticles();

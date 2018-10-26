@@ -25,9 +25,11 @@ GameObject:
   - component: {fileID: 114532710136202826}
   - component: {fileID: 114717248204113720}
   - component: {fileID: 114597417695075134}
+  - component: {fileID: 114217007059435050}
+  - component: {fileID: 114028321655217708}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +131,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114028321655217708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130667442138002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d25e0819ef6dc43a43df7364a2ce34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114217007059435050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130667442138002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a169c7cf90aed34c91690332b36f338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114532710136202826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,20 +165,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horJoystickTreshold: 0.8
-  maxMovementSpeed: 2.5
-  airDelayTime: 0.1
+  maxMovementSpeed: 2
+  airDelayTime: 0.15
   playerNormalGravity: 1
-  playerFallGravity: 1.1
-  gravityMultiplierMax: 1.25
-  yVelClamp_min: -6.5
-  yVelClamp_max: 8.3
+  playerFallGravity: 1
+  gravityMultiplierMax: 1.15
+  yVelClamp_min: -7
+  yVelClamp_max: 6
   minimumJumpFactor: 0.3
   coyoteTime: 0.07
   minJumpInputTime: 0.08
   RtTreshold: 0.8
-  dashSpeed: 9
-  dashTime: 0.2
-  dashGroundCooldown: 0.5
+  dashSpeed: 8
+  dashTime: 0.18
+  dashGroundCooldown: 0.3
 --- !u!114 &114561158723811158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,6 +199,8 @@ MonoBehaviour:
   jumpTime: 0
   gravityMultiplier: 0
   canDash: 1
+  dashCooldownOver: 1
+  canTurn: 1
   isDashing: 0
   dashSpeed: 0
 --- !u!114 &114597417695075134

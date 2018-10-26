@@ -5,15 +5,27 @@ using UnityEngine;
 public class PlayerVisuals : MonoBehaviour {
 
     private Animator anim;
+    private SpriteRenderer spriteRenderer;
     private PlayerBase playerBase;
     
     private void Start () {
         anim = transform.Find("PlayerVisuals").GetComponent<Animator>();
+        spriteRenderer = transform.Find("PlayerVisuals").GetComponent<SpriteRenderer>();
         playerBase = GetComponent<PlayerBase>();
     }
 
     private void Update() {
+        DashState();
         AssignAnimations();
+    }
+
+    private void DashState() {
+        if (!playerBase.canDash) {
+            spriteRenderer.color = new Color(0.25f, 0.25f, 0.25f);
+        }
+        else {
+            spriteRenderer.color = Color.white;
+        }
     }
 
     private void AssignAnimations() {

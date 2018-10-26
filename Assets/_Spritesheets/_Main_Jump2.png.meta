@@ -128,7 +128,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 714a73863eea1fe42a61f18c0268f2e4
+      spriteID: ff9c9c52f1675b9488b8e0d777c748a1
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54e237ad7cd47da4eaddf8c165e718b3
+      spriteID: e84ed810ebef8c242bab5d4fbafdf190
       vertices: []
       indices: 
       edges: []
@@ -168,7 +168,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b80a9fe89c5a17e47af27641a300cf51
+      spriteID: ad224ebb885b8ce4fbe46f973309e3c0
       vertices: []
       indices: 
       edges: []
@@ -188,7 +188,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8eb6fcaaa761a2d4da07ca837ef27883
+      spriteID: f240a604464ad7647b38492f3556db8c
       vertices: []
       indices: 
       edges: []
@@ -208,7 +208,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e5560d78d85609428ffb7e9a264e05f
+      spriteID: 77eb2ba350cbc904d8ba92c21a507261
       vertices: []
       indices: 
       edges: []
@@ -228,47 +228,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26be64be15ebdf8489c92e50e337db74
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Main_Jump2_6
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d6cac1d08cc5d3409f030bf5226ee00
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Main_Jump2_7
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6c7bb4639a7f2f42930608d5385e72a
+      spriteID: 6b8ee3f769ec13f4ab1f357c1e970188
       vertices: []
       indices: 
       edges: []
