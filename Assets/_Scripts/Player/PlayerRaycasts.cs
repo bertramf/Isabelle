@@ -29,6 +29,8 @@ public class PlayerRaycasts : MonoBehaviour {
     public float verLength_befWall = 0.1f;
     public float verOffset_befWall = -0.15f;
 
+    public System.Action onTouchGround;
+
     private void Start() {
         playerBase = GetComponent<PlayerBase>();
         playerValues = GetComponent<PlayerValues>();
@@ -40,7 +42,13 @@ public class PlayerRaycasts : MonoBehaviour {
         //Grounded
         topLeft_grounded = new Vector2(transform.position.x - (horLength_grounded / 2), transform.position.y + (verLength_grounded / 2) + verOffset_grounded);
         bottomRight_grounded = new Vector2(transform.position.x + (horLength_grounded / 2), transform.position.y - (verLength_grounded / 2) + verOffset_grounded);
+        bool oldGrounded = grounded;
         grounded = Physics2D.OverlapArea(topLeft_grounded, bottomRight_grounded, groundLayer);
+        if (oldGrounded != grounded && grounded) {
+            if (onTouchGround != null) {
+                onTouchGround();
+            }
+        }
 
         //BeforeWall
         topLeft_befWall = new Vector2(transform.position.x - (horOffset_befWall * playerBase.lookDirection), transform.position.y + (verLength_befWall / 2) + verOffset_befWall);

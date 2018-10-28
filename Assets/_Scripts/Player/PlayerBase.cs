@@ -8,6 +8,7 @@ public class PlayerBase : MonoBehaviour {
     private Rigidbody2D rb;
     private PlayerValues playerValues;
     private PlayerRaycasts playerRaycasts;
+    private PlayerVisuals playerVisuals;
     private CameraController cameraController;
 
     [Header("Horizontal Movement Values")]
@@ -29,12 +30,17 @@ public class PlayerBase : MonoBehaviour {
     public bool isDashing;
     public float dashSpeed;
 
+    private int i = 0;
+
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         playerValues = GetComponent<PlayerValues>();
         playerRaycasts = GetComponent<PlayerRaycasts>();
+        playerVisuals = GetComponent<PlayerVisuals>();
         cameraController = GameObject.Find("CameraParent").GetComponent<CameraController>();
         cameraController.SetStartPosition(transform.position.x, transform.position.y);
+
+        playerRaycasts.onTouchGround += OnTouchGround;
     }
 	
 	private void Update () {
@@ -187,23 +193,31 @@ public class PlayerBase : MonoBehaviour {
     }
 
     private void JumpStates() {
-        //Van jumpstate 1 naar jumpstate 2 (normale jump)
-        if (jumpState == 1 && rb.velocity.y < 2) {
-            jumpState = 2;
-        }
 
-        //Van lopen naar vallen
-        if (jumpState == 0 && rb.velocity.y < -2) {
-            jumpState = 2;
-        }
+        ////Van jumpstate 1 naar jumpstate 2 (normale jump)
+        //if (jumpState == 1 && rb.velocity.y < 2) {
+        //    jumpState = 2;
+        //}
+
+        ////Van lopen naar vallen
+        //if (jumpState == 0 && rb.velocity.y < -2) {
+        //    jumpState = 2;
+        //}
 
         //Wanneer grounded
-        if (jumpState == 2 && playerRaycasts.coyoteGrounded) {
-            upVelocity = 0f;
-            jumpState = 0;
-            //JumpParticles();
+        //Als ie voor het eerst grounded wordt
+        if (upVelocity < -0.5f && playerRaycasts.grounded) {
+            
             //JumpAudio();
         }
+    }
+
+    private void OnTouchGround() {
+        upVelocity = 0f;
+        jumpState = 0;
+        playerVisuals.LandParticles();
+        i++;
+        print(i);
     }
 
     private void JumpTimer() {

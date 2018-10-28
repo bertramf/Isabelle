@@ -7,6 +7,9 @@ public class PlayerVisuals : MonoBehaviour {
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private PlayerBase playerBase;
+
+    public ParticleSystem ps_landLeft;
+    public ParticleSystem ps_landRight;
     
     private void Start () {
         anim = transform.Find("PlayerVisuals").GetComponent<Animator>();
@@ -28,6 +31,14 @@ public class PlayerVisuals : MonoBehaviour {
         }
     }
 
+    public void LandParticles() {
+        Vector3 vfxScale = new Vector3(playerBase.lookDirection, 1, 1);
+        ps_landLeft.transform.localScale = vfxScale;
+        ps_landRight.transform.localScale = vfxScale;
+        ps_landLeft.Play();
+        ps_landRight.Play();
+    }
+
     private void AssignAnimations() {
         bool isWalking;
         if(playerBase.movementSpeed > 0) {
@@ -39,7 +50,7 @@ public class PlayerVisuals : MonoBehaviour {
 
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isDashing", playerBase.isDashing);
-        anim.SetInteger("jumpState", playerBase.jumpState);
+        anim.SetFloat("yVelocity", playerBase.upVelocity);
     }
 	
 }
