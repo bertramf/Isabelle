@@ -10,22 +10,19 @@ public class PlayerValues : MonoBehaviour {
     public float airDelayTime = 0.15f;
 
     [Header("Gravity Values")]
-    public float playerNormalGravity = 1f;
-    public float playerFallGravity = 1f;
-    public float gravityMultiplierMax = 1.15f;
+    public float normalGravity = 1f;
+    public float fallGravity = 1.1f;
 
     [Header("Jump Values")]
     public float yVelClamp_min = -7f;
     public float yVelClamp_max = 6f;
-    public float minimumJumpFactor = 0.3f;
-    public float coyoteTime = 0.07f;
-    public float minJumpInputTime = 0.08f;
+    public float earlyReleaseFactor = 3f;
+    public float coyoteTime = 0.05f;
 
     [Header("Dash Values")]
     public float RtTreshold = 0.8f;
     public float dashSpeed = 8f;
     public float dashTime = 0.18f;
-    public float dashGroundCooldown = 0.5f;
-
+    public float dashGroundCooldown = 0.3f;
 
 }

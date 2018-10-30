@@ -19,10 +19,6 @@ public class CameraController : MonoBehaviour {
         playerTransform = GameObject.Find("Player").transform;
         playerBase = playerTransform.GetComponent<PlayerBase>();  
     }
-
-    public void SetStartPosition(float x, float y) {
-        transform.position = new Vector3(x, y, transform.position.z);
-    }
 	
 	private void FixedUpdate () {
         PositionCalculations();

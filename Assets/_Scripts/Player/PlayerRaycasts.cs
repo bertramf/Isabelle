@@ -4,38 +4,40 @@ using UnityEngine;
 
 public class PlayerRaycasts : MonoBehaviour {
 
+    public delegate void EventGrounded();
+    public static event EventGrounded onEventGrounded;
+
     private PlayerBase playerBase;
     private PlayerValues playerValues;
-
     private Vector2 topLeft_grounded;
     private Vector2 bottomRight_grounded;
     private Vector2 topLeft_befWall;
     private Vector2 bottomRight_befWall;
     private float releasePlatformTime;
 
+    [Header("Values booleans")]
     public bool grounded;
     public bool coyoteGrounded;
     public bool beforeWall;
 
-    [Header("Values grounded")]
+    [Header("Values grounded raycasts")]
     public LayerMask groundLayer;
-    public float horLength_grounded = 0.25f;
+    public float horLength_grounded = 0.14f;
     public float verLength_grounded = 0.1f;
     public float verOffset_grounded = -0.5f;
 
     [Header("Values beforeWall")]
-    public float horLength_befWall = 0.25f;
-    public float horOffset_befWall = -0.1f;
-    public float verLength_befWall = 0.1f;
-    public float verOffset_befWall = -0.15f;
-
-    public System.Action onTouchGround;
+    public float horLength_befWall = 0.2f;
+    public float horOffset_befWall = -0.05f;
+    public float verLength_befWall = 0.45f;
+    public float verOffset_befWall = -0.25f;
 
     private void Start() {
         playerBase = GetComponent<PlayerBase>();
         playerValues = GetComponent<PlayerValues>();
 
-        releasePlatformTime = playerValues.coyoteTime;
+        grounded = true;
+        releasePlatformTime = playerValues.coyoteTime; 
     }
 
     public void Raycasting() {
@@ -45,8 +47,8 @@ public class PlayerRaycasts : MonoBehaviour {
         bool oldGrounded = grounded;
         grounded = Physics2D.OverlapArea(topLeft_grounded, bottomRight_grounded, groundLayer);
         if (oldGrounded != grounded && grounded) {
-            if (onTouchGround != null) {
-                onTouchGround();
+            if(onEventGrounded != null) {
+                onEventGrounded();
             }
         }
 
