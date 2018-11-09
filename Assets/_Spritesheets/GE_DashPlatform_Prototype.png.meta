@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: b9909f849e11f7e42b38de3d733abf7b
+guid: cecfe2283aa5e3047b0f87d889fb4d6a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Player_P_DashVfx_0
-    21300002: Player_P_DashVfx_1
+    21300000: GE_DashPlatform_Prototype_0
+    21300002: GE_DashPlatform_Prototype_1
+    21300004: GE_DashPlatform_Prototype_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -108,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_P_DashVfx_0
+      name: GE_DashPlatform_Prototype_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 48
-        height: 48
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,19 +123,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8ce6a72ce10b094c8f483db10653ca8
+      spriteID: 22b139b53f882d44ba09350acb7c2310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_P_DashVfx_1
+      name: GE_DashPlatform_Prototype_1
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 48
-        height: 48
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,7 +143,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b503959a4709a3e4a88afc97497f5466
+      spriteID: 348e455160bb095419a70558cdf2498c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GE_DashPlatform_Prototype_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75ba544b69288684f832c55185b12247
       vertices: []
       indices: 
       edges: []
@@ -150,7 +171,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e087680e07ff6dd41aaa72e12a982d7f
+    spriteID: dc0ece5ae068016448a18115eeeddc35
     vertices: []
     indices: 
     edges: []

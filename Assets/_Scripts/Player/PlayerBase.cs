@@ -27,8 +27,8 @@ public class PlayerBase : MonoBehaviour {
     public float upVelocity; //Moet public zijn voor playervisuals
 
     [Header("Dash Values")]
-    public bool canDash;
-    public bool dashCooldownOver = true;
+    public bool canDash = true;
+    public bool dashCooldownOver = false;
     public bool isDashing;
     public float dashSpeed;
     public float inputRt;
@@ -107,7 +107,7 @@ public class PlayerBase : MonoBehaviour {
     }
 
     private void DashBehaviour() {
-        if(dashCooldownOver && playerRaycasts.coyoteGrounded) {
+        if (dashCooldownOver && playerRaycasts.coyoteGrounded && !canDash) {
             canDash = true;
             //EventSetter
             if (onEventDashRecharged != null) {
@@ -125,9 +125,8 @@ public class PlayerBase : MonoBehaviour {
     }
 
     private IEnumerator DashLoop() {
-
-        canDash = false;
         dashCooldownOver = false;
+        canDash = false;
         isDashing = true;
         dashSpeed = playerValues.dashSpeed;
         //Event Setter
@@ -136,14 +135,31 @@ public class PlayerBase : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(playerValues.dashTime);
+
+        StartCoroutine(CanDashCheck());
         
         isDashing = false;
         dashSpeed = 0f;
+    }
 
-        yield return new WaitForSeconds(playerValues.dashGroundCooldown);
-
-        dashCooldownOver = true; 
-
+    private IEnumerator CanDashCheck() {
+        bool grounded = false;
+        float t = 0f;
+        while(t < 1) {
+            t += Time.deltaTime / playerValues.dashGroundCooldown;
+            if (playerRaycasts.coyoteGrounded) {
+                grounded = true;
+            }
+            yield return null;
+        }
+        if(grounded == true) {
+            canDash = true;
+            //EventSetter
+            if (onEventDashRecharged != null) {
+                onEventDashRecharged();
+            }
+        }
+        dashCooldownOver = true;
     }
 
     private void JumpBehaviour() {

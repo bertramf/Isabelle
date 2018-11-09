@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     [Header("Debug Values")]
     public string currentGameplayScene;
 
-    private Vector3 currentCheckpoint;
+    private Vector3 currentCheckpoint = Vector3.zero;
 
     public Vector3 CurrentCheckpoint {
         get {
@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour {
         }
 
         //Moet hier niet een waituntil?!
+        //yield return new WaitForSeconds(2f);
 
         //Load gameplay scene
         SceneManager.LoadSceneAsync(currentGameplayScene, LoadSceneMode.Additive);
