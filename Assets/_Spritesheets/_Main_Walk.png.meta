@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 12f0eb32467f6ad43bd6802cbcf20d62
+guid: 4f7e2257d61af734fbfd6d5c6d4238b4
 TextureImporter:
   fileIDToRecycleName:
     21300000: _Main_Walk_0
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,8 +117,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,7 +126,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d974fb232c42d2744b7a530694e42a4c
+      spriteID: b6b3d40bf8e85e24a98b8027c205718b
       vertices: []
       indices: 
       edges: []
@@ -135,10 +135,10 @@ TextureImporter:
       name: _Main_Walk_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,7 +146,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c150ac05b7e232944a7ae511e79bef8a
+      spriteID: 325580218948707479f96eb8ebe17299
       vertices: []
       indices: 
       edges: []
@@ -155,10 +155,10 @@ TextureImporter:
       name: _Main_Walk_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,7 +166,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e866eb8d97570f40bb40234355b08a9
+      spriteID: cee788abb3ce7b543adc73c9a1ba3f91
       vertices: []
       indices: 
       edges: []
@@ -175,10 +175,10 @@ TextureImporter:
       name: _Main_Walk_3
       rect:
         serializedVersion: 2
-        x: 144
+        x: 96
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,7 +186,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 104b7bb1cade38a4291aa8f5e0907b63
+      spriteID: 99a62b1a84a2f0248b7f86a494089b17
       vertices: []
       indices: 
       edges: []
@@ -195,10 +195,10 @@ TextureImporter:
       name: _Main_Walk_4
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,7 +206,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12cc2c580d0ab49488b8193a40b4badc
+      spriteID: babee1a7863e6e14b9190fa1512bb994
       vertices: []
       indices: 
       edges: []
@@ -215,10 +215,10 @@ TextureImporter:
       name: _Main_Walk_5
       rect:
         serializedVersion: 2
-        x: 240
+        x: 160
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,7 +226,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fbe09b8cebb6e049848646d69856a96
+      spriteID: 068513ca4da90bc48a228b4685a4d3d4
       vertices: []
       indices: 
       edges: []
@@ -234,7 +234,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8ad48b24a75c22242b6914466f45f416
+    spriteID: 20cf2259d092ad548b22784b4c28a84c
     vertices: []
     indices: 
     edges: []

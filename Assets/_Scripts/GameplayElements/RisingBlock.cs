@@ -4,78 +4,108 @@ using UnityEngine;
 
 public class RisingBlock : MonoBehaviour {
 
-    public enum BlockState {
-        idle,
-        movingUp,
-        movingDown
-    }
-    private Animator anim;
+    private BoxCollider2D triggerCollider;
+    private Rigidbody2D rb;
 
     [Header("Gameplay Values")]
     public int maxSteps = 3;
     public float maxCoolDownTime = 3f;
+    public float beforeTriggerTime = 0.4f;
 
     [Header("Debug Values")]
-    public BlockState blockState;
-    public int startY;
+    public float y;
+    public bool playerOnBlock;
+    public bool hitsTrigger;
     public int currentStep;
+    public float startY;
     public float coolDownTimer;
 
-    private void Start() {
-        anim = transform.Find("RisingBlock_Visuals").GetComponent<Animator>();
+    private void Start () {
+        rb = GetComponent<Rigidbody2D>();
+        triggerCollider = transform.Find("RisingBlock_Visuals").transform.Find("PlayerTrigger_Death").GetComponent<BoxCollider2D>();
 
-        blockState = BlockState.idle;
-        startY = Mathf.RoundToInt(transform.position.y);
+        triggerCollider.enabled = false;
         currentStep = 0;
+        startY = transform.position.y;
         coolDownTimer = 0f;
     }
 
+    private void OnEnable() {
+        PlayerBase.onEventJump += Event_StartMovementLogic;
+    }
+
+    private void OnDisable() {
+        PlayerBase.onEventJump -= Event_StartMovementLogic;
+    }
+
     private void FixedUpdate() {
-        if(blockState == BlockState.idle) {
-            coolDownTimer += Time.deltaTime;
-        }
+        coolDownTimer += Time.deltaTime;
 
         if (coolDownTimer > maxCoolDownTime) {
-            coolDownTimer = 0f;
             CalculateDown();
         }
 
-        if (coolDownTimer > (maxCoolDownTime - 1f) && currentStep > 0) {
-            anim.SetBool("goTrill", true);
-        }
-        else {
-            anim.SetBool("goTrill", false);
-        } 
+        rb.velocity = new Vector3(0, y, 0);
     }
 
-    public void CalculateUp() {
-        if (currentStep < maxSteps && blockState == BlockState.idle) {
+    private void OnCollisionStay2D(Collision2D other) {
+        if(other.gameObject.tag == "Player") {
+            playerOnBlock = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        if (other.gameObject.tag == "Player") {
+            playerOnBlock = false;
+        }
+    }
+
+    private void Event_StartMovementLogic() {
+        if (playerOnBlock) {
+            StartCoroutine(MoveUpCheck());
+        }
+    }
+
+    private IEnumerator MoveUpCheck() {
+        float t = 0f;
+        while (t < 1) {
+            t += Time.deltaTime / beforeTriggerTime;
+            if (hitsTrigger) {
+                hitsTrigger = false;
+                CalculateUp();
+                t = 1f;
+            }
+            yield return null;
+        }
+    }
+
+    private void CalculateUp() {
+        if (currentStep < maxSteps) {
             currentStep += 1;
-            StartCoroutine(MoveOneTileUp());
+            StartCoroutine(MoveTile());
         }
     }
 
     private void CalculateDown() {
-        if (currentStep > 0 && blockState == BlockState.idle) {
+        if(currentStep > 0) {
             currentStep -= 1;
-            StartCoroutine(MoveOneTileDown());
+            StartCoroutine(MoveTile());
         }
     }
 
-    private IEnumerator MoveOneTileUp() {
-        blockState = BlockState.movingUp;
+    private IEnumerator MoveTile() {
+        triggerCollider.enabled = true;
         coolDownTimer = 0f;
-        transform.position = new Vector3(transform.position.x, startY + currentStep, transform.position.z);
-        yield return new WaitForSeconds(0.5f);
-        blockState = BlockState.idle;
-    }
 
-    private IEnumerator MoveOneTileDown() {
-        blockState = BlockState.movingUp;
-        coolDownTimer = 0f;
-        transform.position = new Vector3(transform.position.x, startY + currentStep, transform.position.z);
-        yield return new WaitForSeconds(0.5f);
-        blockState = BlockState.idle;
+        float t = 0f;
+        while(t < 1) {
+            t += Time.deltaTime / 0.2f;
+            y = Mathf.Lerp(startY, startY + currentStep, t);
+           
+            yield return null;
+        }
+
+        triggerCollider.enabled = false;
     }
 
 }

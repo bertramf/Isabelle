@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class PlayerHitted : MonoBehaviour {
 
+    public CapsuleCollider2D coll;
+    public Rigidbody2D rb;
+
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Death_Falling") {
             Death_Falling();
         }
+        if (other.gameObject.tag == "Death_Box") {
+            Death_Box();
+        }
     }
 
     private void Death_Falling() {
+        StartCoroutine(GameManager.Instance.Death());
+    }
+
+    private void Death_Box() {
+        //coll.enabled = false;
+        //rb.isKinematic = true; 
         StartCoroutine(GameManager.Instance.Death());
     }
 

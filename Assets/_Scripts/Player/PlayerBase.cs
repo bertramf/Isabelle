@@ -28,6 +28,7 @@ public class PlayerBase : MonoBehaviour {
 
     [Header("Dash Values")]
     public bool canDash = true;
+    public bool secondDash = false;
     public bool dashCooldownOver = false;
     public bool isDashing;
     public float dashSpeed;
@@ -107,7 +108,18 @@ public class PlayerBase : MonoBehaviour {
     }
 
     private void DashBehaviour() {
+        //CanDash Normal Check
         if (dashCooldownOver && playerRaycasts.coyoteGrounded && !canDash) {
+            canDash = true;
+            //EventSetter
+            if (onEventDashRecharged != null) {
+                onEventDashRecharged();
+            }
+        }
+
+        //CanDash SecondCheck
+        if (secondDash) {
+            secondDash = false;
             canDash = true;
             //EventSetter
             if (onEventDashRecharged != null) {
@@ -117,8 +129,10 @@ public class PlayerBase : MonoBehaviour {
 
         float previousInput = inputRt;
         inputRt = Input.GetAxisRaw("RT");
-        if (previousInput != inputRt && inputRt > playerValues.RtTreshold) {
+        //if (previousInput != inputRt && inputRt > playerValues.RtTreshold) {
+        if (Input.GetButtonDown("X")) { 
             if (canDash) {
+                StopCoroutine(DashLoop());
                 StartCoroutine(DashLoop());
             }
         }
@@ -196,21 +210,26 @@ public class PlayerBase : MonoBehaviour {
 
     private void Movement() {
         Vector2 movementDirection;
-        if (playerRaycasts.beforeWall) {
-            if (isDashing) {
-                movementDirection = new Vector2(0, 0);
-            }
-            else {
-                movementDirection = new Vector2(0, upVelocity);
-            }        
+        if (PlayerFreeze.instance.playerIsFrozen) {
+            movementDirection = Vector2.zero;
         }
         else {
-            if (isDashing) {
-                movementDirection = new Vector2(dashSpeed * lookDirection, 0);
+            if (playerRaycasts.beforeWall) {
+                if (isDashing) {
+                    movementDirection = new Vector2(0, 0);
+                }
+                else {
+                    movementDirection = new Vector2(0, upVelocity);
+                }
             }
             else {
-                movementDirection = new Vector2(movementSpeed * lookDirection, upVelocity);
-            } 
+                if (isDashing) {
+                    movementDirection = new Vector2(dashSpeed * lookDirection, 0);
+                }
+                else {
+                    movementDirection = new Vector2(movementSpeed * lookDirection, upVelocity);
+                }
+            }
         }
         rb.velocity = movementDirection;
     }
