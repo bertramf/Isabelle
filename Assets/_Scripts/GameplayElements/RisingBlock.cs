@@ -45,7 +45,7 @@ public class RisingBlock : MonoBehaviour {
             CalculateDown();
         }
 
-        rb.velocity = new Vector3(0, y, 0);
+        Movement();
     }
 
     private void OnCollisionStay2D(Collision2D other) {
@@ -106,6 +106,10 @@ public class RisingBlock : MonoBehaviour {
         }
 
         triggerCollider.enabled = false;
+    }
+
+    private void Movement() {
+        rb.velocity = new Vector3(0, y, 0);
     }
 
 }

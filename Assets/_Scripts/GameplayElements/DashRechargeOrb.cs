@@ -13,7 +13,7 @@ public class DashRechargeOrb : MonoBehaviour {
 
     [Header("Gameplay Values")]
     public float rechargeTime = 2f;
-    public float playerFreezeTime = 0.02f;
+    public float playerFreezeTime = 0.2f;
 
     private void Start() {
         playerBase = GameObject.Find("Player").GetComponent<PlayerBase>();
@@ -34,9 +34,9 @@ public class DashRechargeOrb : MonoBehaviour {
     }
 
     private void Disappear() {
-        playerBase.secondDash = true;
+        playerBase.CanDash = true;
         StartCoroutine(PlayerFreeze.instance.FreezePlayer(playerFreezeTime));
-        StartCoroutine(Screenshake.instance.ShakeHorizontal(1, playerFreezeTime * 2, 0.05f));
+        StartCoroutine(Screenshake.instance.ShakeHorizontal(2, playerFreezeTime * 2, 0.07f));
         coll.enabled = false;
         sprite.sprite = deChargedSpr;
         sprite.sortingLayerName = "Default";
