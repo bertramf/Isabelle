@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ea93430ce6ddbb74e9e0c06f84dc1bd1
+guid: 67b3e2d4d2601cf4a90960bc8956b88e
 TextureImporter:
   fileIDToRecycleName:
     21300000: _Main_Dash_0
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,8 +113,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 843b13d0b7a23b841acc1399dd08100f
+      spriteID: 38605ada760f1ee4ea9612372006a9a5
       vertices: []
       indices: 
       edges: []
@@ -131,10 +131,10 @@ TextureImporter:
       name: _Main_Dash_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9c76036343452448bd9f9b57fcaaa37
+      spriteID: 83d0638bcbdc817478347344bf71714f
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2fea9522cf588c949b6c18e5df81295f
+    spriteID: 191d19b24083d6b4c878ce271c5a217c
     vertices: []
     indices: 
     edges: []

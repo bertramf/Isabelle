@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 07470100b9f924249a3155b4dc0b7fd3
+guid: 8a2f8028b28832d48b2b9c017713f4cc
 TextureImporter:
   fileIDToRecycleName:
-    21300000: _Main_Idle_0
-    21300002: _Main_Idle_1
-    21300004: _Main_Idle_2
-    21300006: _Main_Idle_3
+    21300000: GE_DashRechargeOrb_0
+    21300002: GE_DashRechargeOrb_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -110,7 +108,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Main_Idle_0
+      name: GE_DashRechargeOrb_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,13 +122,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bc6583aa1153454ca65b525d5ceccae
+      spriteID: feb0f39b3d32b2f4c9f164f3e550167e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Main_Idle_1
+      name: GE_DashRechargeOrb_1
       rect:
         serializedVersion: 2
         x: 32
@@ -144,47 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df9df64b2e621944fa7f937dc221c58c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Main_Idle_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc6545ad12c9be44db5f37630a8085db
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Main_Idle_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 030aa99fd784edc4d9d8472901ff1154
+      spriteID: b783bdc1c8ea4c44c99b29d40117773e
       vertices: []
       indices: 
       edges: []
@@ -192,7 +150,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 806fb284d377a11409144798ca72bd46
+    spriteID: fabe7bf1f5b1fe84aa82eb9357552076
     vertices: []
     indices: 
     edges: []

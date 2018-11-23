@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4458098375691166}
   - component: {fileID: 20495256761019454}
   - component: {fileID: 81857069413609516}
+  - component: {fileID: 114034285263931388}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -37,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4937107699593252}
   - component: {fileID: 114412547659764046}
-  - component: {fileID: 114089622048598014}
+  - component: {fileID: 114618814174845390}
   m_Layer: 0
   m_Name: CameraParent
   m_TagString: Untagged
@@ -96,7 +97,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.5
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -119,17 +120,25 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117632737136608}
   m_Enabled: 1
---- !u!114 &114089622048598014
+--- !u!114 &114034285263931388
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1650600495547240}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1117632737136608}
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c1f74d35169a9042a18caf7a1db6697, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AssetsPPU: 48
+  m_RefResolutionX: 480
+  m_RefResolutionY: 336
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 1
+  m_CropFrameY: 1
+  m_StretchFill: 0
 --- !u!114 &114412547659764046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,3 +153,14 @@ MonoBehaviour:
   xOffset: 0.2
   xSmoothing: 7
   ySmoothing: 7
+--- !u!114 &114618814174845390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1650600495547240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1f74d35169a9042a18caf7a1db6697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -19,7 +19,7 @@ public class PlayerBase : MonoBehaviour {
     private PlayerRaycasts playerRaycasts;
 
     [Header("Horizontal Movement Values")]
-    public int lookDirection = 1; //Moet public zijn voor camera & raycasting
+    public int lookDirection; //Moet public zijn voor camera & raycasting
     public float inputHorizontal;
     public float movementSpeed; //Moet public zijn voor playervisuals
 
@@ -27,16 +27,21 @@ public class PlayerBase : MonoBehaviour {
     public float upVelocity; //Moet public zijn voor playervisuals
 
     [Header("Dash Values")]
-    public bool canDash = true;
+    public bool secondDash = false;
     public bool dashCooldownOver = false;
     public bool isDashing;
     public float dashSpeed;
     public float inputRt;
 
+    private IEnumerator dashCoroutine;
+
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         playerValues = GetComponent<PlayerValues>();
         playerRaycasts = GetComponent<PlayerRaycasts>();
+
+        lookDirection = 1;
+        dashCoroutine = DashLoop();
     }
 
     private void Update () {
@@ -102,24 +107,43 @@ public class PlayerBase : MonoBehaviour {
         while (t >= 0) {
             t -= Time.deltaTime / playerValues.airDelayTime;
             movementSpeed = playerValues.maxMovementSpeed * t;
+            movementSpeed = Mathf.Clamp(movementSpeed, 0f, playerValues.maxMovementSpeed);
             yield return null;
         }
     }
 
-    private void DashBehaviour() {
-        if (dashCooldownOver && playerRaycasts.coyoteGrounded && !canDash) {
-            canDash = true;
+    private bool canDash = true;
+
+    public bool CanDash {
+        get {
+            return canDash;
+        }
+        set {
+            canDash = value;
             //EventSetter
             if (onEventDashRecharged != null) {
                 onEventDashRecharged();
             }
         }
+    }
+
+    private void DashBehaviour() {
+        //CanDash Normal Check
+        if (dashCooldownOver && playerRaycasts.coyoteGrounded && !canDash) {
+            CanDash = true;
+        }
 
         float previousInput = inputRt;
         inputRt = Input.GetAxisRaw("RT");
-        if (previousInput != inputRt && inputRt > playerValues.RtTreshold) {
-            if (canDash) {
-                StartCoroutine(DashLoop());
+            //RT INPUT
+        //if (previousInput != inputRt && inputRt > playerValues.RtTreshold) {
+            //X INPUT
+        //if (Input.GetButtonDown("X"){ 
+        if (Input.GetButtonDown("X") || (previousInput != inputRt && inputRt > playerValues.RtTreshold)) { 
+            if (CanDash == true) {
+                StopCoroutine(dashCoroutine);
+                dashCoroutine = DashLoop();
+                StartCoroutine(dashCoroutine);
             }
         }
     }
@@ -136,28 +160,21 @@ public class PlayerBase : MonoBehaviour {
 
         yield return new WaitForSeconds(playerValues.dashTime);
 
-        StartCoroutine(CanDashCheck());
-        
         isDashing = false;
         dashSpeed = 0f;
-    }
 
-    private IEnumerator CanDashCheck() {
-        bool grounded = false;
+        //Cooldown for CanDash Check
+        bool hittedGround = false;
         float t = 0f;
-        while(t < 1) {
+        while (t < 1) {
             t += Time.deltaTime / playerValues.dashGroundCooldown;
             if (playerRaycasts.coyoteGrounded) {
-                grounded = true;
+                hittedGround = true;
             }
             yield return null;
         }
-        if(grounded == true) {
-            canDash = true;
-            //EventSetter
-            if (onEventDashRecharged != null) {
-                onEventDashRecharged();
-            }
+        if (hittedGround == true) {
+            CanDash = true;
         }
         dashCooldownOver = true;
     }
@@ -196,21 +213,27 @@ public class PlayerBase : MonoBehaviour {
 
     private void Movement() {
         Vector2 movementDirection;
-        if (playerRaycasts.beforeWall) {
-            if (isDashing) {
-                movementDirection = new Vector2(0, 0);
-            }
-            else {
-                movementDirection = new Vector2(0, upVelocity);
-            }        
+        //movementSpeed = Mathf.Clamp(movementSpeed, 0f, playerValues.maxMovementSpeed);
+        if (PlayerFreeze.instance.playerIsFrozen) {
+            movementDirection = Vector2.zero;
         }
         else {
-            if (isDashing) {
-                movementDirection = new Vector2(dashSpeed * lookDirection, 0);
+            if (playerRaycasts.beforeWall) {
+                if (isDashing) {
+                    movementDirection = new Vector2(0, 0);
+                }
+                else {
+                    movementDirection = new Vector2(0, upVelocity);
+                }
             }
             else {
-                movementDirection = new Vector2(movementSpeed * lookDirection, upVelocity);
-            } 
+                if (isDashing) {
+                    movementDirection = new Vector2(dashSpeed * lookDirection, 0);
+                }
+                else {
+                    movementDirection = new Vector2(movementSpeed * lookDirection, upVelocity);
+                }
+            }
         }
         rb.velocity = movementDirection;
     }
