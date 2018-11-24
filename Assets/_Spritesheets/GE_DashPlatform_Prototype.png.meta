@@ -5,6 +5,8 @@ TextureImporter:
     21300000: GE_DashPlatform_Prototype_0
     21300002: GE_DashPlatform_Prototype_1
     21300004: GE_DashPlatform_Prototype_2
+    21300006: GE_DashPlatform_Prototype_3
+    21300008: GE_DashPlatform_Prototype_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -114,8 +116,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 24
+        width: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,7 +125,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22b139b53f882d44ba09350acb7c2310
+      spriteID: acec6fd2d4f0e474ab758efbb8256ff9
       vertices: []
       indices: 
       edges: []
@@ -132,10 +134,10 @@ TextureImporter:
       name: GE_DashPlatform_Prototype_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 0
-        width: 48
-        height: 24
+        width: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,7 +145,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 348e455160bb095419a70558cdf2498c
+      spriteID: 5492bae6451dcb34eb0b7b293a42276e
       vertices: []
       indices: 
       edges: []
@@ -152,10 +154,10 @@ TextureImporter:
       name: GE_DashPlatform_Prototype_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 0
-        width: 48
-        height: 24
+        width: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,7 +165,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75ba544b69288684f832c55185b12247
+      spriteID: 8e95dda86d591584ca2252cca3d2c7e2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GE_DashPlatform_Prototype_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae5418436d08b6b4189480ad4d64d0b8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GE_DashPlatform_Prototype_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7985be923c292164a951a98e37b7daa3
       vertices: []
       indices: 
       edges: []
