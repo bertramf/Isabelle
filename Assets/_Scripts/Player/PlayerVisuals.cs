@@ -7,6 +7,10 @@ public class PlayerVisuals : MonoBehaviour {
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private PlayerBase playerBase;
+    private ColorSwap colorSwap;
+
+    public ColorSwapPreset defaultPreset;
+    public ColorSwapPreset dashPreset;
 
     public Color dashColor;
 
@@ -14,6 +18,7 @@ public class PlayerVisuals : MonoBehaviour {
         anim = transform.Find("PlayerVisuals").GetComponent<Animator>();
         spriteRenderer = transform.Find("PlayerVisuals").GetComponent<SpriteRenderer>();
         playerBase = GetComponent<PlayerBase>();
+        colorSwap = GetComponentInChildren<ColorSwap>();
     }
 
     private void OnEnable() {
@@ -52,11 +57,13 @@ public class PlayerVisuals : MonoBehaviour {
     }
 
     private void Event_ChangeColor() {
-        spriteRenderer.color = dashColor;
+        //spriteRenderer.color = dashColor;
+        colorSwap.UpdateVisualData(dashPreset);
     }
 
     private void Event_RedoColors() {
-        spriteRenderer.color = Color.white;
+        //spriteRenderer.color = Color.white;
+        colorSwap.UpdateVisualData(defaultPreset);
     }
 
 }

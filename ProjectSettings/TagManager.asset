@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Death_Falling
   - Death_Box
+  - ParentObject
   layers:
   - Default
   - TransparentFX

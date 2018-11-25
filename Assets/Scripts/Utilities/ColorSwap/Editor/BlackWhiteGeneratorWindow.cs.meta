@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0b120d94178b7ba45acfb0606c0a7aa8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_PersistentViewDataDictionary: {instanceID: 0}
+  - swapMaterial: {fileID: 2100000, guid: d0279e7300a0e3b42a176e8c2c81c3fc, type: 2}
+  - selectedSprite: {instanceID: 0}
+  - generatedTexture: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
