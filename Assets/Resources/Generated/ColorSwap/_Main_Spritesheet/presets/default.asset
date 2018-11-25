@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a06622efb4d1eb14d9806a416cf7ec99, type: 3}
-  m_Name: default_preset
+  m_Name: default
   m_EditorClassIdentifier: 
   colorVariants: []
   presetMaterial: {fileID: 0}
