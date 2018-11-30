@@ -21,8 +21,6 @@ public class PlayerHitted : MonoBehaviour {
     }
 
     private void Death_Box() {
-        //coll.enabled = false;
-        //rb.isKinematic = true; 
         StartCoroutine(GameManager.Instance.Death());
     }
 
