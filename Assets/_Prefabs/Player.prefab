@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 4339511401338708}
   - component: {fileID: 212783438613304790}
   - component: {fileID: 95059468234356254}
+  - component: {fileID: 114966036210925748}
   m_Layer: 0
   m_Name: PlayerVisuals
   m_TagString: Untagged
@@ -772,8 +773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9dbb9f6db622448b24ce627949991f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultPreset: {fileID: 0}
-  dashPreset: {fileID: 0}
+  defaultPreset: {fileID: 11400000, guid: 79ec795c0f893284497675c67656fefc, type: 2}
+  dashPreset: {fileID: 11400000, guid: 81e7d8631f3c28b48ae6efc58e2b1552, type: 2}
   dashColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
 --- !u!114 &114153779230363200
 MonoBehaviour:
@@ -923,6 +924,18 @@ MonoBehaviour:
   horOffset_befWall: 0.1
   verLength_befWall: 0.7
   verOffset_befWall: -0.1
+--- !u!114 &114966036210925748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1410512699016106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03c269fcf453a14a80b9a752b24caf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorSwapPreset: {fileID: 11400000, guid: 79ec795c0f893284497675c67656fefc, type: 2}
 --- !u!198 &198050888095550190
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -83470,7 +83483,7 @@ SpriteRenderer:
   m_SortingLayerID: 1799418875
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2b424b849c400ab4d9b6b478bc33cce1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cf092591c058cf45aa262b28bb951d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

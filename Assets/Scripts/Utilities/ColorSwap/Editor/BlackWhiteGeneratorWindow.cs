@@ -12,7 +12,7 @@ public class BlackWhiteGeneratorWindow : EditorWindow {
 	[SerializeField]private Material defaultMaterial;
 	[SerializeField]private Material swapMaterial;
 
-	[SerializeField]private Sprite selectedSprite;
+	[SerializeField]private Texture2D selectedTexture;
 	[SerializeField]private Texture2D generatedTexture;
 	[SerializeField]private int generatedTextureColorSteps;
 	[SerializeField]private Color32[] colorVariants;
@@ -33,44 +33,45 @@ public class BlackWhiteGeneratorWindow : EditorWindow {
 
 		GUILayout.Label ("Custom settings:", EditorStyles.boldLabel);
 		presetName = EditorGUILayout.TextField ("Preset name", presetName);
-		Sprite newSelectedSprite = EditorGUILayout.ObjectField ("Original", selectedSprite, typeof(Sprite), false) as Sprite;
-		if (newSelectedSprite != selectedSprite) {
-			selectedSprite = newSelectedSprite;
-			presetName = selectedSprite.name;
+		Texture2D newSelectedTexture = EditorGUILayout.ObjectField ("Original", selectedTexture, typeof(Texture2D), false) as Texture2D;
+		if (newSelectedTexture != selectedTexture) {
+			selectedTexture = newSelectedTexture;
+			presetName = selectedTexture.name;
 			if (generatedTexture != null) {
 				DestroyImmediate (generatedTexture);			
 			}
 		}
 
-		if (selectedSprite == null) {
+		if (selectedTexture == null) {
 			GUILayout.Label ("Please select a sprite in order to be able to convert it to a black-white image");
 			return;
 		}
-		else if (generatedTexture == null) {
+
+		if (generatedTexture == null) {
 			if (GUILayout.Button ("Convert to black white map")) {
 				ConvertSpriteToBlackWhiteMap ();
 			}
+			return;
 		}
-		else {
-			GUILayout.Label ("Result:", EditorStyles.boldLabel);
-			GUILayout.Label (generatedTexture);
-			GUILayout.Label (generatedTextureColorSteps + " customizeable colors");
 
-			GUILayout.BeginHorizontal ();
-			if (GUILayout.Button ("Save")) {
-				CreateColorSwapConfigurator ();
-			}
-			else if (GUILayout.Button ("Discard")) {
-				DestroyImmediate (generatedTexture);
-			}
-			GUILayout.EndHorizontal ();
+		GUILayout.Label ("Result:", EditorStyles.boldLabel);
+		GUILayout.Label (generatedTexture);
+		GUILayout.Label (generatedTextureColorSteps + " customizeable colors");
+
+		GUILayout.BeginHorizontal ();
+		if (GUILayout.Button ("Save")) {
+			CreateColorSwapConfigurator ();
 		}
+		else if (GUILayout.Button ("Discard")) {
+			DestroyImmediate (generatedTexture);
+		}
+		GUILayout.EndHorizontal ();
 	}
 
 	private void ConvertSpriteToBlackWhiteMap(){
 		double startTime = EditorApplication.timeSinceStartup;
 
-		Texture2D existingTexture = selectedSprite.texture;
+		Texture2D existingTexture = selectedTexture;
 		generatedTexture = new Texture2D (existingTexture.width, existingTexture.height, existingTexture.format, false);
 		Graphics.CopyTexture (existingTexture, generatedTexture);
 
@@ -140,6 +141,64 @@ public class BlackWhiteGeneratorWindow : EditorWindow {
 		return false;
 	}
 
+	private void CreateColorSwapConfigurator(){
+		// Create the correct resource path
+		string resourcePath = CreateResourceDirectory ();
+		if (resourcePath == null) {
+			return;
+		}
+
+		// Create Texture:
+		byte[] textureBytes = generatedTexture.EncodeToPNG ();
+		string blackWhiteTexturePath = resourcePath + "/" + presetName + "_texture.png";
+		File.WriteAllBytes (blackWhiteTexturePath, textureBytes);
+
+		// Create Material:
+		string materialPath = CreatePresetMaterial (resourcePath);
+
+		// Delay the using of this texture and material since the editor does not recognize it yet
+		EditorApplication.delayCall = () => {
+			AssetDatabase.Refresh ();
+
+			// Get references to the created assets
+			Texture2D createdTexture = AssetDatabase.LoadAssetAtPath<Texture2D> (blackWhiteTexturePath);
+			Material presetMaterial = AssetDatabase.LoadAssetAtPath (materialPath, typeof(Material)) as Material;
+
+			// Create Texture:
+			string sourceTexturePath = AssetDatabase.GetAssetPath (selectedTexture);
+			CopyTextureImportSettings (sourceTexturePath, blackWhiteTexturePath);
+
+			// Create ColorSwapPreset if it does not yet exist
+			string colorSwapPresetPath = resourcePath + "/" + presetName + ".asset";
+			ColorSwapConfigurator colorSwapHolder = AssetDatabase.LoadAssetAtPath (colorSwapPresetPath, typeof(ColorSwapConfigurator)) as ColorSwapConfigurator;
+			if(colorSwapHolder == null){
+				colorSwapHolder = ScriptableObject.CreateInstance<ColorSwapConfigurator> ();
+				AssetDatabase.CreateAsset (colorSwapHolder, colorSwapPresetPath);
+			}
+			colorSwapHolder.Initialize (colorVariants, selectedTexture, createdTexture, defaultMaterial, presetMaterial);
+
+			AssetDatabase.Refresh ();
+			EditorGUIUtility.PingObject (colorSwapHolder);
+		};
+	}
+
+	private string CreateResourceDirectory(){
+		string resourcePath = COLOR_SWAP_ROOT_DIRECTORY + "/" + presetName;
+		if (AssetDatabase.IsValidFolder (resourcePath)) {
+			bool overWriteFileData = EditorUtility.DisplayDialog ("Overwriting file data", "Are you sure you want to overwrite " + presetName + "?", "Overwrite", "Cancel");
+			if (!overWriteFileData) {
+				return null;
+			}
+		}
+		else {
+			string rootDir = Application.dataPath.Remove (Application.dataPath.Length - 6); // Remove 'Assets', as it is already in the COLOR_SWAP_ROOT_DIRECTORY
+			DirectoryInfo dirInfo = Directory.CreateDirectory (rootDir + resourcePath);
+			AssetDatabase.Refresh ();
+		}
+
+		return resourcePath;
+	}
+
 	/// <returns> The created preset material's path </returns>
 	private string CreatePresetMaterial(string resourcePath){
 		string materialDestinationPath = resourcePath + "/" + presetName + ".mat";
@@ -170,49 +229,6 @@ public class BlackWhiteGeneratorWindow : EditorWindow {
 		newImporter.spritesheet = newImporterData.ToArray ();
 
 		AssetDatabase.ImportAsset (destinationPath, ImportAssetOptions.ForceUpdate);
-	}
-
-	private void CreateColorSwapConfigurator(){
-		string resourcePath = COLOR_SWAP_ROOT_DIRECTORY + "/" + presetName;
-		if (AssetDatabase.IsValidFolder (resourcePath)) {
-			Debug.LogWarning (resourcePath + " already exists! Overwriting file data...");// TODO: request if the developer is sure to overwrite existing data
-		}
-		else {
-			AssetDatabase.CreateFolder (COLOR_SWAP_ROOT_DIRECTORY, presetName);
-		}
-
-		// Create Texture:
-		byte[] textureBytes = generatedTexture.EncodeToPNG ();
-		string blackWhiteTexturePath = resourcePath + "/" + presetName + "_texture.png";
-		File.WriteAllBytes (blackWhiteTexturePath, textureBytes);
-
-		// Create Material:
-		string materialPath = CreatePresetMaterial (resourcePath);
-
-		// Delay the using of this texture and material since the editor does not recognize it yet
-		EditorApplication.delayCall = () => {
-			AssetDatabase.Refresh ();
-
-			// Get references to the created assets
-			Texture2D createdTexture = AssetDatabase.LoadAssetAtPath<Texture2D> (blackWhiteTexturePath);
-			Material presetMaterial = AssetDatabase.LoadAssetAtPath (materialPath, typeof(Material)) as Material;
-
-			// Create Texture:
-			string sourceTexturePath = AssetDatabase.GetAssetPath (selectedSprite);
-			CopyTextureImportSettings (sourceTexturePath, blackWhiteTexturePath);
-
-			// Create ColorSwapPreset if it does not yet exist
-			string colorSwapPresetPath = resourcePath + "/" + presetName + ".asset";
-			ColorSwapConfigurator colorSwapHolder = AssetDatabase.LoadAssetAtPath (colorSwapPresetPath, typeof(ColorSwapConfigurator)) as ColorSwapConfigurator;
-			if(colorSwapHolder == null){
-				colorSwapHolder = ScriptableObject.CreateInstance<ColorSwapConfigurator> ();
-				AssetDatabase.CreateAsset (colorSwapHolder, colorSwapPresetPath);
-			}
-			colorSwapHolder.Initialize (colorVariants, selectedSprite.texture, createdTexture, defaultMaterial, presetMaterial);
-
-			AssetDatabase.Refresh ();
-			EditorGUIUtility.PingObject (colorSwapHolder);
-		};
 	}
 
 }

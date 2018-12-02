@@ -17,11 +17,11 @@ public class PlayerHitted : MonoBehaviour {
     }
 
     private void Death_Falling() {
-        StartCoroutine(GameManager.Instance.Death());
+        GameManager.Instance.TriggerDeath();
     }
 
     private void Death_Box() {
-        StartCoroutine(GameManager.Instance.Death());
+        GameManager.Instance.TriggerDeath();
     }
 
 }

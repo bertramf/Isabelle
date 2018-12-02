@@ -15,7 +15,12 @@ public class ColorSwap : MonoBehaviour {
 	#if UNITY_EDITOR
 	private void Update () {
 		if (!Application.isPlaying && colorSwapPreset != null) {
-			spriteMaterial.SetVectorArray ("_ColorMatrix", ColorMatrix ());
+			if (spriteMaterial != null) {
+				spriteMaterial.SetVectorArray ("_ColorMatrix", ColorMatrix ());
+			}
+			else {
+				UpdateVisualData ();
+			}
 		}
 	} 
 	#endif
@@ -41,17 +46,18 @@ public class ColorSwap : MonoBehaviour {
 		}
 
 		SpriteRenderer renderer = GetComponent<SpriteRenderer> ();
-		renderer.material = spriteMaterial = new Material(colorSwapPreset.PresetMaterial);
-		spriteMaterial.SetVectorArray ("_ColorMatrix", ColorMatrix ());
+		renderer.material = new Material(colorSwapPreset.PresetMaterial);
+		spriteMaterial = renderer.sharedMaterial;
+		spriteMaterial.SetVectorArray ("_ColorMatrix", ColorMatrix ());		
 
-        if (!Application.isPlaying) {
-            renderer.sprite = Resources.LoadAll<Sprite>(colorSwapPreset.TexturePath)[0];
-        }
+		if (!Application.isPlaying) {
+			renderer.sprite = Resources.LoadAll<Sprite> (colorSwapPreset.TexturePath) [0];
+		}
 	}
 
-    public void UpdateVisualData(ColorSwapPreset newPreset) {
-        colorSwapPreset = newPreset;
-        UpdateVisualData();
-    }
+	public void UpdateVisualData(ColorSwapPreset newPreset){
+		colorSwapPreset = newPreset;
+		UpdateVisualData ();
+	}
 
 }

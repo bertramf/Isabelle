@@ -5,10 +5,10 @@ using System.Linq;
 using UnityEditor;
 #endif
 
-[CreateAssetMenu(fileName = "ColorConfiguration", menuName = "Shepherd/ColorSwapConfigurator", order = 1)]
 public class ColorSwapConfigurator : ScriptableObject {
 
 	public Color[] sourceColors;
+	public List<ColorSwapPreset> colorPresets;
 	public ColorSwapPreset currentPreset;
 
 	public Texture2D originalTexture;
@@ -20,6 +20,7 @@ public class ColorSwapConfigurator : ScriptableObject {
 	public string texturePath;
 
 	public void Initialize(Color32[] sourceColors, Texture2D originalTexture, Texture2D presetTexture, Material defaultMaterial, Material presetMaterial){
+		this.colorPresets = new List<ColorSwapPreset> ();
 		this.sourceColors = new Color[sourceColors.Length];
 		for(int i = 0; i < sourceColors.Length; i ++) {
 			this.sourceColors [i] = sourceColors [i];
@@ -38,6 +39,11 @@ public class ColorSwapConfigurator : ScriptableObject {
 			Debug.LogWarning("Failed to find the correct path to the preset texture...", presetTexture);
 		}
 		#endif
+	}
+
+	public void AddPreset(ColorSwapPreset preset){
+		colorPresets.Add (preset);
+		currentPreset = preset;
 	}
 
 	public void UpdateMaterial(ColorSwapPreset preset){

@@ -57,13 +57,13 @@ public class PlayerVisuals : MonoBehaviour {
     }
 
     private void Event_ChangeColor() {
-        spriteRenderer.color = dashColor;
-        //colorSwap.UpdateVisualData(dashPreset);
+        //spriteRenderer.color = dashColor;
+        colorSwap.UpdateVisualData(dashPreset);
     }
 
     private void Event_RedoColors() {
-        spriteRenderer.color = Color.white;
-        //colorSwap.UpdateVisualData(defaultPreset);
+        //spriteRenderer.color = Color.white;
+        colorSwap.UpdateVisualData(defaultPreset);
     }
 
 }

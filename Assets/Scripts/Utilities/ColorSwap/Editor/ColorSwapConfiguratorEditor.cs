@@ -8,10 +8,11 @@ public class ColorSwapConfiguratorEditor : Editor {
 
 	private const int TEXTURE_HEIGHT = 300;
 	private const int TEXTURE_SPACING = 10;
+	private const string DEFAULT_PRESET_NAME = "preset";
 
 	private ColorSwapConfigurator targetScript;
 
-	private ColorSwapPreset selectedPreset{ 
+	private ColorSwapPreset selectedPreset { 
 		get { 
 			return targetScript.currentPreset; 
 		}
@@ -21,13 +22,11 @@ public class ColorSwapConfiguratorEditor : Editor {
 	}
 
 	[SerializeField]private bool showPreviewTextures;
-	private string newPresetName = "preset";
+	private string newPresetName;
 
 	private void OnEnable(){
 		targetScript = (ColorSwapConfigurator)target;
-
-		EditorUtility.SetDirty(target);
-		AssetDatabase.SaveAssets ();
+		newPresetName = DEFAULT_PRESET_NAME;
 	}
 
 	public override void OnInspectorGUI () {
@@ -51,10 +50,12 @@ public class ColorSwapConfiguratorEditor : Editor {
 
 		GUILayout.Space (18);
 
+		GUILayout.Label ("Create new color preset:", EditorStyles.boldLabel);
 		GUILayout.BeginHorizontal ();
 		newPresetName = GUILayout.TextField (newPresetName);
 		if(GUILayout.Button("Add '" + newPresetName + "'")){
 			CreateNewPreset ();
+			newPresetName = DEFAULT_PRESET_NAME;
 		}
 		GUILayout.EndHorizontal ();
 
@@ -116,11 +117,15 @@ public class ColorSwapConfiguratorEditor : Editor {
 		AssetDatabase.CreateAsset (newPreset, presetPath);
 		newPreset.Initialize (targetScript, targetScript.presetMaterial, targetScript.sourceColors);
 
-		targetScript.currentPreset = newPreset;
+		targetScript.AddPreset (newPreset);
 	}
 
-	private void OnDisable(){
+	private void OnDisable() {
 		EditorUtility.SetDirty(target);
+		foreach (ColorSwapPreset preset in targetScript.colorPresets) {
+			EditorUtility.SetDirty (preset);
+		}
+
 		AssetDatabase.SaveAssets ();		
 	}
 
