@@ -30,11 +30,14 @@ public class GameManager : MonoBehaviour {
         Instance = this;
     }
 
-    public void TriggerDeath() {
-        StartCoroutine(Death());
+    public void TriggerDeath(float delay) {
+        StartCoroutine(Death(delay));
     }
 
-    private IEnumerator Death() {
+    private IEnumerator Death(float delayBeforeDeath) {
+
+        yield return new WaitForSeconds(delayBeforeDeath);
+
         StartCoroutine(BlackScreenManager.Instance.FadeBlackScreen_In(fadeInTime));
 
         yield return new WaitForSeconds(fadeInTime);
@@ -45,12 +48,10 @@ public class GameManager : MonoBehaviour {
         }
 
         //Moet hier niet een waituntil?!
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(fadeBlackTime);
 
         //Load gameplay scene
         SceneManager.LoadSceneAsync(currentGameplayScene, LoadSceneMode.Additive);
-
-        //yield return new WaitForSeconds(fadeBlackTime);
 
         //When gameplay scene is loaded
         StartCoroutine(BlackScreenManager.Instance.FadeBlackScreen_Out(fadeOutTime));

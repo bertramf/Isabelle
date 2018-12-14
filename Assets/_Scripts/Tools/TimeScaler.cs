@@ -11,15 +11,15 @@ public class TimeScaler : MonoBehaviour {
 	
 	private void Update () {
         if (DevMode.Instance.devMode) {
-            if (timeScale >= 0.2f) {
-                if (Input.GetKeyDown(KeyCode.LeftBracket)) {
-                    timeScale -= 0.3f;
+            if (timeScale > 0.2f) {
+                if (Input.GetKeyDown(KeyCode.LeftBracket) || Input.GetButtonDown("LB")) {
+                    timeScale -= 0.2f;
                 }
             }
 
-            if (timeScale <= 1.9f) {
-                if (Input.GetKeyDown(KeyCode.RightBracket)) {
-                    timeScale += 0.3f;
+            if (timeScale < 2.0f) {
+                if (Input.GetKeyDown(KeyCode.RightBracket) || Input.GetButtonDown("RB")) {
+                    timeScale += 0.2f;
                 }
             }
         }

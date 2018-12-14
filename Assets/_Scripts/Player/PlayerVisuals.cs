@@ -22,12 +22,14 @@ public class PlayerVisuals : MonoBehaviour {
     }
 
     private void OnEnable() {
+        PlayerHitted.onEventHittedBox += Event_PlayerHittedBox;
         PlayerBase.onEventChangeDirection += Event_FlipLocalX;
         PlayerBase.onEventDash += Event_ChangeColor;
         PlayerBase.onEventDashRecharged += Event_RedoColors;
     }
 
     private void OnDisable() {
+        PlayerHitted.onEventHittedBox -= Event_PlayerHittedBox;
         PlayerBase.onEventChangeDirection -= Event_FlipLocalX;
         PlayerBase.onEventDash -= Event_ChangeColor;
         PlayerBase.onEventDashRecharged -= Event_RedoColors;
@@ -51,19 +53,27 @@ public class PlayerVisuals : MonoBehaviour {
         anim.SetFloat("yVelocity", playerBase.upVelocity);
     }
 
+    private void Event_PlayerHittedBox() {
+        anim.SetTrigger("isHitted");
+    }
+
     private void Event_FlipLocalX(int direction) {
         Vector3 playerScale = new Vector3(direction, 1, 1);
         transform.localScale = playerScale;
     }
 
     private void Event_ChangeColor() {
-        //spriteRenderer.color = dashColor;
         colorSwap.UpdateVisualData(dashPreset);
+        //spriteRenderer.color = dashColor;
     }
 
     private void Event_RedoColors() {
-        //spriteRenderer.color = Color.white;
         colorSwap.UpdateVisualData(defaultPreset);
+        //spriteRenderer.color = Color.white;
+    }
+
+    private IEnumerator RedoNormalColors() {
+        yield return new WaitForSeconds(0.2f);
     }
 
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerHitted : MonoBehaviour {
 
-    public CapsuleCollider2D coll;
-    public Rigidbody2D rb;
+    public delegate void EventHittedBox();
+    public static event EventHittedBox onEventHittedBox;
+
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Death_Falling") {
@@ -17,11 +18,13 @@ public class PlayerHitted : MonoBehaviour {
     }
 
     private void Death_Falling() {
-        GameManager.Instance.TriggerDeath();
+        GameManager.Instance.TriggerDeath(0f);
     }
 
     private void Death_Box() {
-        GameManager.Instance.TriggerDeath();
+        onEventHittedBox();
+        PlayerFreeze.instance.FreezePlayer(1f);
+        GameManager.Instance.TriggerDeath(0.5f);
     }
 
 }

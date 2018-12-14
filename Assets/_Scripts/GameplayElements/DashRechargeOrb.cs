@@ -35,7 +35,7 @@ public class DashRechargeOrb : MonoBehaviour {
 
     private void Disappear() {
         playerBase.CanDash = true;
-        StartCoroutine(PlayerFreeze.instance.FreezePlayer(playerFreezeTime));
+        PlayerFreeze.instance.FreezePlayer(playerFreezeTime);
         StartCoroutine(Screenshake.instance.ShakeHorizontal(2, playerFreezeTime * 2, 0.07f));
         coll.enabled = false;
         sprite.sprite = deChargedSpr;

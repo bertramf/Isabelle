@@ -12,10 +12,14 @@ public class PlayerFreeze : MonoBehaviour {
         instance = this;
 	}
 
-    public IEnumerator FreezePlayer(float freezeTime) {
+    public void FreezePlayer(float freezeTime) {
+        StartCoroutine(FreezePlayerLogic(freezeTime));
+    }
+
+    private IEnumerator FreezePlayerLogic(float time) {
         playerIsFrozen = true;
 
-        yield return new WaitForSeconds(freezeTime);
+        yield return new WaitForSeconds(time);
 
         playerIsFrozen = false;
     }
