@@ -64,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1121307011496806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 2.5, z: 0}
+  m_LocalPosition: {x: -3, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4962976193340832}
@@ -100,7 +100,8 @@ MonoBehaviour:
   chargedSpr: {fileID: 21300000, guid: 8a2f8028b28832d48b2b9c017713f4cc, type: 3}
   deChargedSpr: {fileID: 21300002, guid: 8a2f8028b28832d48b2b9c017713f4cc, type: 3}
   rechargeTime: 2
-  playerFreezeTime: 0.05
+  PlayerFreezeTime: 0.05
+  screenShakeTime: 0.1
 --- !u!212 &212644122465324566
 SpriteRenderer:
   m_ObjectHideFlags: 1

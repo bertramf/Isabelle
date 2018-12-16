@@ -46,8 +46,8 @@ public class GameManager : MonoBehaviour {
         if (SceneManager.GetSceneByName(currentGameplayScene).isLoaded) {
             SceneManager.UnloadSceneAsync(currentGameplayScene);
         }
-
-        //Moet hier niet een waituntil?!
+        
+        //Wait for fadeBlackTime
         yield return new WaitForSeconds(fadeBlackTime);
 
         //Load gameplay scene

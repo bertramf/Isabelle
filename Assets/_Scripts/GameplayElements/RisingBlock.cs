@@ -14,7 +14,7 @@ public class RisingBlock : MonoBehaviour {
 
     [Header("Debug Values")]
     public float y;
-    public bool playerOnBlock;
+    public bool PlayerOnBlock;
     public bool hitsTrigger;
     public int currentStep;
     public float startY;
@@ -50,18 +50,18 @@ public class RisingBlock : MonoBehaviour {
 
     private void OnCollisionStay2D(Collision2D other) {
         if(other.gameObject.tag == "Player") {
-            playerOnBlock = true;
+            PlayerOnBlock = true;
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.tag == "Player") {
-            playerOnBlock = false;
+            PlayerOnBlock = false;
         }
     }
 
     private void Event_StartMovementLogic() {
-        if (playerOnBlock) {
+        if (PlayerOnBlock) {
             StartCoroutine(MoveUpCheck());
         }
     }

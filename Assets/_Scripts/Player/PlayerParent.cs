@@ -6,7 +6,6 @@ public class PlayerParent : MonoBehaviour {
 
     //Kan een array worden als een parentable object een andere tag moet hebben
     public string parentObjectTag;
-    
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == parentObjectTag) {

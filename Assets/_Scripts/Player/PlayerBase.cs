@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Designed for all player core mechanics & their behaviour
+//Designed for all Player core mechanics & their behaviour
 public class PlayerBase : MonoBehaviour {
 
     public delegate void EventJump();
@@ -15,19 +15,22 @@ public class PlayerBase : MonoBehaviour {
     public static event EventChangeDirection onEventChangeDirection;
 
     private Rigidbody2D rb;
-    private PlayerValues playerValues;
     private PlayerRaycasts playerRaycasts;
+    private PlayerValues playerValues;
+
+    [Header("Boolean Values")]
+    public bool canDash = true;
+    public bool isAlive = true; //Moet public zijn voor PlayerHitted 
 
     [Header("Horizontal Movement Values")]
     public int lookDirection; //Moet public zijn voor camera & raycasting
     public float inputHorizontal;
-    public float movementSpeed; //Moet public zijn voor playervisuals
+    public float movementSpeed; //Moet public zijn voor playerVisuals
 
     [Header("Jump Values")]
-    public float upVelocity; //Moet public zijn voor playervisuals
+    public float upVelocity; //Moet public zijn voor playerVisuals
 
     [Header("Dash Values")]
-    public bool secondDash = false;
     public bool dashCooldownOver = false;
     public bool isDashing;
     public float dashSpeed;
@@ -35,11 +38,16 @@ public class PlayerBase : MonoBehaviour {
 
     private IEnumerator dashCoroutine;
 
-    private void Start() {
+    private void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        playerValues = GetComponent<PlayerValues>();
         playerRaycasts = GetComponent<PlayerRaycasts>();
+        playerValues = Resources.Load<PlayerValues>("Settings/PlayerValues");
 
+        Vector3 startPosition = GameManager.Instance.CurrentCheckpoint;
+        transform.position = new Vector3(startPosition.x, startPosition.y, transform.position.z);
+    }
+
+    private void Start() {
         lookDirection = 1;
         dashCoroutine = DashLoop();
     }
@@ -61,8 +69,11 @@ public class PlayerBase : MonoBehaviour {
         float horJoystickTreshold = playerValues.horJoystickTreshold;
         float maxMovementSpeed = playerValues.maxMovementSpeed;
 
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
-
+        //Input check
+        if (isAlive) {
+            inputHorizontal = Input.GetAxisRaw("Horizontal");
+        }
+        
         //Player moves right or left: CONTINUOUS
         if ((inputHorizontal > horJoystickTreshold && lookDirection == 1) || (inputHorizontal < -horJoystickTreshold && lookDirection == -1)) {
             movementSpeed = maxMovementSpeed;
@@ -112,36 +123,31 @@ public class PlayerBase : MonoBehaviour {
         }
     }
 
-    private bool canDash = true;
+    public void EnableCanDash() {
+        canDash = true;
+        //EventSetter
+        if (onEventDashRecharged != null) {
+            onEventDashRecharged();
+        }
+    }
 
-    public bool CanDash {
-        get {
-            return canDash;
-        }
-        set {
-            canDash = value;
-            //EventSetter
-            if (onEventDashRecharged != null) {
-                onEventDashRecharged();
-            }
-        }
+    public void StopDash() {
+        StopCoroutine(dashCoroutine);
     }
 
     private void DashBehaviour() {
         //CanDash Normal Check
         if (dashCooldownOver && playerRaycasts.coyoteGrounded && !canDash) {
-            CanDash = true;
+            EnableCanDash();
         }
 
         float previousInput = inputRt;
         inputRt = Input.GetAxisRaw("RT");
-            //RT INPUT
-        //if (previousInput != inputRt && inputRt > playerValues.RtTreshold) {
-            //X INPUT
-        //if (Input.GetButtonDown("X"){ 
-        if (Input.GetButtonDown("X") || (previousInput != inputRt && inputRt > playerValues.RtTreshold)) { 
-            if (CanDash == true) {
-                StopCoroutine(dashCoroutine);
+
+        //Input check && alive check
+        if (Input.GetButtonDown("X") || (previousInput != inputRt && inputRt > playerValues.RtTreshold) && isAlive) {
+            if (canDash == true) {
+                StopDash();
                 dashCoroutine = DashLoop();
                 StartCoroutine(dashCoroutine);
             }
@@ -158,29 +164,38 @@ public class PlayerBase : MonoBehaviour {
             onEventDash();
         }
 
-        yield return new WaitForSeconds(playerValues.dashTime);
+        //yield return new WaitForSeconds(playerValues.dashTime);
+
+        float t1 = 0f;
+        while (t1 < 1) {
+            if (rb.bodyType == RigidbodyType2D.Dynamic) {
+                t1 += Time.deltaTime / playerValues.dashTime;
+            }
+            yield return null;
+        }
 
         isDashing = false;
         dashSpeed = 0f;
 
         //Cooldown for CanDash Check
         bool hittedGround = false;
-        float t = 0f;
-        while (t < 1) {
-            t += Time.deltaTime / playerValues.dashGroundCooldown;
+        float t2 = 0f;
+        while (t2 < 1) {
+            t2 += Time.deltaTime / playerValues.dashGroundCooldown;
             if (playerRaycasts.coyoteGrounded) {
                 hittedGround = true;
             }
             yield return null;
         }
         if (hittedGround == true) {
-            CanDash = true;
+            EnableCanDash();
         }
         dashCooldownOver = true;
     }
 
     private void JumpBehaviour() {
-        if (Input.GetButtonDown("A") && playerRaycasts.coyoteGrounded) {
+        //Input check, grounded check & alive check
+        if (Input.GetButtonDown("A") && playerRaycasts.coyoteGrounded && isAlive) {
             upVelocity = playerValues.yVelClamp_max;
             //Event Setter
             if (onEventJump != null) {
@@ -211,31 +226,46 @@ public class PlayerBase : MonoBehaviour {
         }
     }
 
+    public void FreezePlayer(float freezeTime) {
+        StartCoroutine(FreezePlayerLogic(freezeTime));
+    }
+
+    private IEnumerator FreezePlayerLogic(float time) {
+        Vector2 savedDirection = rb.velocity;
+        rb.bodyType = RigidbodyType2D.Static;
+
+        yield return new WaitForSeconds(time);
+        
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        float yDirection = savedDirection.y;
+        if(yDirection < 0) {
+            yDirection = 0f;
+        }
+        savedDirection = new Vector2(savedDirection.x, yDirection);
+        rb.velocity = savedDirection;
+    }
+
     private void Movement() {
         Vector2 movementDirection;
-        //movementSpeed = Mathf.Clamp(movementSpeed, 0f, playerValues.maxMovementSpeed);
-        if (PlayerFreeze.instance.playerIsFrozen) {
-            movementDirection = Vector2.zero;
-        }
-        else {
-            if (playerRaycasts.beforeWall) {
-                if (isDashing) {
-                    movementDirection = new Vector2(0, 0);
-                }
-                else {
-                    movementDirection = new Vector2(0, upVelocity);
-                }
+        if (playerRaycasts.beforeWall) {
+            if (isDashing) {
+                movementDirection = new Vector2(0, 0);
             }
             else {
-                if (isDashing) {
-                    movementDirection = new Vector2(dashSpeed * lookDirection, 0);
-                }
-                else {
-                    movementDirection = new Vector2(movementSpeed * lookDirection, upVelocity);
-                }
+                movementDirection = new Vector2(0, upVelocity);
             }
         }
-        rb.velocity = movementDirection;
+        else {
+            if (isDashing) {
+                movementDirection = new Vector2(dashSpeed * lookDirection, 0);
+            }
+            else {
+                movementDirection = new Vector2(movementSpeed * lookDirection, upVelocity);
+            }
+        }
+        if (rb.bodyType == RigidbodyType2D.Dynamic) {
+            rb.velocity = movementDirection;
+        }
     }
 
 }

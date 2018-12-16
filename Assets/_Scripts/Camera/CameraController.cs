@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
     
-    private Transform playerTransform;
-    private PlayerBase playerBase;
+    private Transform PlayerTransform;
+    private PlayerBase PlayerBase;
 
     private float xMovement;
     private float yMovement;
@@ -16,8 +16,8 @@ public class CameraController : MonoBehaviour {
     public float ySmoothing = 7f;
 
     private void Start () {
-        playerTransform = GameObject.Find("Player").transform;
-        playerBase = playerTransform.GetComponent<PlayerBase>();  
+        PlayerTransform = GameObject.Find("Player").transform;
+        PlayerBase = PlayerTransform.GetComponent<PlayerBase>();  
     }
 	
 	private void FixedUpdate () {
@@ -26,12 +26,12 @@ public class CameraController : MonoBehaviour {
     }
 
     private void PositionCalculations() {
-        float offsetWalk = playerBase.lookDirection * xOffset;
+        float offsetWalk = PlayerBase.lookDirection * xOffset;
 
         float xA = transform.position.x;
         float yA = transform.position.y;
-        float xB = playerTransform.position.x + offsetWalk;
-        float yB = playerTransform.position.y;
+        float xB = PlayerTransform.position.x + offsetWalk;
+        float yB = PlayerTransform.position.y;
 
         xMovement = Mathf.Lerp(xA, xB, xSmoothing * Time.deltaTime);
         yMovement = Mathf.Lerp(yA, yB, ySmoothing * Time.deltaTime);

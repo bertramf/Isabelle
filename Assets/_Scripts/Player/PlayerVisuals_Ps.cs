@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerVisuals_Ps : MonoBehaviour {
 
     //References
-    private Transform playerVfx;
-    private PlayerValues playerValues;
-    private PlayerBase playerBase;
+    private Transform PlayerVfx;
+    private PlayerBase PlayerBase;
+    private PlayerValues PlayerValues;
 
     //Private Values
     private float quarterDashTime;
@@ -40,9 +40,9 @@ public class PlayerVisuals_Ps : MonoBehaviour {
     public float jumpParentTime = 0.45f;
 
     private void Start() {
-        playerVfx = transform.Find("PlayerVfx");
-        playerBase = GetComponent<PlayerBase>();
-        playerValues = GetComponent<PlayerValues>();
+        PlayerVfx = transform.Find("PlayerVfx");
+        PlayerBase = GetComponentInParent<PlayerBase>();
+        PlayerValues = Resources.Load<PlayerValues>("Settings/PlayerValues");
 
         switchDashInt = -1;
         switchLandInt = -1;
@@ -52,7 +52,7 @@ public class PlayerVisuals_Ps : MonoBehaviour {
         landPsCount = ps_land_left_1.Length;
         jumpPsCount = ps_jump_left_1.Length;
 
-        quarterDashTime = playerValues.dashTime / 4;
+        quarterDashTime = PlayerValues.dashTime / 4;
         ps_pos_left = ps_land_left_1[0].transform.localPosition;
         ps_pos_right = ps_land_right_1[0].transform.localPosition;
     }
@@ -123,7 +123,7 @@ public class PlayerVisuals_Ps : MonoBehaviour {
         yield return new WaitForSeconds(timeBeforeParent);
 
         //Parent & Set LocalPos
-        ps_System[number].transform.parent = playerVfx;
+        ps_System[number].transform.parent = PlayerVfx;
         ps_System[number].transform.localPosition = localPos;
         ps_System[number].transform.localScale = Vector3.one;
     }

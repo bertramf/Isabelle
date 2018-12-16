@@ -6,9 +6,9 @@ public class PlayerRaycasts : MonoBehaviour {
 
     public delegate void EventGrounded();
     public static event EventGrounded onEventGrounded;
-
-    private PlayerBase playerBase;
-    private PlayerValues playerValues;
+    
+    private PlayerBase PlayerBase;
+    private PlayerValues PlayerValues;
     private Vector2 topLeft_grounded;
     private Vector2 bottomRight_grounded;
     private Vector2 topLeft_befWall;
@@ -33,11 +33,11 @@ public class PlayerRaycasts : MonoBehaviour {
     public float verOffset_befWall = -0.25f;
 
     private void Start() {
-        playerBase = GetComponent<PlayerBase>();
-        playerValues = GetComponent<PlayerValues>();
+        PlayerBase = GetComponent<PlayerBase>();
+        PlayerValues = Resources.Load<PlayerValues>("Settings/PlayerValues");
 
         grounded = true;
-        releasePlatformTime = playerValues.coyoteTime; 
+        releasePlatformTime = PlayerValues.coyoteTime; 
     }
 
     public void Raycasting() {
@@ -53,17 +53,17 @@ public class PlayerRaycasts : MonoBehaviour {
         }
 
         //BeforeWall
-        topLeft_befWall = new Vector2(transform.position.x - (horOffset_befWall * playerBase.lookDirection), transform.position.y + (verLength_befWall / 2) + verOffset_befWall);
-        bottomRight_befWall = new Vector2( transform.position.x + ((horLength_befWall + horOffset_befWall) * playerBase.lookDirection), transform.position.y - (verLength_befWall / 2) + verOffset_befWall);
+        topLeft_befWall = new Vector2(transform.position.x - (horOffset_befWall * PlayerBase.lookDirection), transform.position.y + (verLength_befWall / 2) + verOffset_befWall);
+        bottomRight_befWall = new Vector2( transform.position.x + ((horLength_befWall + horOffset_befWall) * PlayerBase.lookDirection), transform.position.y - (verLength_befWall / 2) + verOffset_befWall);
         beforeWall = Physics2D.OverlapArea(topLeft_befWall, bottomRight_befWall, groundLayer);
     }
 
     public void CoyoteTime() {
         if (grounded) {
             coyoteGrounded = true;
-            releasePlatformTime = playerValues.coyoteTime;
+            releasePlatformTime = PlayerValues.coyoteTime;
         }
-        else if (!grounded && playerBase.upVelocity < 0.1f && releasePlatformTime > 0) {
+        else if (!grounded && PlayerBase.upVelocity < 0.1f && releasePlatformTime > 0) {
             releasePlatformTime -= Time.deltaTime;
             coyoteGrounded = true;
         }
@@ -87,14 +87,14 @@ public class PlayerRaycasts : MonoBehaviour {
     }
 
     private void BeforeWallGizmos() {
-        float playerDirection = 1f;
+        float PlayerDirection = 1f;
         if (Application.isPlaying) {
-            playerDirection = playerBase.lookDirection;
+            PlayerDirection = PlayerBase.lookDirection;
         }
 
         //Red
         Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Vector3 gizCenter_befWall = new Vector3(transform.position.x + (((horLength_befWall / 2) + horOffset_befWall) * playerDirection), transform.position.y + verOffset_befWall, 0);
+        Vector3 gizCenter_befWall = new Vector3(transform.position.x + (((horLength_befWall / 2) + horOffset_befWall) * PlayerDirection), transform.position.y + verOffset_befWall, 0);
         Vector3 gizSize_befWall = new Vector3(horLength_befWall, verLength_befWall, 0);
         Gizmos.DrawCube(gizCenter_befWall, gizSize_befWall);
     }

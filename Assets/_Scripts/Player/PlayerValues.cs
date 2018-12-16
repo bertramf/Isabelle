@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerValues : MonoBehaviour {
+[CreateAssetMenu(fileName = "Data", menuName = "Inventory/List", order = 1)]
+public class PlayerValues : ScriptableObject {
 
     [Header("Horizontal Movement Values")]
     public float horJoystickTreshold = 0.8f;
@@ -20,10 +21,10 @@ public class PlayerValues : MonoBehaviour {
     public float coyoteTime = 0.05f;
 
     [Header("Dash Values")]
-    public float RtTreshold = 0.7f;
+    public float RtTreshold = 0.5f;
     public float dashSpeed = 10f;
     public float dashTime = 0.2f;
-    public float dashGroundCooldown = 0.4f;
+    public float dashGroundCooldown = 0.3f;
 
     [Header("Other Values")]
     public float freezeTime = 0.1f;
