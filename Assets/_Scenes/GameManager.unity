@@ -485,6 +485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeInTime: 0.25
-  fadeBlackTime: 0.5
+  fadeBlackTime: 0.25
   fadeOutTime: 0.25
   currentGameplayScene: CoreMechanics

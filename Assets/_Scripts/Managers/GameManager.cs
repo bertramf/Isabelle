@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
 
     [Header("Public Values")]
     public float fadeInTime = 0.25f;
-    public float fadeBlackTime = 0.5f;
+    public float fadeBlackTime = 0.25f;
     public float fadeOutTime = 0.25f;
 
     [Header("Debug Values")]

@@ -47,14 +47,8 @@ public class PlayerVisuals : MonoBehaviour {
             isWalking = false;
         }
 
-        if (PlayerBase.isAlive) {
-            anim.SetBool("isWalking", isWalking);
-            anim.SetBool("isDashing", PlayerBase.isDashing);
-        }
-        else {
-            anim.SetBool("isWalking", false);
-            anim.SetBool("isDashing", false);
-        }
+        anim.SetBool("isWalking", isWalking);
+        anim.SetBool("isDashing", PlayerBase.isDashing);
         anim.SetFloat("yVelocity", PlayerBase.upVelocity);
 
     }
@@ -70,9 +64,8 @@ public class PlayerVisuals : MonoBehaviour {
     }
 
     private IEnumerator HittedShakeLogic() {
-        Screenshake.instance.StartShakeVertical(1, 0.05f, 0.15f);
-        yield return new WaitForSeconds(0.25f);
-        Screenshake.instance.StartShakeVertical(2, 0.75f, 0.1f);
+        yield return null;
+        Screenshake.instance.StartShakeVertical(2, 0.5f, 0.06f);
     }
 
     private void Event_FlipLocalX(int direction) {

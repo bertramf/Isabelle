@@ -39,6 +39,9 @@ public class PlayerVisuals_Ps : MonoBehaviour {
     public ParticleSystem[] ps_jump_right_2;
     public float jumpParentTime = 0.45f;
 
+    [Header("Other Particle Systems")]
+    public ParticleSystem ps_death;
+
     private void Start() {
         PlayerVfx = transform.Find("PlayerVfx");
         PlayerBase = GetComponentInParent<PlayerBase>();
@@ -58,15 +61,26 @@ public class PlayerVisuals_Ps : MonoBehaviour {
     }
 
     private void OnEnable() {
+        PlayerHitted.onEventHittedBox += Event_PlayerHittedBox;
         PlayerBase.onEventDash += Event_DashParticles;
         PlayerRaycasts.onEventGrounded += Event_LandParticles;
         PlayerBase.onEventJump += Event_JumpParticles;
     }
 
     private void OnDisable() {
+        PlayerHitted.onEventHittedBox -= Event_PlayerHittedBox;
         PlayerBase.onEventDash -= Event_DashParticles;
         PlayerRaycasts.onEventGrounded -= Event_LandParticles;
         PlayerBase.onEventJump -= Event_JumpParticles;
+    }
+
+    private void Event_PlayerHittedBox() {
+        ps_death.Play();
+        //StartCoroutine(Death_Ps_Logic());
+    }
+
+    private IEnumerator Death_Ps_Logic() {
+        yield return new WaitForSeconds(0.25f);  
     }
 
     private void Event_DashParticles() {

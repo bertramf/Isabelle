@@ -131,7 +131,7 @@ public class PlayerBase : MonoBehaviour {
         }
     }
 
-    public void StopDash() {
+    private void StopDash() {
         StopCoroutine(dashCoroutine);
     }
 
@@ -145,13 +145,15 @@ public class PlayerBase : MonoBehaviour {
         inputRt = Input.GetAxisRaw("RT");
 
         //Input check && alive check
-        if (Input.GetButtonDown("X") || (previousInput != inputRt && inputRt > playerValues.RtTreshold) && isAlive) {
-            if (canDash == true) {
-                StopDash();
-                dashCoroutine = DashLoop();
-                StartCoroutine(dashCoroutine);
+        if (isAlive) {
+            if (Input.GetButtonDown("X") || (previousInput != inputRt && inputRt > playerValues.RtTreshold)) {
+                if (canDash == true) {
+                    StopDash();
+                    dashCoroutine = DashLoop();
+                    StartCoroutine(dashCoroutine);
+                }
             }
-        }
+        }  
     }
 
     private IEnumerator DashLoop() {
@@ -166,6 +168,8 @@ public class PlayerBase : MonoBehaviour {
 
         //yield return new WaitForSeconds(playerValues.dashTime);
 
+        //HEEL ERG DISCUTABEL; WIL IK ECHT DAT EERSTE DASH NOG VERDERGAAT UIT DE DASH RECHARGE ORB?
+        //CODE IS NU OOK ZO DAT DIT VOOR ALLE PLAYER FREEZES GELDT
         float t1 = 0f;
         while (t1 < 1) {
             if (rb.bodyType == RigidbodyType2D.Dynamic) {
@@ -195,15 +199,17 @@ public class PlayerBase : MonoBehaviour {
 
     private void JumpBehaviour() {
         //Input check, grounded check & alive check
-        if (Input.GetButtonDown("A") && playerRaycasts.coyoteGrounded && isAlive) {
-            upVelocity = playerValues.yVelClamp_max;
-            //Event Setter
-            if (onEventJump != null) {
-                onEventJump();
+        if (isAlive) {
+            if (Input.GetButtonDown("A") && playerRaycasts.coyoteGrounded) {
+                upVelocity = playerValues.yVelClamp_max;
+                //Event Setter
+                if (onEventJump != null) {
+                    onEventJump();
+                }
             }
-        }
-        else {
-            upVelocity = Mathf.Clamp(rb.velocity.y, playerValues.yVelClamp_min, playerValues.yVelClamp_max);
+            else {
+                upVelocity = Mathf.Clamp(rb.velocity.y, playerValues.yVelClamp_min, playerValues.yVelClamp_max);
+            }
         }
     }
 
@@ -243,6 +249,13 @@ public class PlayerBase : MonoBehaviour {
         }
         savedDirection = new Vector2(savedDirection.x, yDirection);
         rb.velocity = savedDirection;
+    }
+
+    public void KillPlayer() {
+        isAlive = false;
+        isDashing = false;
+        StopDash();
+        movementSpeed = 0f;
     }
 
     private void Movement() {

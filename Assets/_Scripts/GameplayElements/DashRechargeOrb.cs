@@ -38,7 +38,7 @@ public class DashRechargeOrb : MonoBehaviour {
         //Feedback other objects
         playerBase.EnableCanDash();
         playerBase.FreezePlayer(PlayerFreezeTime);
-        Screenshake.instance.StartShakeHorizontal(2, screenShakeTime, 0.07f);
+        Screenshake.instance.StartShakeHorizontal(2, screenShakeTime, 0.1f);
 
         //Feedback on this gameObject
         coll.enabled = false;

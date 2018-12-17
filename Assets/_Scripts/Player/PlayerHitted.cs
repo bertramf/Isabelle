@@ -16,17 +16,18 @@ public class PlayerHitted : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Death_Falling") {
-            Death_Falling();
-        }
-        if (other.gameObject.tag == "Death_Box") {
-            Death_Box();
+        if (playerBase.isAlive) {
+            if (other.gameObject.tag == "Death_Falling") {
+                Death_Falling();
+            }
+            if (other.gameObject.tag == "Death_Box") {
+                Death_Box();
+            }
         }
     }
 
     private void Death_Falling() {
-        playerBase.isAlive = false;
-        playerBase.StopDash();
+        playerBase.KillPlayer();
         //Event Setter
         if (onEventHittedFalling != null) {
             onEventHittedFalling();
@@ -35,14 +36,13 @@ public class PlayerHitted : MonoBehaviour {
     }
 
     private void Death_Box() {
-        playerBase.isAlive = false;
+        playerBase.KillPlayer();
         playerBase.FreezePlayer(10f);
-        playerBase.StopDash();
         //Event Setter
         if (onEventHittedBox != null) {
             onEventHittedBox();
         }
-        GameManager.Instance.TriggerDeath(0.5f);
+        GameManager.Instance.TriggerDeath(0.75f);
     }
 
 }
