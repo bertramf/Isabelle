@@ -8,6 +8,9 @@ public class BlockUp_Base : MonoBehaviour {
     //public BlockState blockState;
 
     private IEnumerator currentCoroutine;
+    private IEnumerator delayRoutine;
+    private Animator anim;
+    private ColorSwap colorSwap;
 
     //Debug Values
     public bool playerOnBlock;
@@ -23,11 +26,18 @@ public class BlockUp_Base : MonoBehaviour {
     public float trillTime = 0.6f;
     public float beforeMoveDownTime = 3f;
 
+    public ColorSwapPreset inActivePreset;
+    public ColorSwapPreset activePreset;
+
     private void Start() {
+        anim = GetComponentInChildren<Animator>();
+        colorSwap = GetComponentInChildren<ColorSwap>();
+        delayRoutine = DelayInActivePreset();
+
         currentStep = 0;
         startY = transform.position.y;
         coolDownTimer = 0f;
-
+        
         SwitchCoroutine(IdleState());
     }
 
@@ -63,13 +73,11 @@ public class BlockUp_Base : MonoBehaviour {
     //
 
     private IEnumerator IdleState() {
+        anim.SetTrigger("idle");
         if (currentStep > 0) {
             float t = 0f;
             while(t < 1f) {
                 t += Time.deltaTime / beforeMoveDownTime;
-                if (!playerOnBlock) {
-                    t = 0f;
-                }
                 yield return null;
             }
             //Trill Transition
@@ -83,13 +91,14 @@ public class BlockUp_Base : MonoBehaviour {
     }
 
     private IEnumerator PrepareFunction() {
+        anim.SetTrigger("prepare");
         float t = 0f;
         while (t < 1f) {
             t += Time.deltaTime / warmUpTime;
-            //MoveUp Transition
             if (hitsTrigger) {
+                hitsTrigger = false;
+                //MoveUp Transition
                 SwitchCoroutine(MoveUpFunction());
-                yield break;
             }
             yield return null;
         }
@@ -98,6 +107,7 @@ public class BlockUp_Base : MonoBehaviour {
     }
 
     private IEnumerator MoveUpFunction() {
+        anim.SetTrigger("moveUp");
         yield return new WaitForSeconds(moveUpTime);
         //MoveUp Calculation
         currentStep += 1;
@@ -107,6 +117,7 @@ public class BlockUp_Base : MonoBehaviour {
     }
 
     private IEnumerator TrillFunction() {
+        anim.SetTrigger("trill");
         float t = 0f;
         while (t < 1f) {
             t += Time.deltaTime / trillTime;
@@ -122,24 +133,45 @@ public class BlockUp_Base : MonoBehaviour {
     }
 
     private IEnumerator MoveDownFunction() {
-        yield return new WaitForSeconds(moveUpTime);
         //MoveDown Calculation
         currentStep -= 1;
         transform.position = new Vector3(transform.position.x, startY + (currentStep * 1.5f), transform.position.z);
+        anim.SetTrigger("moveDown");
+        yield return new WaitForSeconds(moveUpTime);
         //Idle Transition
         SwitchCoroutine(IdleState());
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.tag == "Player") {
+            //StopCoroutine(delayRoutine);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other) {
         if (other.gameObject.tag == "Player") {
             playerOnBlock = true;
+            colorSwap.UpdateVisualData(activePreset);
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.tag == "Player") {
             playerOnBlock = false;
+            StartCoroutine(DelayInActivePreset());
         }
+    }
+
+    private IEnumerator DelayInActivePreset() {
+        float t = 0f;
+        while (t < 1f) {
+            t += Time.deltaTime / 1f;
+            if (playerOnBlock) {
+                yield break;
+            }
+            yield return null;
+        }
+        colorSwap.UpdateVisualData(inActivePreset);
     }
 
 }
