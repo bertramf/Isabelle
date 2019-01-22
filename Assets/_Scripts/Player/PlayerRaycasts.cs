@@ -15,10 +15,12 @@ public class PlayerRaycasts : MonoBehaviour {
     private Vector2 bottomRight_befWall;
     private float releasePlatformTime;
 
-    [Header("Values booleans")]
+    [Header("Values")]
     public bool grounded;
     public bool coyoteGrounded;
     public bool beforeWall;
+    public bool hitsCamBorder; //Moet accesable zijn
+    public float yBorder; //Moet accesable zijn
 
     [Header("Values grounded raycasts")]
     public LayerMask groundLayer;
@@ -31,6 +33,11 @@ public class PlayerRaycasts : MonoBehaviour {
     public float horOffset_befWall = -0.05f;
     public float verLength_befWall = 0.45f;
     public float verOffset_befWall = -0.25f;
+
+    [Header("Values beforeWall")]
+    public LayerMask camBorderLayer;
+    public float verLength_camBorder = 4f;
+    public float verOffset_camBorder = -0.5f;
 
     private void Start() {
         PlayerBase = GetComponent<PlayerBase>();
@@ -56,6 +63,18 @@ public class PlayerRaycasts : MonoBehaviour {
         topLeft_befWall = new Vector2(transform.position.x - (horOffset_befWall * PlayerBase.lookDirection), transform.position.y + (verLength_befWall / 2) + verOffset_befWall);
         bottomRight_befWall = new Vector2( transform.position.x + ((horLength_befWall + horOffset_befWall) * PlayerBase.lookDirection), transform.position.y - (verLength_befWall / 2) + verOffset_befWall);
         beforeWall = Physics2D.OverlapArea(topLeft_befWall, bottomRight_befWall, groundLayer);
+
+        //Camerabox
+        RaycastHit2D hitCamInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + verOffset_camBorder), Vector2.down, verLength_camBorder, camBorderLayer);
+        if (hitCamInfo) {
+            hitsCamBorder = true;
+            Collider2D camBorderCollider = hitCamInfo.collider;
+            yBorder = camBorderCollider.bounds.max.y;
+        }
+        else {
+            hitsCamBorder = false;
+            yBorder = 0f;
+        }
     }
 
     public void CoyoteTime() {
@@ -78,6 +97,10 @@ public class PlayerRaycasts : MonoBehaviour {
         BeforeWallGizmos();
     }
 
+    private void OnDrawGizmos() {
+        CamBorderGizmos();
+    }
+
     private void GroundedGizmos() {
         //Green
         Gizmos.color = new Color(0, 1, 0, 0.5f);
@@ -97,6 +120,12 @@ public class PlayerRaycasts : MonoBehaviour {
         Vector3 gizCenter_befWall = new Vector3(transform.position.x + (((horLength_befWall / 2) + horOffset_befWall) * PlayerDirection), transform.position.y + verOffset_befWall, 0);
         Vector3 gizSize_befWall = new Vector3(horLength_befWall, verLength_befWall, 0);
         Gizmos.DrawCube(gizCenter_befWall, gizSize_befWall);
+    }
+
+    private void CamBorderGizmos() {
+        //Purple
+        Gizmos.color = new Color(1, 0, 1, 1f);
+        Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y + verOffset_camBorder, transform.position.z), new Vector3(transform.position.x, transform.position.y + verOffset_camBorder - verLength_camBorder, transform.position.z));
     }
 
 }
