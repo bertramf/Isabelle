@@ -881,4 +881,4 @@ MonoBehaviour:
   fadeInTime: 0.25
   fadeBlackTime: 0.25
   fadeOutTime: 0.25
-  currentGameplayScene: CoreMechanics
+  currentGameplayScene: Art
