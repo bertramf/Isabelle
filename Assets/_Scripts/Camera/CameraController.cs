@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour {
         PlayerTransform = GameObject.Find("Player").transform;
         PlayerBase = PlayerTransform.GetComponent<PlayerBase>();
         PlayerRaycasts = PlayerTransform.GetComponent<PlayerRaycasts>();
-        camera = transform.FindChild("Main Camera").GetComponent<Camera>();
+        camera = transform.Find("Main Camera").GetComponent<Camera>();
 
         yCamHalfSize = camera.orthographicSize;
     }
