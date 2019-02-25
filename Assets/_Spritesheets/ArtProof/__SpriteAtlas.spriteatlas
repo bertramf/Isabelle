@@ -40,48 +40,11 @@ SpriteAtlas:
       enableRotation: 1
       enableTightPacking: 1
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-    totalSpriteSurfaceArea: 4608
+    packables: []
+    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300014, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300012, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300010, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300008, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300006, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300004, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300002, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300000, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300018, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300016, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300024, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300026, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300020, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300022, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300032, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300034, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300028, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  - {fileID: 21300030, guid: dcb63f9445dc96c48af59bea9e3a135e, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - _Tile_Base_7
-  - _Tile_Base_6
-  - _Tile_Base_5
-  - _Tile_Base_4
-  - _Tile_Base_3
-  - _Tile_Base_2
-  - _Tile_Base_1
-  - _Tile_Base_0
-  - _Tile_Base_9
-  - _Tile_Base_8
-  - _Tile_Base_12
-  - _Tile_Base_13
-  - _Tile_Base_10
-  - _Tile_Base_11
-  - _Tile_Base_16
-  - _Tile_Base_17
-  - _Tile_Base_14
-  - _Tile_Base_15
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_Tag: __SpriteAtlas
   m_IsVariant: 0

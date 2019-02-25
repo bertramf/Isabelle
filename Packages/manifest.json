@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.bobbiegoede.smartbrush": "file:C:/Users/Bert/Downloads/SmartBrush-master/SmartBrush-master",
     "com.unity.2d.pixel-perfect": "1.0.1-preview",
     "com.unity.ads": "2.3.1",
     "com.unity.analytics": "3.2.2",
