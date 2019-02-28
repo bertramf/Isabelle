@@ -34,9 +34,9 @@ public class PlayerRaycasts : MonoBehaviour {
     public float verLength_befWall = 0.45f;
     public float verOffset_befWall = -0.25f;
 
-    [Header("Values beforeWall")]
+    [Header("Values camBorder")]
     public LayerMask camBorderLayer;
-    public float verLength_camBorder = 4f;
+    public float verLength_camBorder = 5f;
     public float verOffset_camBorder = -0.5f;
 
     private void Start() {

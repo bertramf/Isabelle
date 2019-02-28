@@ -17,6 +17,9 @@ TextureImporter:
     21300024: _Tile_Decoration_12
     21300026: _Tile_Decoration_13
     21300028: _Tile_Decoration_14
+    21300030: _Tile_Decoration_15
+    21300032: _Tile_Decoration_16
+    21300034: _Tile_Decoration_17
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -125,17 +128,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
+        y: 128
         width: 16
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dec50643feeee9d4bbddac18208215c1
+      spriteID: ebacfa64f96499240a73e3c7ce0e352b
       vertices: []
       indices: 
       edges: []
@@ -145,17 +148,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 96
+        y: 128
         width: 32
-        height: 48
+        height: 64
       alignment: 9
-      pivot: {x: 0.75, y: 0.5}
+      pivot: {x: 0.75, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9bce13545f252542b6549c8002c67f1
+      spriteID: 7e0d04cd777966145ad0391f802b973b
       vertices: []
       indices: 
       edges: []
@@ -165,17 +168,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 96
+        y: 128
         width: 48
-        height: 48
+        height: 64
       alignment: 9
-      pivot: {x: 0.8333333, y: 0.5}
+      pivot: {x: 0.8333333, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d57b904a9c13f14381b06fc4a8ee4a8
+      spriteID: 3dfb0f4f9f7efe44dbbfa96fdcc14671
       vertices: []
       indices: 
       edges: []
@@ -185,17 +188,37 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 96
+        y: 128
         width: 64
-        height: 48
+        height: 64
       alignment: 9
-      pivot: {x: 0.875, y: 0.5}
+      pivot: {x: 0.875, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8aff976a20748b4186caf5cb8995cf5
+      spriteID: 25e6d12831c48774b87ab16b9c5cf198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Tile_Decoration_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.9, y: 0.859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16e035697af3acc4b8be98f24453bb56
       vertices: []
       indices: 
       edges: []
@@ -204,18 +227,18 @@ TextureImporter:
       name: _Tile_Decoration_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 240
+        y: 128
+        width: 112
+        height: 64
+      alignment: 9
+      pivot: {x: 0.9285714, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e664993599589d4281fb5e7237b7437
+      spriteID: d4425f59cbe913e41805f04cb06971c4
       vertices: []
       indices: 
       edges: []
@@ -224,18 +247,18 @@ TextureImporter:
       name: _Tile_Decoration_6
       rect:
         serializedVersion: 2
-        x: 16
-        y: 48
-        width: 32
-        height: 48
+        x: 0
+        y: 64
+        width: 16
+        height: 64
       alignment: 9
-      pivot: {x: 0.75, y: 0.5}
+      pivot: {x: 0.5, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 026b90999974d9244b093e99cb273b68
+      spriteID: fb0afb5a2537a2040b5dc3c0829160c8
       vertices: []
       indices: 
       edges: []
@@ -244,18 +267,18 @@ TextureImporter:
       name: _Tile_Decoration_7
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 16
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.75, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adbc93ca94d286e429c31c97b043abba
+      spriteID: cb0aa8f399e7883479c1453601ed4443
       vertices: []
       indices: 
       edges: []
@@ -264,18 +287,38 @@ TextureImporter:
       name: _Tile_Decoration_8
       rect:
         serializedVersion: 2
-        x: 96
-        y: 48
-        width: 64
-        height: 48
+        x: 48
+        y: 64
+        width: 48
+        height: 64
       alignment: 9
-      pivot: {x: 0.875, y: 0.5}
+      pivot: {x: 0.8333333, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c7b228a8359b77429cb4cc963046b7a
+      spriteID: 988f86169bc16fa4984c81e90342a2d9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Tile_Decoration_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.875, y: 0.859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30af922e8c7f3af4bb096c2965407e0a
       vertices: []
       indices: 
       edges: []
@@ -284,18 +327,18 @@ TextureImporter:
       name: _Tile_Decoration_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 160
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.9, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35588e47b2081124d89967271ea9fa67
+      spriteID: 0afdc2c748a2c924b8b2e12b363cce6e
       vertices: []
       indices: 
       edges: []
@@ -304,18 +347,18 @@ TextureImporter:
       name: _Tile_Decoration_11
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 32
-        height: 48
+        x: 240
+        y: 64
+        width: 112
+        height: 64
       alignment: 9
-      pivot: {x: 0.75, y: 0.5}
+      pivot: {x: 0.9285714, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04484d4345d6cb34985d24465728a7bd
+      spriteID: 7e4453747cdc86f4d9ba6eaf25f15ebc
       vertices: []
       indices: 
       edges: []
@@ -324,18 +367,18 @@ TextureImporter:
       name: _Tile_Decoration_12
       rect:
         serializedVersion: 2
-        x: 48
+        x: 0
         y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 16
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53d319ede53d75a40908a82578d8b4d1
+      spriteID: 1f9964b98ca65b8498103450eb7688e3
       vertices: []
       indices: 
       edges: []
@@ -344,18 +387,98 @@ TextureImporter:
       name: _Tile_Decoration_13
       rect:
         serializedVersion: 2
-        x: 96
+        x: 16
         y: 0
-        width: 64
-        height: 48
+        width: 32
+        height: 64
       alignment: 9
-      pivot: {x: 0.875, y: 0.5}
+      pivot: {x: 0.75, y: 0.859375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3dd0719bb1a7fa446ae27efb84243bb2
+      spriteID: 60fae50c38cc64f48b8e07ce941f2430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Tile_Decoration_14
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8333333, y: 0.859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af37b840decf80640b89584f56d63675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Tile_Decoration_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.875, y: 0.859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b891edd43206ee429b940f80dc9ffb4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Tile_Decoration_16
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.9, y: 0.859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f694cb155ef840a4195d87b6e73993c9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Tile_Decoration_17
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 112
+        height: 64
+      alignment: 9
+      pivot: {x: 0.9285714, y: 0.859375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78ca97c5c90828349b3a1e4022c9d319
       vertices: []
       indices: 
       edges: []
