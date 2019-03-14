@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xOffset: 0.2
   xSmoothing: 7
-  ySmoothing: 3
+  ySmoothing: 5
 --- !u!114 &114876642165708002
 MonoBehaviour:
   m_ObjectHideFlags: 0
