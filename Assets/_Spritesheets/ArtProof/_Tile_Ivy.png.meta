@@ -1,14 +1,13 @@
 fileFormatVersion: 2
-guid: 13484af495c2b7c4780aa48d2177c2e6
+guid: 23e62a942e9667d40a068adfe949de63
 TextureImporter:
   fileIDToRecycleName:
-    21300000: _Tile_Grass_0
-    21300002: _Tile_Grass_1
-    21300004: _Tile_Grass_4
-    21300006: _Tile_Grass_5
-    21300008: _Tile_Grass_6
-    21300010: _Tile_Grass_2
-    21300012: _Tile_Grass_3
+    21300000: _Tile_Ivy_0
+    21300002: _Tile_Ivy_1
+    21300004: _Tile_Ivy_2
+    21300006: _Tile_Ivy_3
+    21300008: _Tile_Ivy_4
+    21300010: _Tile_Ivy_5
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -113,141 +112,121 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Tile_Grass_0
+      name: _Tile_Ivy_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 98
-        width: 16
-        height: 49
+        y: 96
+        width: 35
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: 0.81632656}
+      pivot: {x: 0.31428573, y: 0.6857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c71ac3cb1210de4295b9fb1d46868da
+      spriteID: e1d70d152af0c1c46935abd8c0cb53b3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Tile_Grass_1
+      name: _Tile_Ivy_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 98
-        width: 32
-        height: 49
+        x: 35
+        y: 96
+        width: 35
+        height: 35
       alignment: 9
-      pivot: {x: 0.25, y: 0.81632656}
+      pivot: {x: 0.31428573, y: 0.6857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 992d5864c24b939468d9d290573ed65f
+      spriteID: 0d42edc5bd37fca44ae41d3306236926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Tile_Grass_4
+      name: _Tile_Ivy_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 49
-        width: 32
-        height: 49
+        y: 64
+        width: 35
+        height: 32
       alignment: 9
-      pivot: {x: 0.25, y: 0.81632656}
+      pivot: {x: 0.31428573, y: 0.75}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96120ad2b6376e54d9212f28369769ff
+      spriteID: 5044ac389e727294da2b8654c67b9ded
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Tile_Grass_5
+      name: _Tile_Ivy_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 49
-        width: 48
-        height: 49
+        x: 35
+        y: 64
+        width: 35
+        height: 32
       alignment: 9
-      pivot: {x: 0.16666667, y: 0.81632656}
+      pivot: {x: 0.31428573, y: 0.75}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1773fc6dd54390e4eaa41dccffc8a941
+      spriteID: d28889ce572f0c74580fc304c06b95db
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Tile_Grass_6
+      name: _Tile_Ivy_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 49
+        width: 35
+        height: 64
       alignment: 9
-      pivot: {x: 0.1, y: 0.81632656}
+      pivot: {x: 0.31428573, y: 0.875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ae30e239d42023489a6e4c810a65100
+      spriteID: e804f669ad3aacb4594078e635aa93f9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Tile_Grass_2
+      name: _Tile_Ivy_5
       rect:
         serializedVersion: 2
-        x: 48
-        y: 98
-        width: 16
-        height: 49
+        x: 35
+        y: 0
+        width: 35
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.81632656}
+      pivot: {x: 0.31428573, y: 0.875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8350a87bc81fb7b4da3f9f9d64285210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Tile_Grass_3
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 98
-        width: 16
-        height: 49
-      alignment: 9
-      pivot: {x: 0.5, y: 0.81632656}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 32d7474c20d802f4f9ab415144590f84
+      spriteID: d79c8f2011ba19b4f8f64f5a0a228991
       vertices: []
       indices: 
       edges: []

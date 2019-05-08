@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine.Tilemaps;
 using System;
 
-[CustomGridBrush(false, false, false, "SmartBrush")]
+[CustomGridBrush(false, true, true, "SmartBrush")]
 public class SmartBrush : GridBrush {
 	public override void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position) {
 		base.Paint(grid, brushTarget, position);
@@ -60,14 +60,15 @@ public class SmartBrushEditor : GridBrushEditor {
 				return null;
 			}
 
-			return currentStageHandle
-				.FindComponentsOfType<Tilemap>()
-				.Where(
-					x => x.gameObject.scene.isLoaded &&
-					x.gameObject.activeInHierarchy &&
-					Array.Exists(brush.cells, c =>
-						c.tile != null &&
-						c.tile.name == x.gameObject.name
+            return currentStageHandle
+                .FindComponentsOfType<Tilemap>()
+                .Where(
+                    x => x.gameObject.scene.isLoaded &&
+                    x.gameObject.activeInHierarchy &&
+                    Array.Exists(brush.cells, c =>
+                        c.tile != null &&
+                        c.tile.name.Contains(x.gameObject.name)
+                        //c.tile.name == x.gameObject.name
 					)
 				)
 				.Select(x => x.gameObject)

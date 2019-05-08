@@ -42,8 +42,9 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 7d2c14530be45bf46a0f52345dce2f5f, type: 3}
-    - {fileID: 2800000, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-    totalSpriteSurfaceArea: 70656
+    - {fileID: 2800000, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
+    - {fileID: 2800000, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
+    totalSpriteSurfaceArea: 24002
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -59,24 +60,19 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7d2c14530be45bf46a0f52345dce2f5f, type: 3}
   - {fileID: 21300006, guid: 7d2c14530be45bf46a0f52345dce2f5f, type: 3}
   - {fileID: 21300004, guid: 7d2c14530be45bf46a0f52345dce2f5f, type: 3}
-  - {fileID: 21300004, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300008, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300000, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300002, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300012, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300014, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300006, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300010, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300016, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300018, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300022, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300020, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300026, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300024, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300030, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300028, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300034, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
-  - {fileID: 21300032, guid: e6c94b152bb1d634ebdc2a86e0497fe0, type: 3}
+  - {fileID: 21300000, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
+  - {fileID: 21300002, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
+  - {fileID: 21300004, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
+  - {fileID: 21300006, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
+  - {fileID: 21300008, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
+  - {fileID: 21300010, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
+  - {fileID: 21300004, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
+  - {fileID: 21300006, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
+  - {fileID: 21300008, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
+  - {fileID: 21300000, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
+  - {fileID: 21300002, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
+  - {fileID: 21300010, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
+  - {fileID: 21300012, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
   m_PackedSpriteNamesToIndex:
   - _Tile_Ground_10
   - _Tile_Ground_11
@@ -90,23 +86,18 @@ SpriteAtlas:
   - _Tile_Ground_0
   - _Tile_Ground_3
   - _Tile_Ground_2
-  - _Tile_Decoration_2
-  - _Tile_Decoration_3
-  - _Tile_Decoration_0
-  - _Tile_Decoration_1
-  - _Tile_Decoration_6
-  - _Tile_Decoration_7
-  - _Tile_Decoration_4
-  - _Tile_Decoration_5
-  - _Tile_Decoration_8
-  - _Tile_Decoration_9
-  - _Tile_Decoration_11
-  - _Tile_Decoration_10
-  - _Tile_Decoration_13
-  - _Tile_Decoration_12
-  - _Tile_Decoration_15
-  - _Tile_Decoration_14
-  - _Tile_Decoration_17
-  - _Tile_Decoration_16
+  - _Tile_Ivy_0
+  - _Tile_Ivy_1
+  - _Tile_Ivy_2
+  - _Tile_Ivy_3
+  - _Tile_Ivy_4
+  - _Tile_Ivy_5
+  - _Tile_Grass_4
+  - _Tile_Grass_5
+  - _Tile_Grass_6
+  - _Tile_Grass_0
+  - _Tile_Grass_1
+  - _Tile_Grass_2
+  - _Tile_Grass_3
   m_Tag: __SpriteAtlas
   m_IsVariant: 0
