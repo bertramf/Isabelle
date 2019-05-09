@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: _GrassTop
   m_EditorClassIdentifier: 
   m_Cells:
-  - m_Tile: {fileID: 11400000, guid: d519a52cce5e03e4e870ce376774a31a, type: 2}
+  - m_Tile: {fileID: 0}
     m_Matrix:
       e00: 1
       e01: 0
@@ -38,5 +38,12 @@ MonoBehaviour:
   - {fileID: 1048723995835895460, guid: 4955316933e8e5d4aabe504419da9bcd, type: 3}
   - {fileID: 5522312753728381599, guid: affc5a5257401494697aa47a9b94d78a, type: 3}
   - {fileID: 8985206740066876052, guid: 662f5bb766bdb9d438d34b6f818782b3, type: 3}
-  m_PerlinScale: 0.001
+  prefab_randomness:
+  - 0.2
+  - 0.5
+  - 0.3
+  randomness_margins:
+  - 0.2
+  - 0.7
+  - 1
   m_Z: 0

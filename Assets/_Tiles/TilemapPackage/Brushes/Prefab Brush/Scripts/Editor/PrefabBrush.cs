@@ -9,9 +9,12 @@ namespace UnityEditor
     [CustomGridBrush(false, true, false, "Prefab Brush")]
     public class PrefabBrush : GridBrush
     {
+        //public float m_PerlinScale = 0.5f;
         private const float k_PerlinOffset = 100000f;
         public GameObject[] m_Prefabs;
-        //public float m_PerlinScale = 0.5f;
+        public float[] prefab_randomness; //index is linked aan index van m_Prefabs; so must be same value!
+        public float[] randomness_margins; //index is linked aan index van m_Prefabs; so must be same value!
+
         public int m_Z;
         private GameObject prev_brushTarget;
         private Vector3Int prev_position;
@@ -37,8 +40,33 @@ namespace UnityEditor
             //int index = Mathf.Clamp(perlinValue, 0, m_Prefabs.Length - 1);
 
             //Custom randomness
-            int randomIndex = Random.Range(0, m_Prefabs.Length);
-            GameObject prefab = m_Prefabs[randomIndex];
+            float oldMargin = 0f;
+            for (int i = 0; i < randomness_margins.Length; i++) {
+                randomness_margins[i] = oldMargin + prefab_randomness[i];
+                oldMargin = randomness_margins[i];
+            }
+            float totalMargin = 0f;
+            for (int i = 0; i < randomness_margins.Length; i++) {
+                if(totalMargin < randomness_margins[i]) {
+                    totalMargin = randomness_margins[i];
+                }   
+            }
+            float randomIndex = Random.Range(0f, totalMargin);
+            GameObject prefab = m_Prefabs[0];
+            for (int i = 0; i < m_Prefabs.Length; i++) {
+                if(i == 0) {
+                    if (randomIndex > 0 && randomIndex < randomness_margins[i]) {
+                        prefab = m_Prefabs[i];
+                    }
+                }
+                else {
+                    if (randomIndex > randomness_margins[i - 1] && randomIndex < randomness_margins[i]) {
+                        prefab = m_Prefabs[i];
+                    }
+                }
+                   
+            }
+            
             GameObject instance = (GameObject) PrefabUtility.InstantiatePrefab(prefab);
             if (instance != null)
             {

@@ -24,7 +24,7 @@ public class Grass : MonoBehaviour{
         transform.localScale = new Vector3(xScale, 1, 0);
 
         //Set random animatorSpeed
-        float randomAnimatorSpeed = Random.Range(0.75f, 1.25f);
+        float randomAnimatorSpeed = Random.Range(0.75f, 1.15f);
         anim_c.speed = randomAnimatorSpeed;
 
         //Set random idleTime
