@@ -34,3 +34,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Manifest (because it links to another file, based on the computer I work on)
+*.json
