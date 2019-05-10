@@ -35,8 +35,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-*Packages/manifest.json
-Packages/*
-
-# Manifest
-Packages/manifest.json
+# Manifest, ignore doesn't work
+/Packages/manifest.json
+*.json
