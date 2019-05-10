@@ -35,5 +35,8 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-# Manifest (because it links to another file, based on the computer I work on)
-*.json
+*Packages/manifest.json
+Packages/*
+
+# Manifest
+Packages/manifest.json
