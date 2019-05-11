@@ -36,5 +36,5 @@ sysinfo.txt
 *.unitypackage
 
 # Manifest, ignore doesn't work
-/Packages/manifest.json
-*.json
+Packages/manifest.json
+manifest.json
