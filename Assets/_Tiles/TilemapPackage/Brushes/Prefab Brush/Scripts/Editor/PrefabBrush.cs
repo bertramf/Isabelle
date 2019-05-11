@@ -7,22 +7,31 @@ namespace UnityEditor
 {
     [CreateAssetMenu(fileName = "Prefab brush", menuName = "Brushes/Prefab brush")]
     [CustomGridBrush(false, true, false, "Prefab Brush")]
-    public class PrefabBrush : GridBrush
-    {
-        //public float m_PerlinScale = 0.5f;
-        private const float k_PerlinOffset = 100000f;
-        public GameObject[] m_Prefabs;
-        public float[] prefab_randomness; //index is linked aan index van m_Prefabs; so must be same value!
-        public float[] randomness_margins; //index is linked aan index van m_Prefabs; so must be same value!
+    public class PrefabBrush : GridBrush{
 
-        public int m_Z;
+        private const float k_PerlinOffset = 100000f;
         private GameObject prev_brushTarget;
         private Vector3Int prev_position;
 
-        public override void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position)
-        {
-            if (position == prev_position)
-                    {
+        //Don't use these fields
+        [HideInInspector()]
+        public GameObject[] m_Prefabs;
+        [HideInInspector()]
+        public int m_Z;
+
+        //Custom randomness
+        [System.Serializable]
+        public class PrefabClass {
+            public GameObject obj;
+            public float priority;
+            [HideInInspector()]
+            public float chanceValue;
+        }
+        public PrefabClass[] allPrefabs;
+        private GameObject currentPrefab;
+
+        public override void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position){
+            if (position == prev_position){
                         return;
                     }
                     prev_position = position;
@@ -39,37 +48,28 @@ namespace UnityEditor
             //int perlinValue = Mathf.FloorToInt(GetPerlinValue(position, m_PerlinScale, 0) * m_Prefabs.Length);
             //int index = Mathf.Clamp(perlinValue, 0, m_Prefabs.Length - 1);
 
+            float totalSpawnPriority = 0f;
+            foreach(PrefabClass pref in allPrefabs) {
+                totalSpawnPriority += pref.priority;
+            }
+
+            float chanceValue = 0f;
+            foreach (PrefabClass pref in allPrefabs) {
+                chanceValue += pref.priority / totalSpawnPriority;
+                pref.chanceValue = chanceValue;
+            }
+
             //Custom randomness
-            float oldMargin = 0f;
-            for (int i = 0; i < randomness_margins.Length; i++) {
-                randomness_margins[i] = oldMargin + prefab_randomness[i];
-                oldMargin = randomness_margins[i];
-            }
-            float totalMargin = 0f;
-            for (int i = 0; i < randomness_margins.Length; i++) {
-                if(totalMargin < randomness_margins[i]) {
-                    totalMargin = randomness_margins[i];
-                }   
-            }
-            float randomIndex = Random.Range(0f, totalMargin);
-            GameObject prefab = m_Prefabs[0];
-            for (int i = 0; i < m_Prefabs.Length; i++) {
-                if(i == 0) {
-                    if (randomIndex > 0 && randomIndex < randomness_margins[i]) {
-                        prefab = m_Prefabs[i];
-                    }
+            float randomValue = Random.value;
+            foreach (PrefabClass pref in allPrefabs) {
+                if(randomValue < pref.chanceValue) {
+                    currentPrefab = pref.obj;
+                    break;
                 }
-                else {
-                    if (randomIndex > randomness_margins[i - 1] && randomIndex < randomness_margins[i]) {
-                        prefab = m_Prefabs[i];
-                    }
-                }
-                   
             }
-            
-            GameObject instance = (GameObject) PrefabUtility.InstantiatePrefab(prefab);
-            if (instance != null)
-            {
+            GameObject instance = (GameObject) PrefabUtility.InstantiatePrefab(currentPrefab);
+
+            if (instance != null){
                 Undo.MoveGameObjectToScene(instance, brushTarget.scene, "Paint Prefabs");
                 Undo.RegisterCreatedObjectUndo((Object)instance, "Paint Prefabs");
                 instance.transform.SetParent(brushTarget.transform);
@@ -135,9 +135,9 @@ namespace UnityEditor
             m_SerializedObject.UpdateIfRequiredOrScript();
             //Old perlin stuff
             //prefabBrush.m_PerlinScale = EditorGUILayout.Slider("Perlin Scale", prefabBrush.m_PerlinScale, 0.001f, 1000f);
-            prefabBrush.m_Z = EditorGUILayout.IntField("Position Z", prefabBrush.m_Z);
+            //prefabBrush.m_Z = EditorGUILayout.IntField("Position Z", prefabBrush.m_Z);
                 
-            EditorGUILayout.PropertyField(m_Prefabs, true);
+            //EditorGUILayout.PropertyField(m_Prefabs, true);
             m_SerializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
     }
