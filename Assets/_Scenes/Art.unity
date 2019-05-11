@@ -1059,93 +1059,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 874903286}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &904060304
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: _Main_Spritesheet
-  m_Shader: {fileID: 4800000, guid: 083df3c070c8300468cfae8085d0b8d3, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SwapTexture:
-        m_Texture: {fileID: 2800000, guid: bc286cd539b8f514990f109b9e0c6369, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Range: 4
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0.31764707, g: 0.17254902, b: 0.1137255, a: 1}
-    - _OutlineColor: {r: 0.3921569, g: 0.21960786, b: 0.14901961, a: 1}
-    - _SecondaryColor: {r: 0.3921569, g: 0.21960786, b: 0.14901961, a: 1}
-    - _SwitchedMain: {r: 0.30147058, g: 0.04876729, b: 0.04876729, a: 1}
-    - _SwitchedOutline: {r: 0.7352941, g: 0.40549305, b: 0.40549305, a: 1}
-    - _SwitchedSecondary: {r: 0.44852942, g: 0.39246324, b: 0.39246324, a: 1}
 --- !u!1001 &927615324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2072,7 +1985,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 904060304}
+      objectReference: {fileID: 1634644682}
     - target: {fileID: 114637400964526772, guid: 9c5d6e24b9115ac4fbaa438fcad6c617,
         type: 3}
       propertyPath: verLength_camBorder
@@ -2305,6 +2218,93 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1633240952}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1634644682
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: _Main_Spritesheet
+  m_Shader: {fileID: 4800000, guid: 083df3c070c8300468cfae8085d0b8d3, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SwapTexture:
+        m_Texture: {fileID: 2800000, guid: bc286cd539b8f514990f109b9e0c6369, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Range: 4
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MainColor: {r: 0.31764707, g: 0.17254902, b: 0.1137255, a: 1}
+    - _OutlineColor: {r: 0.3921569, g: 0.21960786, b: 0.14901961, a: 1}
+    - _SecondaryColor: {r: 0.3921569, g: 0.21960786, b: 0.14901961, a: 1}
+    - _SwitchedMain: {r: 0.30147058, g: 0.04876729, b: 0.04876729, a: 1}
+    - _SwitchedOutline: {r: 0.7352941, g: 0.40549305, b: 0.40549305, a: 1}
+    - _SwitchedSecondary: {r: 0.44852942, g: 0.39246324, b: 0.39246324, a: 1}
 --- !u!1001 &1695949262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8647,6 +8647,42 @@ MonoBehaviour:
     name: Tint
   - position: {x: -7, y: 8, z: 0}
     name: Tint
+  - position: {x: 2, y: -2, z: 0}
+    name: Tint
+  - position: {x: 3, y: -2, z: 0}
+    name: Tint
+  - position: {x: 1, y: -2, z: 0}
+    name: Tint
+  - position: {x: -3, y: -2, z: 0}
+    name: Tint
+  - position: {x: -2, y: -2, z: 0}
+    name: Tint
+  - position: {x: -1, y: -2, z: 0}
+    name: Tint
+  - position: {x: 0, y: -2, z: 0}
+    name: Tint
+  - position: {x: -2, y: -3, z: 0}
+    name: Tint
+  - position: {x: -4, y: -2, z: 0}
+    name: Tint
+  - position: {x: -5, y: -2, z: 0}
+    name: Tint
+  - position: {x: 1, y: -3, z: 0}
+    name: Tint
+  - position: {x: 5, y: -2, z: 0}
+    name: Tint
+  - position: {x: 4, y: -2, z: 0}
+    name: Tint
+  - position: {x: 3, y: -3, z: 0}
+    name: Tint
+  - position: {x: 13, y: 7, z: 0}
+    name: Tint
+  - position: {x: 13, y: 8, z: 0}
+    name: Tint
+  - position: {x: 13, y: 6, z: 0}
+    name: Tint
+  - position: {x: 13, y: 9, z: 0}
+    name: Tint
   m_PositionColorValues:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -8692,6 +8728,24 @@ MonoBehaviour:
   - {r: 1, g: 0.0021083236, b: 0.0021083236, a: 1}
   - {r: 1, g: 0.0247949, b: 0.0247949, a: 1}
   - {r: 1, g: 0.000331985, b: 0.000331985, a: 1}
+  - {r: 0.63232285, g: 0.08719296, b: 0, a: 1}
+  - {r: 0.6886792, g: 0.07378929, b: 0, a: 1}
+  - {r: 0.24528301, g: 0.1792453, b: 0, a: 1}
+  - {r: 0.24528301, g: 0.1792453, b: 0, a: 1}
+  - {r: 0.24528301, g: 0.1792453, b: 0, a: 1}
+  - {r: 0.68853784, g: 0.073822916, b: 0, a: 1}
+  - {r: 0.68806815, g: 0.07393463, b: 0, a: 1}
+  - {r: 1, g: 0.8091136, b: 0.28777808, a: 1}
+  - {r: 0.24528301, g: 0.1792453, b: 0, a: 1}
+  - {r: 1, g: 0.80910224, b: 0.28773582, a: 1}
+  - {r: 0.9977358, g: 0.99753773, b: 0.997, a: 1}
+  - {r: 0.81728864, g: 0.4564155, b: 0.4131092, a: 1}
+  - {r: 0.6886792, g: 0.07378929, b: 0, a: 1}
+  - {r: 0.6886792, g: 0.07378929, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &539601204528189660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8705,6 +8759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   k_TintMapSize: 256
+  m_TintTexture: {fileID: 0}
 --- !u!4 &539601204528189662
 Transform:
   m_ObjectHideFlags: 0
