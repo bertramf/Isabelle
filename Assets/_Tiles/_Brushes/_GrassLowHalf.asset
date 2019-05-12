@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
-  m_Name: _GrassLow
+  m_Name: _GrassLowHalf
   m_EditorClassIdentifier: 
   m_Cells:
   - m_Tile: {fileID: 0}
@@ -37,15 +37,6 @@ MonoBehaviour:
   m_Prefabs: []
   m_Z: 0
   allPrefabs:
-  - obj: {fileID: 1048723995835895460, guid: 4955316933e8e5d4aabe504419da9bcd, type: 3}
-    priority: 0.2
-    chanceValue: 0.16666666
-  - obj: {fileID: 5522312753728381599, guid: affc5a5257401494697aa47a9b94d78a, type: 3}
-    priority: 0.5
-    chanceValue: 0.5833333
-  - obj: {fileID: 8985206740066876052, guid: 662f5bb766bdb9d438d34b6f818782b3, type: 3}
-    priority: 0.3
-    chanceValue: 0.8333333
   - obj: {fileID: 745770708899443557, guid: 3ab85a841c1552d438a9fc522b42d09f, type: 3}
-    priority: 0.2
+    priority: 1
     chanceValue: 1
