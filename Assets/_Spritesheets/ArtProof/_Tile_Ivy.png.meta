@@ -8,6 +8,7 @@ TextureImporter:
     21300006: _Tile_Ivy_3
     21300008: _Tile_Ivy_4
     21300010: _Tile_Ivy_5
+    21300012: _Tile_Ivy_6
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -227,6 +228,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d79c8f2011ba19b4f8f64f5a0a228991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Tile_Ivy_6
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 96
+        width: 35
+        height: 35
+      alignment: 9
+      pivot: {x: 0.31428573, y: 0.6857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69140138152267c49bd388d16c84849b
       vertices: []
       indices: 
       edges: []
