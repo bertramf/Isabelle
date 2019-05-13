@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: grass3_c
+  m_Controller: {fileID: 9100000, guid: 8d2b102f1fb99014581a8017364ada5e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a47e1559b0ecf764295ef2d5e682bcf7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5ac1242d86ddd0c439a117be9e178df9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3b29fb7c48770fb4f80dc4cfcc3a9d14, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c6b72e9cdc4fa8d4290d2ca488c55d92, type: 2}

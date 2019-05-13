@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass2
+  m_Name: grass2_c
   m_Controller: {fileID: 9100000, guid: 8d2b102f1fb99014581a8017364ada5e, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: a47e1559b0ecf764295ef2d5e682bcf7, type: 2}
