@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2731318290110472885}
   - component: {fileID: 1048723995835895461}
   - component: {fileID: 1722713772632149135}
+  - component: {fileID: 2670788600490056220}
   - component: {fileID: 1048723995835895462}
   m_Layer: 0
   m_Name: GrassLow1
@@ -127,6 +128,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.3}
   m_EdgeRadius: 0
+--- !u!61 &2670788600490056220
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048723995835895460}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: -0.1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.3}
+  m_EdgeRadius: 0
 --- !u!114 &1048723995835895462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,3 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370d106aec6403f40bdd36c52cff4479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomXflip: 1

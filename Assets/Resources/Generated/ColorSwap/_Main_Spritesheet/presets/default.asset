@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: default
   m_EditorClassIdentifier: 
   colorVariants:
-  - {r: 0.02, g: 0.02, b: 0.02, a: 1}
+  - {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
   - {r: 0.2204445, g: 0.10850001, b: 0.31, a: 1}
   - {r: 0.71, g: 0.6437333, b: 0.59639996, a: 1}
   - {r: 0, g: 0.047058772, b: 0.2, a: 1}

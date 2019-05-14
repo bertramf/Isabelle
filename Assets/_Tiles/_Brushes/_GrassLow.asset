@@ -46,6 +46,6 @@ MonoBehaviour:
   - obj: {fileID: 8985206740066876052, guid: 662f5bb766bdb9d438d34b6f818782b3, type: 3}
     priority: 0.3
     chanceValue: 0.8333333
-  - obj: {fileID: 745770708899443557, guid: 3ab85a841c1552d438a9fc522b42d09f, type: 3}
+  - obj: {fileID: 1271528293474547408, guid: 2308f0670eed1324ea9445c4bf486771, type: 3}
     priority: 0.2
     chanceValue: 1

@@ -7,7 +7,7 @@ TagManager:
   - Death_Falling
   - Death_Box
   - ParentObject
-  - GrassTop
+  - GrassLow
   layers:
   - Default
   - TransparentFX
