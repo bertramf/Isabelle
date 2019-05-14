@@ -6,7 +6,7 @@ public class PlayerVisuals : MonoBehaviour {
 
     private Animator anim;
     private PlayerBase PlayerBase;
-    private ColorSwap colorSwap;
+    private ColorSwap ColorSwap;
 
     public ColorSwapPreset defaultPreset;
     public ColorSwapPreset dashPreset;
@@ -15,7 +15,7 @@ public class PlayerVisuals : MonoBehaviour {
     private void Start () {
         anim = GetComponent<Animator>();
         PlayerBase = GetComponentInParent<PlayerBase>();
-        colorSwap = GetComponent<ColorSwap>();
+        ColorSwap = GetComponent<ColorSwap>();
     }
 
     private void OnEnable() {
@@ -54,18 +54,13 @@ public class PlayerVisuals : MonoBehaviour {
     }
 
     private void Event_PlayerHittedFalling() {
-        colorSwap.UpdateVisualData(deadPreset);
+        ColorSwap.UpdateVisualData(deadPreset);
     }
 
     private void Event_PlayerHittedBox() {
-        colorSwap.UpdateVisualData(deadPreset);
-        StartCoroutine(HittedShakeLogic());
-        anim.SetTrigger("isHitted");
-    }
-
-    private IEnumerator HittedShakeLogic() {
-        yield return null;
+        ColorSwap.UpdateVisualData(deadPreset);
         Screenshake.instance.StartShakeVertical(2, 0.5f, 0.06f);
+        anim.SetTrigger("isHitted");
     }
 
     private void Event_FlipLocalX(int direction) {
@@ -74,11 +69,11 @@ public class PlayerVisuals : MonoBehaviour {
     }
 
     private void Event_ChangeColor() {
-        colorSwap.UpdateVisualData(dashPreset);
+        ColorSwap.UpdateVisualData(dashPreset);
     }
 
     private void Event_RedoColors() {
-        colorSwap.UpdateVisualData(defaultPreset);
+        ColorSwap.UpdateVisualData(defaultPreset);
     }
 
 }
