@@ -11,22 +11,15 @@ public class PlayerVisuals_Ps : MonoBehaviour {
     private PlayerValues PlayerValues;
 
     //Private Values
-    private bool isInGrass;
-    private float quarterDashTime;
+    private bool isPlayingLandPs;
     private int switchDashInt;
-    private int dashPsCount;
     private int switchLandInt;
-    private int landPsCount;
     private int switchJumpInt;
-    private int jumpPsCount;
+    private float quarterDashTime;
     private Vector3 ps_pos_left;
     private Vector3 ps_pos_right;
 
     [Header("Important Public Values")]
-    public Color ps_groundColor;
-    public Color ps_grassColor;
-    public Material mat_ground;
-    public Material mat_grass;
     public int grassWalkingEmission;
     public int grassDashingEmission;
 
@@ -37,26 +30,38 @@ public class PlayerVisuals_Ps : MonoBehaviour {
     public ParticleSystem ps_death;
 
     [Header("Jump Particle Systems")]
-    public ParticleSystem[] ps_jump_left_1;
-    public ParticleSystem[] ps_jump_right_1;
-    public ParticleSystem[] ps_jump_left_2;
-    public ParticleSystem[] ps_jump_right_2;
-    public float jumpParentTime = 0.45f;
+    public ParticleSystem ps_jumpL_1;
+    public ParticleSystem ps_jumpR_1;
+    public ParticleSystem ps_jumpL_2;
+    public ParticleSystem ps_jumpR_2;
+    public ParticleSystem ps_jumpL_grass_1;
+    public ParticleSystem ps_jumpR_grass_1;
+    public ParticleSystem ps_jumpL_grass_2;
+    public ParticleSystem ps_jumpR_grass_2;
+    public float jumpParentTime = 0.6f;
 
     [Header("Land Particle Systems")]
-    public ParticleSystem[] ps_land_left_1;
-    public ParticleSystem[] ps_landGrass_left_1;
-    public ParticleSystem[] ps_land_right_1;
-    public ParticleSystem[] ps_landGrass_right_1;
-    public ParticleSystem[] ps_land_left_2;
-    public ParticleSystem[] ps_landGrass_left_2;
-    public ParticleSystem[] ps_land_right_2;
-    public ParticleSystem[] ps_landGrass_right_2;
+    public ParticleSystem ps_landL_large_1;
+    public ParticleSystem ps_landR_large_1;
+    public ParticleSystem ps_landL_small_1;
+    public ParticleSystem ps_landR_small_1;
+    public ParticleSystem ps_landL_large_2;
+    public ParticleSystem ps_landR_large_2;
+    public ParticleSystem ps_landL_small_2;
+    public ParticleSystem ps_landR_small_2;
+    public ParticleSystem ps_landL_grass_1;
+    public ParticleSystem ps_landR_grass_1;
+    public ParticleSystem ps_landL_grass_2;
+    public ParticleSystem ps_landR_grass_2;
     public float landParentTime = 0.4f;
 
     [Header("Dash Particle Systems")]
-    public ParticleSystem[] ps_dash_1;
-    public ParticleSystem[] ps_dash_2;
+    public ParticleSystem ps_dash1_1;
+    public ParticleSystem ps_dash2_1;
+    public ParticleSystem ps_dash3_1;
+    public ParticleSystem ps_dash1_2;
+    public ParticleSystem ps_dash2_2;
+    public ParticleSystem ps_dash3_2;
     public float dashParentTime = 0.4f;
 
     private void Start() {
@@ -69,13 +74,9 @@ public class PlayerVisuals_Ps : MonoBehaviour {
         switchLandInt = -1;
         switchJumpInt = -1;
 
-        dashPsCount = ps_dash_1.Length;
-        landPsCount = ps_land_left_1.Length;
-        jumpPsCount = ps_jump_left_1.Length;
-
         quarterDashTime = PlayerValues.dashTime / 4;
-        ps_pos_left = ps_land_left_1[0].transform.localPosition;
-        ps_pos_right = ps_land_right_1[0].transform.localPosition;
+        ps_pos_left = ps_landL_large_1.transform.localPosition;
+        ps_pos_right = ps_landR_large_1.transform.localPosition;
     }
 
     private void OnEnable() {
@@ -99,7 +100,6 @@ public class PlayerVisuals_Ps : MonoBehaviour {
         var emGrassWalking = ps_grassWalking.emission;
         var emGrassDashingL = ps_grassDashingL.emission;
         var emGrassDashingR = ps_grassDashingR.emission;
-
 
         //GrassWalking
         if (PlayerBase.movementSpeed > 0 && PlayerGroundDetection.isInGrass) {
@@ -138,80 +138,97 @@ public class PlayerVisuals_Ps : MonoBehaviour {
 
     private IEnumerator Dash_Ps_Logic() {
         switchDashInt *= -1;
-        for (int i = 0; i < dashPsCount; i++) {
-            yield return new WaitForSeconds(i * quarterDashTime);
-            if (switchDashInt == 1) {
-                StartCoroutine(Ps_Logic(ps_dash_1, i, dashParentTime, Vector3.zero, false));
-            }
-            else {
-                StartCoroutine(Ps_Logic(ps_dash_2, i, dashParentTime, Vector3.zero, false));
-            }
+        if (switchDashInt == 1) {
+            yield return new WaitForSeconds(quarterDashTime);
+            StartCoroutine(Ps_Logic(ps_dash1_1, dashParentTime, Vector3.zero));
+            yield return new WaitForSeconds(quarterDashTime);
+            StartCoroutine(Ps_Logic(ps_dash2_1, dashParentTime, Vector3.zero));
+            yield return new WaitForSeconds(quarterDashTime);
+            StartCoroutine(Ps_Logic(ps_dash3_1, dashParentTime, Vector3.zero));
+        }
+        else {
+            yield return new WaitForSeconds(quarterDashTime);
+            StartCoroutine(Ps_Logic(ps_dash1_2, dashParentTime, Vector3.zero));
+            yield return new WaitForSeconds(quarterDashTime);
+            StartCoroutine(Ps_Logic(ps_dash2_2, dashParentTime, Vector3.zero));
+            yield return new WaitForSeconds(quarterDashTime);
+            StartCoroutine(Ps_Logic(ps_dash3_2, dashParentTime, Vector3.zero));
         }
     }
 
     private void Event_LandParticles() {
+        isPlayingLandPs = true;
+        StartCoroutine(IsPlayingLandParticles());
         switchLandInt *= -1;
-        for (int i = 0; i < landPsCount; i++) {
-            if (switchLandInt == 1) {
-                if (PlayerGroundDetection.isInGrass) {
-                    StartCoroutine(Ps_Logic(ps_landGrass_left_1, i, landParentTime, ps_pos_left, true));
-                    StartCoroutine(Ps_Logic(ps_landGrass_right_1, i, landParentTime, ps_pos_right, true));
-                }
-                else {
-                    StartCoroutine(Ps_Logic(ps_land_left_1, i, landParentTime, ps_pos_left, true));
-                    StartCoroutine(Ps_Logic(ps_land_right_1, i, landParentTime, ps_pos_right, true));
-                } 
+        if (switchLandInt == 1) {
+            if (PlayerGroundDetection.isInGrass) {
+                StartCoroutine(Ps_Logic(ps_landL_grass_1, landParentTime, ps_pos_left));
+                StartCoroutine(Ps_Logic(ps_landR_grass_1, landParentTime, ps_pos_right));
             }
             else {
-                if (PlayerGroundDetection.isInGrass) {
-                    StartCoroutine(Ps_Logic(ps_landGrass_left_2, i, landParentTime, ps_pos_left, true));
-                    StartCoroutine(Ps_Logic(ps_landGrass_right_2, i, landParentTime, ps_pos_right, true));
-                }
-                else {
-                    StartCoroutine(Ps_Logic(ps_land_left_2, i, landParentTime, ps_pos_left, true));
-                    StartCoroutine(Ps_Logic(ps_land_right_2, i, landParentTime, ps_pos_right, true));
-                }  
+                StartCoroutine(Ps_Logic(ps_landL_large_1, landParentTime, ps_pos_left));
+                StartCoroutine(Ps_Logic(ps_landR_large_1, landParentTime, ps_pos_right));
+                StartCoroutine(Ps_Logic(ps_landL_small_1, landParentTime, ps_pos_left));
+                StartCoroutine(Ps_Logic(ps_landR_small_1, landParentTime, ps_pos_right));
             }
         }
+        else {
+            if (PlayerGroundDetection.isInGrass) {
+                StartCoroutine(Ps_Logic(ps_landL_grass_2, landParentTime, ps_pos_left));
+                StartCoroutine(Ps_Logic(ps_landR_grass_2, landParentTime, ps_pos_right));
+            }
+            else {
+                StartCoroutine(Ps_Logic(ps_landL_large_2, landParentTime, ps_pos_left));
+                StartCoroutine(Ps_Logic(ps_landR_large_2, landParentTime, ps_pos_right));
+                StartCoroutine(Ps_Logic(ps_landL_small_2, landParentTime, ps_pos_left));
+                StartCoroutine(Ps_Logic(ps_landR_small_2, landParentTime, ps_pos_right));
+            }
+        }
+    }
+
+    private IEnumerator IsPlayingLandParticles() {
+        yield return new WaitForSeconds(landParentTime);
+        isPlayingLandPs = false;
     }
 
     private void Event_JumpParticles() {
-        switchJumpInt *= -1;
-        for (int i = 0; i < jumpPsCount; i++) {
+        if (!isPlayingLandPs) {
+            switchJumpInt *= -1;
             if (switchJumpInt == 1) {
-                StartCoroutine(Ps_Logic(ps_jump_left_1, i, jumpParentTime, ps_pos_left, true));
-                StartCoroutine(Ps_Logic(ps_jump_right_1, i, jumpParentTime, ps_pos_right, true));
+                if (PlayerGroundDetection.isInGrass) {
+                    StartCoroutine(Ps_Logic(ps_jumpL_grass_1, jumpParentTime, ps_pos_left));
+                    StartCoroutine(Ps_Logic(ps_jumpR_grass_1, jumpParentTime, ps_pos_right));
+                }
+                else {
+                    StartCoroutine(Ps_Logic(ps_jumpL_1, jumpParentTime, ps_pos_left));
+                    StartCoroutine(Ps_Logic(ps_jumpR_1, jumpParentTime, ps_pos_right));
+                }
             }
             else {
-                StartCoroutine(Ps_Logic(ps_jump_left_2, i, jumpParentTime, ps_pos_left, true));
-                StartCoroutine(Ps_Logic(ps_jump_right_2, i, jumpParentTime, ps_pos_right, true));
+                if (PlayerGroundDetection.isInGrass) {
+                    StartCoroutine(Ps_Logic(ps_jumpL_grass_2, jumpParentTime, ps_pos_left));
+                    StartCoroutine(Ps_Logic(ps_jumpR_grass_2, jumpParentTime, ps_pos_right));
+                }
+                else {
+                    StartCoroutine(Ps_Logic(ps_jumpL_2, jumpParentTime, ps_pos_left));
+                    StartCoroutine(Ps_Logic(ps_jumpR_2, jumpParentTime, ps_pos_right));
+                }
             }
         }
     }
 
-    private IEnumerator Ps_Logic(ParticleSystem[] ps_System, int number, float timeBeforeParent, Vector3 localPos, bool changeStartColor) {
+    private IEnumerator Ps_Logic(ParticleSystem ps_System, float timeBeforeParent, Vector3 localPos) {
         //Unparent & Play
-        ps_System[number].transform.parent = null;
-        //if (changeStartColor) {
-        //    var main = ps_System[number].main;
-        //    if (!PlayerGroundDetection.isInGrass) {
-        //        ps_System[number].GetComponent<ParticleSystemRenderer>().material = mat_ground;
-        //        main.startColor = ps_groundColor;
-        //    }
-        //    else {
-        //        ps_System[number].GetComponent<ParticleSystemRenderer>().material = mat_grass;
-        //        main.startColor = ps_grassColor;
-        //    }
-        //}
-        ps_System[number].Play();
+        ps_System.transform.parent = null;
+        ps_System.Play();
 
         //Wait longer then lifetime before parent
         yield return new WaitForSeconds(timeBeforeParent);
 
         //Parent & Set LocalPos
-        ps_System[number].transform.parent = PlayerVfx;
-        ps_System[number].transform.localPosition = localPos;
-        ps_System[number].transform.localScale = Vector3.one;
+        ps_System.transform.parent = PlayerVfx;
+        ps_System.transform.localPosition = localPos;
+        ps_System.transform.localScale = Vector3.one;
     }
 
 }
