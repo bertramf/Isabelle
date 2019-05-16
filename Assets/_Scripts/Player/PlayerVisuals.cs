@@ -8,8 +8,8 @@ public class PlayerVisuals : MonoBehaviour {
     private PlayerBase PlayerBase;
     private ColorSwap ColorSwap;
 
-    public ColorSwapPreset defaultPreset;
-    public ColorSwapPreset dashPreset;
+    public ColorSwapPreset weakPreset;
+    public ColorSwapPreset poweredPreset;
     public ColorSwapPreset deadPreset;
 
     private void Start () {
@@ -69,11 +69,11 @@ public class PlayerVisuals : MonoBehaviour {
     }
 
     private void Event_ChangeColor() {
-        ColorSwap.UpdateVisualData(dashPreset);
+        ColorSwap.UpdateVisualData(weakPreset);
     }
 
     private void Event_RedoColors() {
-        ColorSwap.UpdateVisualData(defaultPreset);
+        ColorSwap.UpdateVisualData(poweredPreset);
     }
 
 }

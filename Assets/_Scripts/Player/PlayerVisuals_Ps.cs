@@ -22,6 +22,7 @@ public class PlayerVisuals_Ps : MonoBehaviour {
     [Header("Important Public Values")]
     public int grassWalkingEmission;
     public int grassDashingEmission;
+    public Color ps_dash_startColor;
 
     [Header("Other Particle Systems")]
     public ParticleSystem ps_grassWalking;
@@ -77,6 +78,18 @@ public class PlayerVisuals_Ps : MonoBehaviour {
         quarterDashTime = PlayerValues.dashTime / 4;
         ps_pos_left = ps_landL_large_1.transform.localPosition;
         ps_pos_right = ps_landR_large_1.transform.localPosition;
+        var ps_dash1_1_main = ps_dash1_1.main;
+        var ps_dash2_1_main = ps_dash2_1.main;
+        var ps_dash3_1_main = ps_dash3_1.main;
+        var ps_dash1_2_main = ps_dash1_2.main;
+        var ps_dash2_2_main = ps_dash2_2.main;
+        var ps_dash3_2_main = ps_dash3_2.main;
+        ps_dash1_1_main.startColor = ps_dash_startColor;
+        ps_dash2_1_main.startColor = ps_dash_startColor;
+        ps_dash3_1_main.startColor = ps_dash_startColor;
+        ps_dash1_2_main.startColor = ps_dash_startColor;
+        ps_dash2_2_main.startColor = ps_dash_startColor;
+        ps_dash3_2_main.startColor = ps_dash_startColor;
     }
 
     private void OnEnable() {

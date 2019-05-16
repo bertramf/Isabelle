@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a06622efb4d1eb14d9806a416cf7ec99, type: 3}
-  m_Name: default
+  m_Name: weak
   m_EditorClassIdentifier: 
   colorVariants:
   - {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
-  - {r: 0.2204445, g: 0.10850001, b: 0.31, a: 1}
-  - {r: 0.71, g: 0.6437333, b: 0.59639996, a: 1}
-  - {r: 0, g: 0.047058772, b: 0.2, a: 1}
+  - {r: 0.30980393, g: 0.41960785, b: 0.58431375, a: 1}
+  - {r: 0.7137255, g: 0.64705884, b: 0.6, a: 1}
+  - {r: 0.4862745, g: 0.09803922, b: 0.09803922, a: 1}
   presetMaterial: {fileID: 2100000, guid: ba19a9877fd4646448b8194a023f46b3, type: 2}
   colorSwapData: {fileID: 11400000, guid: d843f405f3cd60c43b0a7dcbac0b2b1f, type: 2}

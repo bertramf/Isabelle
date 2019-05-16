@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a06622efb4d1eb14d9806a416cf7ec99, type: 3}
-  m_Name: dash
+  m_Name: powered
   m_EditorClassIdentifier: 
   colorVariants:
   - {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
-  - {r: 0.1714133, g: 0.1714133, b: 0.33962262, a: 1}
-  - {r: 0.7607844, g: 0.7725491, b: 0.6, a: 1}
-  - {r: 0.3018868, g: 0.10679958, b: 0.253115, a: 1}
+  - {r: 0.2509804, g: 0.13725491, b: 0.3372549, a: 1}
+  - {r: 0.7137255, g: 0.64705884, b: 0.6, a: 1}
+  - {r: 0.23529412, g: 0, b: 0, a: 1}
   presetMaterial: {fileID: 2100000, guid: ba19a9877fd4646448b8194a023f46b3, type: 2}
   colorSwapData: {fileID: 11400000, guid: d843f405f3cd60c43b0a7dcbac0b2b1f, type: 2}
