@@ -34,7 +34,7 @@ public class LevelSwitcher : MonoBehaviour{
     }
 
     private void ShowCurrentScene() {
-        currentLevelText.text = GameManager.Instance.newSceneNameReadOnly;
+        currentLevelText.text = GameManager.Instance.newSceneName;
     }
 
     private void ChangeDepthIndex() {
@@ -60,11 +60,11 @@ public class LevelSwitcher : MonoBehaviour{
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha0) || (Input.GetButton("B") && (inputRt > playerValues.RtTreshold && timerRt == timerCooldown))) {
-            int depthIndex = GameManager.Instance.depthSceneIndexReadOnly;
+            int depthIndex = GameManager.Instance.depthSceneIndex;
             GameManager.Instance.depthSceneLevels[depthIndex].DEV_ChangeHorizontalSceneIndex(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha9) || (Input.GetButton("B") && (inputLt > playerValues.RtTreshold && timerLt == timerCooldown))) {
-            int depthIndex = GameManager.Instance.depthSceneIndexReadOnly;
+            int depthIndex = GameManager.Instance.depthSceneIndex;
             GameManager.Instance.depthSceneLevels[depthIndex].DEV_ChangeHorizontalSceneIndex(-1);
         }
 

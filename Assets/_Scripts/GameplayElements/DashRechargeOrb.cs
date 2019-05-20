@@ -21,18 +21,11 @@ public class DashRechargeOrb : MonoBehaviour {
         sprite = transform.Find("DashRecharge_Visuals").GetComponent<SpriteRenderer>();
     }
 
-    private void Update() {
-        if(playerBase != null) {
-            return;
-        }
-        if(GameObject.FindGameObjectWithTag("Player") != null) {
-            playerBase = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBase>();
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player") {
-            FindPlayerBase();
+            if(playerBase == null) {
+                playerBase = other.gameObject.GetComponent<PlayerBase>();
+            }
             StartCoroutine(RechargeLogic());
         }
     }
@@ -41,16 +34,6 @@ public class DashRechargeOrb : MonoBehaviour {
         Disappear();
         yield return new WaitForSeconds(rechargeTime);
         Appear();
-    }
-
-    private void FindPlayerBase() {
-        if (playerBase != null) {
-            return;
-        }
-        if (GameObject.FindGameObjectWithTag("Player") == null) {
-            return;
-        }
-        playerBase = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBase>();
     }
 
     private void Disappear() {

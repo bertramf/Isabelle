@@ -18,14 +18,14 @@ public class GameManager : MonoBehaviour {
 
     public GameObject playerObj;
     public GameObject cameraObj;
-    [HideInInspector()] public Vector3 currentCheckpoint = Vector3.zero; //Public for referencing
+    [HideInInspector] public Vector3 currentCheckpoint = Vector3.zero; //Public for referencing
 
     [Serializable]
     public class DepthSceneArray {
-        public List<Object> horizontalScenes; //Public for referencing
+        [SerializeField] private List<Object> horizontalScenes; 
         [Tooltip("Default scene; if empty this is filled in with first index of the horizontalScenes list")]
-        [SerializeField]    private Object defaultScene;
-        [HideInInspector()] public int horizontalSceneIndex; //Public for referencing
+        [SerializeField] private Object defaultScene;
+        private int horizontalSceneIndex;
 
         public string selectedHorizontalSceneName {
             get {
@@ -42,6 +42,14 @@ public class GameManager : MonoBehaviour {
             }
         }
 
+        public void TrySelectScene(Object scene, out bool success) {
+            success = false;
+            if (horizontalScenes.Contains(scene)) {
+                horizontalSceneIndex = horizontalScenes.IndexOf(scene);
+                success = true;
+            }
+        }
+
         public void DEV_ChangeHorizontalSceneIndex(int indexChange) {
             horizontalSceneIndex += indexChange;
             horizontalSceneIndex = Mathf.Clamp(horizontalSceneIndex, 0, (horizontalScenes.Count - 1));
@@ -54,36 +62,37 @@ public class GameManager : MonoBehaviour {
     public DepthSceneArray[] depthSceneLevels;
 
     private string currentSceneName;
-    private int depthSceneIndex;
-    private string newSceneName {
+    public int depthSceneIndex { get; private set; }
+    public string newSceneName {
         get {
             DepthSceneArray currentDepthSceneLevel = depthSceneLevels[depthSceneIndex];
             return currentDepthSceneLevel.selectedHorizontalSceneName;
         }
     }
 
-    public string newSceneNameReadOnly { get { return newSceneName; } }
-    public int depthSceneIndexReadOnly { get { return depthSceneIndex; } }
-
     private void Awake() {
         Instance = this;
 
+        depthSceneIndex = 0;
         foreach (DepthSceneArray depthSceneArray in depthSceneLevels) {
             depthSceneArray.InitializeHorizontalIndex();
         }
-        OverrideStartIndexes();
+        #if UNITY_EDITOR
+            OverrideStartIndexes();
+        #endif
 
         BlackScreenManager.Instance.SetCanvasAlpha(1f);
         StartCoroutine(FirstSceneLoadingLogic());
     }
 
     private void OverrideStartIndexes() {
+        if(defaultStartScene == null) { return; }
         for (int i = 0; i < depthSceneLevels.Length; i++) {
-            for (int j = 0; j < depthSceneLevels[i].horizontalScenes.Count; j++) {
-                if (defaultStartScene.name == depthSceneLevels[i].horizontalScenes[j].name) {
-                    depthSceneIndex = i;
-                    depthSceneLevels[i].horizontalSceneIndex = j;
-                }
+            bool defaultStartSceneFound = false;
+            depthSceneLevels[i].TrySelectScene(defaultStartScene, out defaultStartSceneFound);
+            if (defaultStartSceneFound) {
+                depthSceneIndex = i;
+                return;
             }
         }
     }
