@@ -14,10 +14,6 @@ public class LevelSwitcher : MonoBehaviour{
 
     public Text currentLevelText;
 
-    //Public for debugging
-    public int depthIndex;
-    public int horizontalIndex;
-
     private void Start() {
         playerValues = Resources.Load<PlayerValues>("Settings/PlayerValues");
     }
@@ -27,9 +23,18 @@ public class LevelSwitcher : MonoBehaviour{
             return;
         }
 
+        ShowCurrentScene();
+
+        if (GameManager.Instance.gameState == GameStates.loading) {
+            return;
+        }
+
         ChangeDepthIndex();
         ChangeHorizontalIndex();
-        ShowCurrentScene();
+    }
+
+    private void ShowCurrentScene() {
+        currentLevelText.text = GameManager.Instance.newSceneNameReadOnly;
     }
 
     private void ChangeDepthIndex() {
@@ -55,21 +60,16 @@ public class LevelSwitcher : MonoBehaviour{
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha0) || (Input.GetButton("B") && (inputRt > playerValues.RtTreshold && timerRt == timerCooldown))) {
-            int depthScene = GameManager.Instance.depthSceneIndex;
-            GameManager.Instance.depthSceneLevels[depthScene].DEV_ChangeHorizontalSceneIndex(1);
+            int depthIndex = GameManager.Instance.depthSceneIndexReadOnly;
+            GameManager.Instance.depthSceneLevels[depthIndex].DEV_ChangeHorizontalSceneIndex(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha9) || (Input.GetButton("B") && (inputLt > playerValues.RtTreshold && timerLt == timerCooldown))) {
-            int depthScene = GameManager.Instance.depthSceneIndex;
-            GameManager.Instance.depthSceneLevels[depthScene].DEV_ChangeHorizontalSceneIndex(-1);
+            int depthIndex = GameManager.Instance.depthSceneIndexReadOnly;
+            GameManager.Instance.depthSceneLevels[depthIndex].DEV_ChangeHorizontalSceneIndex(-1);
         }
 
         timerRt -= Time.fixedDeltaTime;
         timerLt -= Time.fixedDeltaTime;
-    }
-
-    private void ShowCurrentScene() {
-        string currentLevelStr = "CurrentLevel : " + GameManager.Instance.currentSceneName;
-        currentLevelText.text = currentLevelStr;
     }
 
 }

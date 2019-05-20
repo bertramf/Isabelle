@@ -5,25 +5,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
+public enum GameStates {
+    playing,
+    loading,
+    mainMenu
+}
+
 public class GameManager : MonoBehaviour {
 
     public static GameManager Instance = null;
+    public GameStates gameState;
+
+    public GameObject playerObj;
+    public GameObject cameraObj;
+    [HideInInspector()] public Vector3 currentCheckpoint = Vector3.zero; //Public for referencing
 
     [Serializable]
     public class DepthSceneArray {
-        [SerializeField] private List<Object> horizontalScenes;
-        [SerializeField] private Object defaultScene;
-        private int horizontalSceneIndex;
-
-        public void Initialize() {
-            if (defaultScene == null) {
-                horizontalSceneIndex = 0;
-            }
-            else {
-                //Wat is de eerste index uit de lijst met value = 'defaultscene' ?
-                horizontalSceneIndex = horizontalScenes.IndexOf(defaultScene);
-            }
-        }
+        public List<Object> horizontalScenes; //Public for referencing
+        [Tooltip("Default scene; if empty this is filled in with first index of the horizontalScenes list")]
+        [SerializeField]    private Object defaultScene;
+        [HideInInspector()] public int horizontalSceneIndex; //Public for referencing
 
         public string selectedHorizontalSceneName {
             get {
@@ -31,79 +33,124 @@ public class GameManager : MonoBehaviour {
             }
         }
 
+        public void InitializeHorizontalIndex() {
+            if (defaultScene == null) {
+                horizontalSceneIndex = 0;
+            }
+            else {
+                horizontalSceneIndex = horizontalScenes.IndexOf(defaultScene);
+            }
+        }
+
         public void DEV_ChangeHorizontalSceneIndex(int indexChange) {
             horizontalSceneIndex += indexChange;
             horizontalSceneIndex = Mathf.Clamp(horizontalSceneIndex, 0, (horizontalScenes.Count - 1));
+            GameManager.Instance.CheckForSceneChange(true, 0f);
         }
     }
 
+    [Header("Drag all scenes here!")]
+    [SerializeField] private Object defaultStartScene;
     public DepthSceneArray[] depthSceneLevels;
-    
-    public int depthSceneIndex; //Moet deze niet private zijn? :o
-    private string oldSceneName;
-    public DepthSceneArray currentDepthSceneLevel {
-        get {
-            return depthSceneLevels[depthSceneIndex];
-        }
-    }
 
-    public string currentSceneName { //Deze public gemaakt vanwege aanroepen vanuit LevelSwitcher.cs
+    private string currentSceneName;
+    private int depthSceneIndex;
+    private string newSceneName {
         get {
+            DepthSceneArray currentDepthSceneLevel = depthSceneLevels[depthSceneIndex];
             return currentDepthSceneLevel.selectedHorizontalSceneName;
         }
     }
 
-    public void DEV_ChangeDepthSceneIndex(int indexChange) {
-        oldSceneName = currentSceneName;
-        depthSceneIndex += indexChange;
-        depthSceneIndex = Mathf.Clamp(depthSceneIndex, 0, (depthSceneLevels.Length - 1));
-        StartCoroutine(Death(oldSceneName, 0f));
-    }
-
-    public GameObject playerObj;
-    public GameObject cameraObj;
-    [HideInInspector()]
-    public Vector3 currentCheckpoint = Vector3.zero;
+    public string newSceneNameReadOnly { get { return newSceneName; } }
+    public int depthSceneIndexReadOnly { get { return depthSceneIndex; } }
 
     private void Awake() {
         Instance = this;
 
         foreach (DepthSceneArray depthSceneArray in depthSceneLevels) {
-            depthSceneArray.Initialize();
+            depthSceneArray.InitializeHorizontalIndex();
         }
-        depthSceneIndex = 0;
+        OverrideStartIndexes();
 
         BlackScreenManager.Instance.SetCanvasAlpha(1f);
-        StartCoroutine(StartSceneLoading());
+        StartCoroutine(FirstSceneLoadingLogic());
     }
 
-    private IEnumerator StartSceneLoading() {
-        yield return new WaitForSeconds(0.1f); //Dit is LELIJK!
-        if (!SceneManager.GetSceneByName(currentSceneName).isLoaded) {
-            SceneManager.LoadSceneAsync(currentSceneName, LoadSceneMode.Additive);
-            while (!SceneManager.GetSceneByName(currentSceneName).isLoaded) {
+    private void OverrideStartIndexes() {
+        for (int i = 0; i < depthSceneLevels.Length; i++) {
+            for (int j = 0; j < depthSceneLevels[i].horizontalScenes.Count; j++) {
+                if (defaultStartScene.name == depthSceneLevels[i].horizontalScenes[j].name) {
+                    depthSceneIndex = i;
+                    depthSceneLevels[i].horizontalSceneIndex = j;
+                }
+            }
+        }
+    }
+
+    private IEnumerator Loop() {
+        bool a = true;
+        if (a) {
+            while (!SceneManager.GetSceneByName(newSceneName).isLoaded) {
                 yield return null;
             }
-            Scene scene = SceneManager.GetSceneByName(currentSceneName);
+        }
+        //Do Stuff
+    }
+
+    private IEnumerator FirstSceneLoadingLogic() {
+        gameState = GameStates.loading;
+        yield return new WaitForSeconds(0.1f); //Dit is LELIJK!
+        if (!SceneManager.GetSceneByName(newSceneName).isLoaded) {
+            SceneManager.LoadSceneAsync(newSceneName, LoadSceneMode.Additive);
+            while (!SceneManager.GetSceneByName(newSceneName).isLoaded) {
+                yield return null;
+            }
+            Scene scene = SceneManager.GetSceneByName(newSceneName);
             SceneManager.SetActiveScene(scene);
             InstatiateCore();
             StartCoroutine(BlackScreenManager.Instance.FadeBlackScreen_Out(BlackScreenManager.Instance.fadeOutTime));
+            yield return new WaitForSeconds(BlackScreenManager.Instance.fadeOutTime);
+            gameState = GameStates.playing;
+            currentSceneName = newSceneName;
         }
         else {
-            Scene scene = SceneManager.GetSceneByName(currentSceneName);
+            Scene scene = SceneManager.GetSceneByName(newSceneName);
             SceneManager.SetActiveScene(scene);
             InstatiateCore();
             StartCoroutine(BlackScreenManager.Instance.FadeBlackScreen_Out(BlackScreenManager.Instance.fadeOutTime));
+            yield return new WaitForSeconds(BlackScreenManager.Instance.fadeOutTime);
+            gameState = GameStates.playing;
+            currentSceneName = newSceneName;
         }
     }
 
-    public void TriggerDeath(float delay) {
-        StartCoroutine(Death(currentSceneName, delay));
+    public void DEV_ChangeDepthSceneIndex(int indexChange) {
+        depthSceneIndex += indexChange;
+        depthSceneIndex = Mathf.Clamp(depthSceneIndex, 0, (depthSceneLevels.Length - 1));
+        CheckForSceneChange(true, 0f);
     }
 
-    private IEnumerator Death(string oldScene, float delayBeforeDeath) {
+    public void CheckForSceneChange(bool devModeChange, float delay) {
+        if (gameState == GameStates.loading) {
+            return;
+        }
+        if (devModeChange) {
+            if(currentSceneName != newSceneName) {
+                StartCoroutine(ChanceScene(delay));
+            }
+        }
+        else {
+            StartCoroutine(ChanceScene(delay));
+        }
+    }
+
+    private IEnumerator ChanceScene(float delayBeforeDeath) {
+        //GameState = loading
+        gameState = GameStates.loading;
+
             //Wait for some time if player dies to Death_Box
-            yield return new WaitForSeconds(delayBeforeDeath); 
+            yield return new WaitForSeconds(delayBeforeDeath);
 
         //Load blackScreen
         StartCoroutine(BlackScreenManager.Instance.FadeBlackScreen_In(BlackScreenManager.Instance.fadeInTime));
@@ -111,30 +158,33 @@ public class GameManager : MonoBehaviour {
             //Wait for blackScreen fadeInTime
             yield return new WaitForSeconds(BlackScreenManager.Instance.fadeInTime);
         
-        //Unload old gameplay scene
-        if (SceneManager.GetSceneByName(oldScene).isLoaded) {
-            SceneManager.UnloadSceneAsync(oldScene);
+        //Unload current gameplay scene if loaded
+        if (SceneManager.GetSceneByName(currentSceneName).isLoaded) {
+            SceneManager.UnloadSceneAsync(currentSceneName);
         }
         
             //Wait for blackScreen fadeBlackTime
             yield return new WaitForSeconds(BlackScreenManager.Instance.fadeBlackTime);
 
         //Load gameplay scene
-        SceneManager.LoadSceneAsync(currentSceneName, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(newSceneName, LoadSceneMode.Additive);
 
             //Wait for gameplay scene to be loaded
-            while (!SceneManager.GetSceneByName(currentSceneName).isLoaded) {
+            while (!SceneManager.GetSceneByName(newSceneName).isLoaded) {
                 yield return null;
             }
 
-        //1. Set gameplay scene active 2. Unload blackScreen 3. Instatiate Player & Camera
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(currentSceneName));
+        //1. Set gameplay scene active 2. Unload blackScreen 3. Instatiate Player & Camera 4. Set currentSceneName to newSceneName
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(newSceneName));
         StartCoroutine(BlackScreenManager.Instance.FadeBlackScreen_Out(BlackScreenManager.Instance.fadeOutTime));
         InstatiateCore();
+        currentSceneName = newSceneName;
 
             //Wait for blackScreen fadeOutTime
             yield return new WaitForSeconds(BlackScreenManager.Instance.fadeOutTime);
 
+        //GameState = playing
+        gameState = GameStates.playing;
     }
 
     private void InstatiateCore() {
@@ -142,8 +192,7 @@ public class GameManager : MonoBehaviour {
             Instantiate(playerObj, currentCheckpoint, Quaternion.identity);
         }
         if (GameObject.FindGameObjectWithTag("CameraParent") == null) {
-            //Positie x zou eigenlijk + cameraController.xOffset moeten zijn
-            Instantiate(cameraObj, currentCheckpoint, Quaternion.identity);
+            Instantiate(cameraObj, currentCheckpoint, Quaternion.identity); //Positie x zou eigenlijk + cameraController.xOffset moeten zijn
         }
     }
 

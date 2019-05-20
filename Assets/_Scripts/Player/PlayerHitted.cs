@@ -32,7 +32,7 @@ public class PlayerHitted : MonoBehaviour {
         if (onEventHittedFalling != null) {
             onEventHittedFalling();
         }
-        GameManager.Instance.TriggerDeath(0f);
+        GameManager.Instance.CheckForSceneChange(false, 0f);
     }
 
     private void Death_Box() {
@@ -42,7 +42,7 @@ public class PlayerHitted : MonoBehaviour {
         if (onEventHittedBox != null) {
             onEventHittedBox();
         }
-        GameManager.Instance.TriggerDeath(0.75f);
+        GameManager.Instance.CheckForSceneChange(false, 0.75f);
     }
 
 }
