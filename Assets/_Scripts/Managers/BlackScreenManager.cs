@@ -5,12 +5,18 @@ using UnityEngine;
 public class BlackScreenManager : MonoBehaviour {
 
     public static BlackScreenManager Instance;
-
-    [Header("Public References")]
-    public CanvasGroup black_CanvasGroup;
     
+    public CanvasGroup black_CanvasGroup;
+    public float fadeInTime = 0.35f;
+    public float fadeBlackTime = 0.3f;
+    public float fadeOutTime = 0.35f;
+
     private void Awake () {
         Instance = this;
+    }
+
+    public void SetCanvasAlpha(float newAlpha) {
+        black_CanvasGroup.alpha = newAlpha;
     }
 
     public IEnumerator FadeBlackScreen_In(float time) {

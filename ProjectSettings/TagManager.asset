@@ -8,6 +8,7 @@ TagManager:
   - Death_Box
   - ParentObject
   - GrassLow
+  - CameraParent
   layers:
   - Default
   - TransparentFX

@@ -38,16 +38,11 @@ public class PlayerBase : MonoBehaviour {
 
     private IEnumerator dashCoroutine;
 
-    private void Awake() {
+    private void Start() {
         rb = GetComponent<Rigidbody2D>();
         playerRaycasts = GetComponent<PlayerRaycasts>();
         playerValues = Resources.Load<PlayerValues>("Settings/PlayerValues");
 
-        Vector3 startPosition = GameManager.Instance.CurrentCheckpoint;
-        transform.position = new Vector3(startPosition.x, startPosition.y, transform.position.z);
-    }
-
-    private void Start() {
         lookDirection = 1;
         dashCoroutine = DashLoop();
     }
@@ -144,16 +139,18 @@ public class PlayerBase : MonoBehaviour {
         float previousInput = inputRt;
         inputRt = Input.GetAxisRaw("RT");
 
-        //Input check && alive check
-        if (isAlive) {
-            if (Input.GetButtonDown("X") || (previousInput != inputRt && inputRt > playerValues.RtTreshold)) {
-                if (canDash == true) {
-                    StopDash();
-                    dashCoroutine = DashLoop();
-                    StartCoroutine(dashCoroutine);
-                }
+        if (!isAlive) {
+            return;
+        }
+
+        //Input check
+        if (Input.GetButtonDown("X") || (previousInput != inputRt && inputRt > playerValues.RtTreshold)) {
+            if (canDash == true) {
+                StopDash();
+                dashCoroutine = DashLoop();
+                StartCoroutine(dashCoroutine);
             }
-        }  
+        }
     }
 
     private IEnumerator DashLoop() {
@@ -198,18 +195,20 @@ public class PlayerBase : MonoBehaviour {
     }
 
     private void JumpBehaviour() {
-        //Input check, grounded check & alive check
-        if (isAlive) {
-            if (Input.GetButtonDown("A") && playerRaycasts.coyoteGrounded) {
-                upVelocity = playerValues.yVelClamp_max;
-                //Event Setter
-                if (onEventJump != null) {
-                    onEventJump();
-                }
+        if (!isAlive) {
+            return;
+        }
+
+        //Input check & grounded check
+        if (Input.GetButtonDown("A") && playerRaycasts.coyoteGrounded) {
+            upVelocity = playerValues.yVelClamp_max;
+            //Event Setter
+            if (onEventJump != null) {
+                onEventJump();
             }
-            else {
-                upVelocity = Mathf.Clamp(rb.velocity.y, playerValues.yVelClamp_min, playerValues.yVelClamp_max);
-            }
+        }
+        else {
+            upVelocity = Mathf.Clamp(rb.velocity.y, playerValues.yVelClamp_min, playerValues.yVelClamp_max);
         }
     }
 

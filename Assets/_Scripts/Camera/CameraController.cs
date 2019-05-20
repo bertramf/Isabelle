@@ -18,10 +18,10 @@ public class CameraController : MonoBehaviour {
     public float ySmoothing = 7f;
 
     private void Start () {
-        PlayerTransform = GameObject.Find("Player").transform;
+        PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         PlayerBase = PlayerTransform.GetComponent<PlayerBase>();
         PlayerRaycasts = PlayerTransform.GetComponent<PlayerRaycasts>();
-        camera = transform.Find("Main Camera").GetComponent<Camera>();
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         yCamHalfSize = camera.orthographicSize;
     }
