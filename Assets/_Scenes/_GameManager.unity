@@ -1091,28 +1091,15 @@ MonoBehaviour:
   playerObj: {fileID: 1508467050453750, guid: 9c5d6e24b9115ac4fbaa438fcad6c617, type: 3}
   cameraObj: {fileID: 1878886615374430, guid: 8dce35bc6c4c46340bc7b0ae0437b506, type: 3}
   currentCheckpoint: {x: 0, y: 0, z: 0}
-  depthScenes:
-  - name: 
-    scene: {fileID: 102900000, guid: 3da9b0f65286e7a40aade8f4df039cca, type: 3}
-  - name: 
+  scenes:
+  - name: _Scenes/Mid_1
     scene: {fileID: 102900000, guid: 45281b822f68e5f40bcd944a1d7db929, type: 3}
-  - name: 
+  - name: _Scenes/Mid_3
+    scene: {fileID: 102900000, guid: b57ec76e1c09fd34590de06723169508, type: 3}
+  - name: _Scenes/Ending_1
     scene: {fileID: 102900000, guid: 4062955033d2abe4d93eb844c347a44a, type: 3}
-  defaultStartScene: {fileID: 102900000, guid: c8b42d19babb14c4289cbdee27e22fef, type: 3}
-  depthSceneLevels:
-  - horizontalScenes:
-    - {fileID: 102900000, guid: 3da9b0f65286e7a40aade8f4df039cca, type: 3}
-    - {fileID: 102900000, guid: c8b42d19babb14c4289cbdee27e22fef, type: 3}
-    - {fileID: 102900000, guid: 7ed0e4d1f275e9c4695ffd7f2aade220, type: 3}
-    defaultScene: {fileID: 102900000, guid: c8b42d19babb14c4289cbdee27e22fef, type: 3}
-  - horizontalScenes:
-    - {fileID: 102900000, guid: 45281b822f68e5f40bcd944a1d7db929, type: 3}
-    - {fileID: 102900000, guid: 47e3e6edee8b5574c9a7f1933cf32e35, type: 3}
-    - {fileID: 102900000, guid: b57ec76e1c09fd34590de06723169508, type: 3}
-    defaultScene: {fileID: 0}
-  - horizontalScenes:
-    - {fileID: 102900000, guid: 4062955033d2abe4d93eb844c347a44a, type: 3}
-    defaultScene: {fileID: 0}
-  - horizontalScenes:
-    - {fileID: 102900000, guid: 0649f85fff6925f43a54fdb1d8657b0d, type: 3}
-    defaultScene: {fileID: 0}
+  - name: _Scenes/Outro_1
+    scene: {fileID: 102900000, guid: 0649f85fff6925f43a54fdb1d8657b0d, type: 3}
+  newSceneNameString: 
+  newSceneString: 
+  sceneIndex: 0
