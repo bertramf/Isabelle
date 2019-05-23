@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour {
         gameState = GameStates.loading;
 
         //#if UNITY_EDITOR
-        //yield return new WaitForSeconds(0.1f); //This is UGLY but necessary for Editor Testing!
+        yield return new WaitForSeconds(0.1f); //This is UGLY but necessary for Editor Testing!
         //#endif
 
         //If scene is NOT loaded -> load scene

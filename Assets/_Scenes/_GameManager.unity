@@ -1092,8 +1092,8 @@ MonoBehaviour:
   cameraObj: {fileID: 1878886615374430, guid: 8dce35bc6c4c46340bc7b0ae0437b506, type: 3}
   currentCheckpoint: {x: 0, y: 0, z: 0}
   scenes:
-  - name: _Scenes/Mid_1
-    scene: {fileID: 102900000, guid: 45281b822f68e5f40bcd944a1d7db929, type: 3}
+  - name: _Scenes/Fonts_test
+    scene: {fileID: 102900000, guid: b17a3612ba00fd6489b6ef1a6f67f524, type: 3}
   - name: _Scenes/Mid_3
     scene: {fileID: 102900000, guid: b57ec76e1c09fd34590de06723169508, type: 3}
   - name: _Scenes/Ending_1

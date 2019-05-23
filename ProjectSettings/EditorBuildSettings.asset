@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/_Scenes/Fonts_test.unity
+    guid: b17a3612ba00fd6489b6ef1a6f67f524
   m_configObjects: {}
