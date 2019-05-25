@@ -259,7 +259,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: IndieFlower makes me feel light, even with bold enabled
+  m_text: IndieFlower is the chosen text, it's light and soft
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e397b1d5ba820843843dffbaf789ff3, type: 2}
   m_sharedMaterial: {fileID: 21410275832323058, guid: 2e397b1d5ba820843843dffbaf789ff3,
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 60655648}
-    characterCount: 55
+    characterCount: 51
     spriteCount: 0
     spaceCount: 8
     wordCount: 9
@@ -501,6 +501,93 @@ BoxCollider2D:
     type: 3}
   m_PrefabInstance: {fileID: 1470476882}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &93850999
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: _Main_Spritesheet
+  m_Shader: {fileID: 4800000, guid: 083df3c070c8300468cfae8085d0b8d3, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SwapTexture:
+        m_Texture: {fileID: 2800000, guid: bc286cd539b8f514990f109b9e0c6369, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Range: 4
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MainColor: {r: 0.31764707, g: 0.17254902, b: 0.1137255, a: 1}
+    - _OutlineColor: {r: 0.3921569, g: 0.21960786, b: 0.14901961, a: 1}
+    - _SecondaryColor: {r: 0.3921569, g: 0.21960786, b: 0.14901961, a: 1}
+    - _SwitchedMain: {r: 0.30147058, g: 0.04876729, b: 0.04876729, a: 1}
+    - _SwitchedOutline: {r: 0.7352941, g: 0.40549305, b: 0.40549305, a: 1}
+    - _SwitchedSecondary: {r: 0.44852942, g: 0.39246324, b: 0.39246324, a: 1}
 --- !u!1001 &94816882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1893,93 +1980,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dce35bc6c4c46340bc7b0ae0437b506, type: 3}
---- !u!21 &482970149
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: _Main_Spritesheet
-  m_Shader: {fileID: 4800000, guid: 083df3c070c8300468cfae8085d0b8d3, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SwapTexture:
-        m_Texture: {fileID: 2800000, guid: bc286cd539b8f514990f109b9e0c6369, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Range: 4
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0.31764707, g: 0.17254902, b: 0.1137255, a: 1}
-    - _OutlineColor: {r: 0.3921569, g: 0.21960786, b: 0.14901961, a: 1}
-    - _SecondaryColor: {r: 0.3921569, g: 0.21960786, b: 0.14901961, a: 1}
-    - _SwitchedMain: {r: 0.30147058, g: 0.04876729, b: 0.04876729, a: 1}
-    - _SwitchedOutline: {r: 0.7352941, g: 0.40549305, b: 0.40549305, a: 1}
-    - _SwitchedSecondary: {r: 0.44852942, g: 0.39246324, b: 0.39246324, a: 1}
 --- !u!1001 &498252982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3645,7 +3645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4964034436740134, guid: 1c5fd0fc876ebc24e9d1e553bad5a60e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4964034436740134, guid: 1c5fd0fc876ebc24e9d1e553bad5a60e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7076,7 +7076,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 482970149}
+      objectReference: {fileID: 93850999}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c5d6e24b9115ac4fbaa438fcad6c617, type: 3}
 --- !u!61 &1507297189 stripped
@@ -32946,8 +32946,8 @@ Transform:
   - {fileID: 558778334}
   - {fileID: 977764716}
   - {fileID: 647557124}
-  - {fileID: 125163446}
   - {fileID: 1241172130}
+  - {fileID: 125163446}
   - {fileID: 1103139265}
   - {fileID: 1022443222}
   m_Father: {fileID: 4595904695262725122}
@@ -34742,5 +34742,5 @@ Transform:
   - {fileID: 2110307342}
   - {fileID: 614470351}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
