@@ -70,9 +70,9 @@ public class GameManager : MonoBehaviour {
     private IEnumerator FirstLoadingLoop() {
         gameState = GameStates.loading;
 
-        //#if UNITY_EDITOR
+        #if UNITY_EDITOR
         yield return new WaitForSeconds(0.1f); //This is UGLY but necessary for Editor Testing!
-        //#endif
+        #endif
 
         //If scene is NOT loaded -> load scene
         if (!newScene.isLoaded) {
