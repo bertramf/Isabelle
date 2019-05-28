@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Flower : MonoBehaviour{
+
+    public enum FlowerState {
+        closed,
+        open
+    }
+    public FlowerState flowerState;
+
     private Animator anim_c;
 
+    [Header("Als je de xFlip zelf wilt veranderen moet je dit uitvinken")]
     public bool randomXflip;
 
     private void Start() {
         anim_c = GetComponent<Animator>();
         SetRandomValues();
+        if(flowerState == FlowerState.closed) {
+            anim_c.SetTrigger("startClosed");
+        }
     }
 
     private void SetRandomValues() {
@@ -41,7 +52,14 @@ public class Flower : MonoBehaviour{
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player") {
-            anim_c.SetTrigger("open");
+            if (flowerState == FlowerState.closed) {
+                anim_c.SetTrigger("interact");
+                flowerState = FlowerState.open;
+            }
+            //if (flowerState == FlowerState.open) {
+            //    anim_c.SetTrigger("interact");
+            //    flowerState = FlowerState.closed;
+            //}
         }
     }
 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
-  m_Name: flowerOpens
+  m_Name: _FlowerOpens
   m_EditorClassIdentifier: 
   m_Cells:
   - m_Tile: {fileID: 0}
@@ -37,6 +37,9 @@ MonoBehaviour:
   m_Prefabs: []
   m_Z: 0
   allPrefabs:
-  - obj: {fileID: 2132987627074388716, guid: eae3b70cce1f58d4da3d30d0af0780d2, type: 3}
-    priority: 1
-    chanceValue: 1
+  - obj: {fileID: 2853888388097909478, guid: b5b4473edacb7df488dfb8d3438d2e95, type: 3}
+    priority: 0.5
+    chanceValue: 0
+  - obj: {fileID: 552720139108827049, guid: 860f8dc18a8e3db4fae90e7badc0215a, type: 3}
+    priority: 0.5
+    chanceValue: 0
