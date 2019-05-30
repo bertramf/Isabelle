@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f90ebb046e37e42bdcf633a997bb89, type: 3}
+  m_Name: Flower
+  m_EditorClassIdentifier: 
+  sourceColors:
+  - {r: 0.011764706, g: 0.05882353, b: 0.03529412, a: 1}
+  - {r: 0.1764706, g: 0.2901961, b: 0.17254902, a: 1}
+  - {r: 0.30980393, g: 0.41960785, b: 0.58431375, a: 1}
+  - {r: 0.7137255, g: 0.64705884, b: 0.6, a: 1}
+  colorPresets:
+  - {fileID: 11400000, guid: aa51b30ec7847e54a930a5118663a475, type: 2}
+  - {fileID: 11400000, guid: f5a0f96cd284bd24394468fe6a1689de, type: 2}
+  - {fileID: 11400000, guid: 7277e22e611e1c346bc30bb9edb50c88, type: 2}
+  currentPreset: {fileID: 11400000, guid: 7277e22e611e1c346bc30bb9edb50c88, type: 2}
+  originalTexture: {fileID: 2800000, guid: bcb5c2b06f442014dba0f72cc8d36be8, type: 3}
+  defaultMaterial: {fileID: 0}
+  presetMaterial: {fileID: 2100000, guid: 9a96f527bb0702b4993aeb8d51dfbc71, type: 2}
+  presetTexture: {fileID: 2800000, guid: 8ab777f8593234a4faf2554be6c645e2, type: 3}
+  texturePath: Generated/ColorSwap/Flower/Flower_texture

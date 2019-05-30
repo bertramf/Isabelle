@@ -12,7 +12,9 @@ public class Flower : MonoBehaviour{
 
     private Animator anim_c;
 
-    [Header("Als je de xFlip zelf wilt veranderen moet je dit uitvinken")]
+    public ParticleSystem ps_open;
+    public ParticleSystem ps_closing;
+    public bool openingFlower;
     public bool randomXflip;
 
     private void Start() {
@@ -37,8 +39,13 @@ public class Flower : MonoBehaviour{
             transform.localScale = new Vector3(xScale, 1, 0);
         }
 
+        //Set random height
+        int yOffset = Random.Range(0, 3);
+        float yOff = yOffset * -0.03f;
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + yOff, transform.localPosition.z);
+
         //Set random animatorSpeed
-        float randomAnimatorSpeed = Random.Range(0.75f, 1.15f);
+        float randomAnimatorSpeed = Random.Range(0.85f, 1.15f);
         anim_c.speed = randomAnimatorSpeed;
 
         //Set random idleTime
@@ -52,14 +59,16 @@ public class Flower : MonoBehaviour{
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player") {
-            if (flowerState == FlowerState.closed) {
-                anim_c.SetTrigger("interact");
+            if (flowerState == FlowerState.closed && openingFlower) {
                 flowerState = FlowerState.open;
+                anim_c.SetTrigger("interact");
+                ps_open.Play();
             }
-            //if (flowerState == FlowerState.open) {
-            //    anim_c.SetTrigger("interact");
-            //    flowerState = FlowerState.closed;
-            //}
+            else if (flowerState == FlowerState.open && !openingFlower) {
+                flowerState = FlowerState.closed;
+                anim_c.SetTrigger("interact");
+                ps_closing.Play();
+            }
         }
     }
 

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06622efb4d1eb14d9806a416cf7ec99, type: 3}
+  m_Name: white
+  m_EditorClassIdentifier: 
+  colorVariants:
+  - {r: 0.011764706, g: 0.05882353, b: 0.03529412, a: 1}
+  - {r: 0.1764706, g: 0.2901961, b: 0.17254902, a: 1}
+  - {r: 0.46666667, g: 0.54509807, b: 0.65882355, a: 1}
+  - {r: 0.7137255, g: 0.64705884, b: 0.6, a: 1}
+  presetMaterial: {fileID: 2100000, guid: 9a96f527bb0702b4993aeb8d51dfbc71, type: 2}
+  colorSwapData: {fileID: 11400000, guid: ad927f4bcff3fb64daac71025afff19c, type: 2}
