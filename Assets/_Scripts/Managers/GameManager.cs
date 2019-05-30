@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour {
             Scene[] allScenes = SceneManager.GetAllScenes();
             for(int i = 0; i < allScenes.Length; i++) {
                 if (newSceneName.Contains(allScenes[i].name)) {
-                    print(allScenes[i].name);
                     return allScenes[i];
                 }
             }

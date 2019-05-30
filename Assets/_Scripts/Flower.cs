@@ -39,10 +39,12 @@ public class Flower : MonoBehaviour{
             transform.localScale = new Vector3(xScale, 1, 0);
         }
 
-        //Set random height
+        //Set random yPos & random xPos
         int yOffset = Random.Range(0, 3);
         float yOff = yOffset * -0.03f;
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + yOff, transform.localPosition.z);
+        int xOffset = Random.Range(-3, 3);
+        float xOff = xOffset * 0.03f;
+        transform.localPosition = new Vector3(transform.localPosition.x + xOff, transform.localPosition.y + yOff, transform.localPosition.z);
 
         //Set random animatorSpeed
         float randomAnimatorSpeed = Random.Range(0.85f, 1.15f);
