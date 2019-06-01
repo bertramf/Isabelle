@@ -154,11 +154,20 @@ public class GameManager : MonoBehaviour {
     }
 
     private void InstatiateCore() {
-        if (GameObject.FindGameObjectWithTag("Player") == null) {
-            Instantiate(playerObj, currentCheckpoint, Quaternion.identity);
+        if (GameObject.FindGameObjectWithTag("CameraParent") != null) {
+            GameObject camera = GameObject.FindGameObjectWithTag("CameraParent");
+            camera.transform.position = currentCheckpoint;
         }
+        if (GameObject.FindGameObjectWithTag("Player") != null) {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.transform.position = currentCheckpoint;
+        }
+        
         if (GameObject.FindGameObjectWithTag("CameraParent") == null) {
             Instantiate(cameraObj, currentCheckpoint, Quaternion.identity); //Positie x zou eigenlijk + cameraController.xOffset moeten zijn
+        }
+        if (GameObject.FindGameObjectWithTag("Player") == null) {
+            Instantiate(playerObj, currentCheckpoint, Quaternion.identity);
         }
     }
 }

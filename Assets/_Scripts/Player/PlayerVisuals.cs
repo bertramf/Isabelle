@@ -6,6 +6,7 @@ public class PlayerVisuals : MonoBehaviour {
 
     private Animator anim;
     private PlayerBase PlayerBase;
+    private PlayerRaycasts PlayerRaycasts;
     private ColorSwap ColorSwap;
 
     public ColorSwapPreset weakPreset;
@@ -15,6 +16,7 @@ public class PlayerVisuals : MonoBehaviour {
     private void Start () {
         anim = GetComponent<Animator>();
         PlayerBase = GetComponentInParent<PlayerBase>();
+        PlayerRaycasts = GetComponentInParent<PlayerRaycasts>();
         ColorSwap = GetComponent<ColorSwap>();
     }
 
@@ -38,6 +40,12 @@ public class PlayerVisuals : MonoBehaviour {
         AssignAnimations();
     }
 
+    private bool isDashing {
+        get {
+            return PlayerBase.playerState == PlayerBase.PlayerState.dashing;
+        }
+    }
+
     private void AssignAnimations() {
         bool isWalking;
         if (PlayerBase.movementSpeed > 0) {
@@ -46,11 +54,10 @@ public class PlayerVisuals : MonoBehaviour {
         else {
             isWalking = false;
         }
-
         anim.SetBool("isWalking", isWalking);
-        anim.SetBool("isDashing", PlayerBase.isDashing);
+        anim.SetBool("isDashing", isDashing);
+        anim.SetBool("grounded", PlayerRaycasts.coyoteGrounded);
         anim.SetFloat("yVelocity", PlayerBase.upVelocity);
-
     }
 
     private void Event_PlayerHittedFalling() {

@@ -37,9 +37,12 @@ public class DashRechargeOrb : MonoBehaviour {
     }
 
     private void Disappear() {
-        //Feedback other objects
-        playerBase.EnableCanDash();
+        //Player changes
+            //playerBase.StopDash();
         playerBase.FreezePlayer(PlayerFreezeTime);
+        playerBase.CanDash = true;
+
+        //Feedback other objects
         Screenshake.instance.StartShakeHorizontal(2, screenShakeTime, 0.1f);
 
         //Feedback on this gameObject

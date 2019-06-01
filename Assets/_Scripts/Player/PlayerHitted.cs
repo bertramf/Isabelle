@@ -16,7 +16,7 @@ public class PlayerHitted : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (playerBase.isAlive) {
+        if (playerBase.playerState != PlayerBase.PlayerState.dead) {
             if (other.gameObject.tag == "Death_Falling") {
                 Death_Falling();
             }

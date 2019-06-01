@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7043129390262470619}
   - component: {fileID: 7043129390262470618}
   - component: {fileID: 7043129390262470621}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: text_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 7043129390492176970}
   - component: {fileID: 7043129390492176973}
   - component: {fileID: 7043129390492176971}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7043129390878499053}
   - component: {fileID: 7043129390878499052}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: _StoryHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

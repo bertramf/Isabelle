@@ -122,7 +122,7 @@ public class PlayerVisuals_Ps : MonoBehaviour {
             emGrassWalking.rateOverTime = 0f;
         }
         //GrassDashing
-        if (PlayerBase.isDashing && PlayerGroundDetection.isInGrass) {
+        if (PlayerBase.playerState == PlayerBase.PlayerState.dashing && PlayerGroundDetection.isInGrass) {
             if(PlayerBase.lookDirection == 1) {
                 emGrassDashingL.rateOverTime = grassDashingEmission;
             }
