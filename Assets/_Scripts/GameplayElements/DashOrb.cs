@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashRechargeOrb : MonoBehaviour {
+public class DashOrb : MonoBehaviour {
 
     private PlayerBase playerBase;
     private CircleCollider2D coll;
     private SpriteRenderer sprite;
 
+    public ParticleSystem ps_disappear;
     public Sprite chargedSpr;
     public Sprite deChargedSpr;
 
@@ -18,7 +19,7 @@ public class DashRechargeOrb : MonoBehaviour {
 
     private void Start() {
         coll = GetComponent<CircleCollider2D>();
-        sprite = transform.Find("DashRecharge_Visuals").GetComponent<SpriteRenderer>();
+        sprite = transform.Find("DashOrb_Visuals").GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -38,7 +39,6 @@ public class DashRechargeOrb : MonoBehaviour {
 
     private void Disappear() {
         //Player changes
-            //playerBase.StopDash();
         playerBase.FreezePlayer(PlayerFreezeTime);
         playerBase.CanDash = true;
 
@@ -48,7 +48,8 @@ public class DashRechargeOrb : MonoBehaviour {
         //Feedback on this gameObject
         coll.enabled = false;
         sprite.sprite = deChargedSpr;
-        sprite.sortingLayerName = "Default";  
+        sprite.sortingLayerName = "Default";
+        ps_disappear.Play();
     }
 
     private void Appear() {

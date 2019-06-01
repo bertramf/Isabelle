@@ -47,17 +47,10 @@ public class PlayerVisuals : MonoBehaviour {
     }
 
     private void AssignAnimations() {
-        bool isWalking;
-        if (PlayerBase.movementSpeed > 0) {
-            isWalking = true;
-        }
-        else {
-            isWalking = false;
-        }
-        anim.SetBool("isWalking", isWalking);
         anim.SetBool("isDashing", isDashing);
         anim.SetBool("grounded", PlayerRaycasts.coyoteGrounded);
         anim.SetFloat("yVelocity", PlayerBase.upVelocity);
+        anim.SetFloat("movementSpeed", PlayerBase.movementSpeed);
     }
 
     private void Event_PlayerHittedFalling() {

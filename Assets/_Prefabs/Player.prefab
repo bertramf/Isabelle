@@ -23559,15 +23559,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121da06b98658da43b373c6ee5dc9e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlive: 1
+  playerState: 0
   lookDirection: 1
   inputHorizontal: 0
   movementSpeed: 0
   upVelocity: 0
-  dashCooldownOver: 1
-  isDashing: 0
   dashSpeed: 0
   inputRt: 0
+  storedX: 0
+  isFrozen: 0
+  dashCooldownOver: 1
 --- !u!114 &114637400964526772
 MonoBehaviour:
   m_ObjectHideFlags: 0

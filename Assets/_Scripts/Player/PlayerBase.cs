@@ -177,7 +177,7 @@ public class PlayerBase : MonoBehaviour {
         
         dashSpeed = 0f;
         StartCoroutine(DashCooldown());
-        StartCoroutine(SlowGravityAfterDash());
+        //StartCoroutine(SlowGravityAfterDash()); //TWIJFEL OF DIT ECHT NODIG IS
         playerState = PlayerState.standard;
     }
 
@@ -217,8 +217,8 @@ public class PlayerBase : MonoBehaviour {
 
     private IEnumerator SlowGravityAfterDash() {
         float t = 0f;
-        while(t < 1) {
-            t += Time.deltaTime / 0.1f;
+        while (t < 1) {
+            t += Time.deltaTime / 0.2f;
             playerValues.fallGravity = maxFallGravity * t;
             yield return null;
         }
