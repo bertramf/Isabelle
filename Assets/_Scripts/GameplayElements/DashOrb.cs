@@ -8,7 +8,9 @@ public class DashOrb : MonoBehaviour {
     private CircleCollider2D coll;
     private SpriteRenderer sprite;
 
-    public ParticleSystem ps_disappear;
+    public ParticleSystem ps_disappear_1;
+    public ParticleSystem ps_disappear_2;
+    public ParticleSystem ps_alive;
     public Sprite chargedSpr;
     public Sprite deChargedSpr;
 
@@ -20,6 +22,9 @@ public class DashOrb : MonoBehaviour {
     private void Start() {
         coll = GetComponent<CircleCollider2D>();
         sprite = transform.Find("DashOrb_Visuals").GetComponent<SpriteRenderer>();
+
+        ps_alive.Play();
+        RandomParticlePosition();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -49,7 +54,9 @@ public class DashOrb : MonoBehaviour {
         coll.enabled = false;
         sprite.sprite = deChargedSpr;
         sprite.sortingLayerName = "Default";
-        ps_disappear.Play();
+        ps_disappear_1.Play();
+        ps_disappear_2.Play();
+        ps_alive.Stop();
     }
 
     private void Appear() {
@@ -57,5 +64,17 @@ public class DashOrb : MonoBehaviour {
         coll.enabled = true;
         sprite.sprite = chargedSpr;
         sprite.sortingLayerName = "Gameplay";
+        ps_alive.Play();
+
+        //Set randomParticlePosition for next impact
+        RandomParticlePosition();
+    }
+
+    private void RandomParticlePosition() {
+        int randomInt = Random.Range(-60, 60);
+        var sh1 = ps_disappear_1.shape;
+        var sh2 = ps_disappear_2.shape;
+        sh1.rotation = new Vector3(0, 0, randomInt);
+        sh2.rotation = new Vector3(0, 0, randomInt + 60);
     }
 }
