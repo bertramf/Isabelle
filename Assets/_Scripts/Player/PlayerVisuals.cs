@@ -73,6 +73,7 @@ public class PlayerVisuals : MonoBehaviour {
     }
 
     private void Event_RedoColors() {
+        //print("error");
         ColorSwap.UpdateVisualData(poweredPreset);
     }
 

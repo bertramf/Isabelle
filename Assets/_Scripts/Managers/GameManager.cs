@@ -161,6 +161,8 @@ public class GameManager : MonoBehaviour {
         if (GameObject.FindGameObjectWithTag("Player") != null) {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.transform.position = currentCheckpoint;
+            PlayerBase playerBase = player.GetComponent<PlayerBase>();
+            playerBase.PlayerStartLogic();
         }
         
         if (GameObject.FindGameObjectWithTag("CameraParent") == null) {

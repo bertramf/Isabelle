@@ -51,13 +51,13 @@ public class PlayerBase : MonoBehaviour {
             return canDash;
         }
         set {
-            canDash = value;
             if (value == true) {
                 //EventSetter
                 if (onEventDashRecharged != null) {
                     onEventDashRecharged();
                 }
             }
+            canDash = value;
         }
     }
 
@@ -66,6 +66,10 @@ public class PlayerBase : MonoBehaviour {
         playerRaycasts = GetComponent<PlayerRaycasts>();
         playerValues = Resources.Load<PlayerValues>("Settings/PlayerValues");
 
+        PlayerStartLogic();
+    }
+
+    public void PlayerStartLogic() {
         playerState = PlayerState.standard;
         maxFallGravity = playerValues.fallGravity;
         lookDirection = 1;

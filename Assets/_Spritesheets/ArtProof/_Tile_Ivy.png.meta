@@ -10,6 +10,8 @@ TextureImporter:
     21300010: _Tile_Ivy_5
     21300012: _Tile_Ivy_6
     21300014: _Tile_Ivy_7
+    21300016: _Tile_Ivy_8
+    21300018: _Tile_Ivy_9
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -239,10 +241,10 @@ TextureImporter:
         serializedVersion: 2
         x: 70
         y: 96
-        width: 35
+        width: 32
         height: 35
       alignment: 9
-      pivot: {x: 0.31428573, y: 0.6857143}
+      pivot: {x: 0.33333334, y: 0.6857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -259,16 +261,56 @@ TextureImporter:
         serializedVersion: 2
         x: 70
         y: 80
-        width: 35
+        width: 32
         height: 16
       alignment: 9
-      pivot: {x: 0.31428573, y: 0.5}
+      pivot: {x: 0.34375, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 6bbb67d79f5791c4c84e547894a14156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Tile_Ivy_8
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 112
+        width: 19
+        height: 19
+      alignment: 9
+      pivot: {x: 0.57894737, y: 0.42105263}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 547c8acbbcfa1964a85615017126c294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Tile_Ivy_9
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 93
+        width: 35
+        height: 19
+      alignment: 9
+      pivot: {x: 0.31428573, y: 0.42105263}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1855d9aac43452c4d90c14074fe8cfcc
       vertices: []
       indices: 
       edges: []

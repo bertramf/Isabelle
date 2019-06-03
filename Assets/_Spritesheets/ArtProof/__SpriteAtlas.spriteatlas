@@ -47,7 +47,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 19294694da8f91d4a8e506ef8ef169e7, type: 3}
     - {fileID: 2800000, guid: 46318a20a8671c54280db83d8722ba05, type: 3}
     - {fileID: 2800000, guid: 17072052d600793438581f1c56e095dc, type: 3}
-    totalSpriteSurfaceArea: 30395
+    totalSpriteSurfaceArea: 31268
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -89,6 +89,8 @@ SpriteAtlas:
   - {fileID: 21300010, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
   - {fileID: 21300012, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
   - {fileID: 21300014, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
+  - {fileID: 21300016, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
+  - {fileID: 21300018, guid: 23e62a942e9667d40a068adfe949de63, type: 3}
   - {fileID: 21300004, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
   - {fileID: 21300006, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
   - {fileID: 21300008, guid: 13484af495c2b7c4780aa48d2177c2e6, type: 3}
@@ -135,6 +137,8 @@ SpriteAtlas:
   - _Tile_Ivy_5
   - _Tile_Ivy_6
   - _Tile_Ivy_7
+  - _Tile_Ivy_8
+  - _Tile_Ivy_9
   - _Tile_Grass_4
   - _Tile_Grass_5
   - _Tile_Grass_6
