@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 1214181463}
   - component: {fileID: 1214181462}
   - component: {fileID: 1214181465}
+  - component: {fileID: 1214181466}
   m_Layer: 0
   m_Name: DevMode
   m_TagString: Untagged
@@ -557,6 +558,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevelText: {fileID: 1248922352}
+--- !u!114 &1214181466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214181461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea202c1c5e27bc4fb1cac28cdd767b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointPositions: []
+  checkpointIndex: 0
+  checkpointLength: 0
 --- !u!1 &1248922350
 GameObject:
   m_ObjectHideFlags: 0

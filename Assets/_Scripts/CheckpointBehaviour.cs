@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckpointBehaviour : MonoBehaviour {
 
-    private Vector3 spawnPosition;
+    public Vector3 spawnPosition;
 
     private void Start() {
         spawnPosition = transform.parent.position;

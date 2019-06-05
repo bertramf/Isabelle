@@ -16,6 +16,9 @@ public enum GameStates {
 
 public class GameManager : MonoBehaviour {
 
+    public delegate void EventSceneLoaded();
+    public static event EventSceneLoaded onEventSceneLoaded;
+
     public static GameManager Instance = null;
     public GameStates gameState;
     public GameObject playerObj;
@@ -90,6 +93,10 @@ public class GameManager : MonoBehaviour {
         currentSceneName = newSceneName;
         currentScene = newScene;
         gameState = GameStates.playing;
+        //EventSetter
+        if(onEventSceneLoaded != null) {
+            onEventSceneLoaded();
+        }
     }
 
     public void DEV_ChangeSceneIndex(int indexChange) {
@@ -151,6 +158,10 @@ public class GameManager : MonoBehaviour {
         currentSceneName = newSceneName;
         currentScene = newScene;
         gameState = GameStates.playing;
+        //EventSetter
+        if (onEventSceneLoaded != null) {
+            onEventSceneLoaded();
+        }
     }
 
     private void InstatiateCore() {

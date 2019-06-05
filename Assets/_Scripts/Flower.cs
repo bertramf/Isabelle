@@ -46,17 +46,16 @@ public class Flower : MonoBehaviour{
         float xOff = xOffset * 0.03f;
         transform.localPosition = new Vector3(transform.localPosition.x + xOff, transform.localPosition.y + yOff, transform.localPosition.z);
 
-        //Set random animatorSpeed
-        float randomAnimatorSpeed = Random.Range(0.85f, 1.15f);
-        anim_c.speed = randomAnimatorSpeed;
-
-        //Set random idleTime
+        //Set animation offset
+        anim_c.speed = 0f;
         float randomOffset = Random.Range(0f, 0.5f);
         Invoke("EnableAnimator", randomOffset);
     }
 
     private void EnableAnimator() {
-        anim_c.enabled = true;
+        //Start animator & set random animatorSpeed
+        float randomAnimatorSpeed = Random.Range(0.85f, 1.15f);
+        anim_c.speed = randomAnimatorSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

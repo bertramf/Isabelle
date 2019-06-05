@@ -18,9 +18,14 @@ public class Bird : MonoBehaviour{
     private float idleTime;
 
     public LayerMask groundLayer;
+    public ParticleSystem ps_flying;
     public float raycastLength;
     public float yRaycastOffset;
     public float flySpeed;
+    public float flyCooldown;
+
+    [Header("BirdGroup = true")]
+    public bool birdGroup;
 
     private void Start(){
         rb = GetComponent<Rigidbody2D>();
@@ -28,11 +33,18 @@ public class Bird : MonoBehaviour{
 
         birdState = BirdState.idle;
         lookDirection = Mathf.RoundToInt(transform.localScale.x);
-        idleTime = Random.Range(2f, 2.5f);
+        idleTime = Random.Range(1.5f, 2f);
+
+        if (birdGroup) {
+            Transform trigger = transform.Find("BirdTrigger");
+            Destroy(trigger.gameObject);
+        }
     }
     
     private void Update(){
-        Raycasting();
+        if(birdState == BirdState.flying) {
+            Raycasting();
+        }
         if(birdState == BirdState.idle) {
             RandomIdles();
         }
@@ -48,13 +60,18 @@ public class Bird : MonoBehaviour{
                 FlipSprite();
             }
             else if (randomRange < 5) {
+                anim.SetBool("idle1", false);
+                anim.SetBool("idle2", false);
                 anim.SetTrigger("idle3");
             }
             else if (randomRange >= 5 && randomRange < 13) {
-                anim.SetTrigger("idle2");
+                anim.SetBool("idle1", false);
+                anim.SetBool("idle2", true);
             }
             else {
                 anim.SetTrigger("idle1");
+                anim.SetBool("idle1", true);
+                anim.SetBool("idle2", false);
             }
         }
     }
@@ -71,12 +88,16 @@ public class Bird : MonoBehaviour{
         }
     }
 
+    public void FlyFromGroupTrigger(float xPosPlayer) {
+        StartCoroutine(FlyLogic(xPosPlayer));
+    }
+
     private IEnumerator FlyLogic(float xPosPlayer) {
         //Set State to Flying
         birdState = BirdState.flying;
 
         //Little cooldown
-        float randomCooldown = Random.Range(0, 0.5f);
+        float randomCooldown = Random.Range(flyCooldown * 0.5f, flyCooldown * 1.5f);
         yield return new WaitForSeconds(randomCooldown);
 
         //Direction calculation
@@ -84,27 +105,29 @@ public class Bird : MonoBehaviour{
         float xPosBird = transform.position.x;
         if((xPosBird - xPosPlayer) >= 0) {
             lookDirection = 1;
-            xDirection = Random.Range(0.5f, 1f);
+            xDirection = Random.Range(0.4f, 1f);
         }
         else {
             lookDirection = -1;
-            xDirection = Random.Range(-0.5f, -1f);
+            xDirection = Random.Range(-0.4f, -1f);
         }
         transform.localScale = new Vector3(lookDirection, 1, 1);
 
         //Fly away
-        flyDirection = new Vector2(xDirection, 1);
+        flySpeed = Random.Range((flySpeed * 0.8f), flySpeed);
+        float randomYDir = Random.Range(0.7f, 1f);
+        flyDirection = new Vector2(xDirection, randomYDir);
         rb.velocity = flyDirection.normalized * flySpeed;
 
         //Visuals
+        anim.SetBool("idle1", false);
+        anim.SetBool("idle2", false);
         anim.SetTrigger("fly");
+        ps_flying.Play();
 
         //Destroy after 10 seconds
-        StartCoroutine(DestroyBird());
-    }
-
-    private IEnumerator DestroyBird() {
         yield return new WaitForSeconds(10f);
+
         Destroy(this.gameObject);
     }
 

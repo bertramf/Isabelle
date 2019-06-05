@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/DashOrb.unity
     guid: 1f7aa799d185a8e4fa14172c00d6631c
+  - enabled: 1
+    path: Assets/_Scenes/Chapter1_01.unity
+    guid: cecdda398bd37444b8bf63d47fa00f47
   m_configObjects: {}
